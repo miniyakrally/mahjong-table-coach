@@ -1,0 +1,10 @@
+{
+  "name": "mahjong-table-coach",
+  "version": "0.1.0",
+  "private": true,
+  "description": "A static app that helps friends learn American mahjong together.",
+  "scripts": {
+    "check": "node --check app.js",
+    "start": "python3 -m http.server 4177"
+  }
+}

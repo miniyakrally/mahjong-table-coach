@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Mahjong Table Coach</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <aside class="sidebar" aria-label="Learning navigation">
+        <div class="brand">
+          <div class="brand-mark" aria-hidden="true">東</div>
+          <div>
+            <p class="eyebrow">Table Coach</p>
+            <h1>Learn Mahjong Together</h1>
+          </div>
+        </div>
+
+        <nav class="mode-nav" aria-label="App modes">
+          <button class="nav-button active" data-view="lesson" type="button">
+            <span aria-hidden="true">01</span>
+            Lessons
+          </button>
+          <button class="nav-button" data-view="tiles" type="button">
+            <span aria-hidden="true">02</span>
+            Tile Trainer
+          </button>
+          <button class="nav-button" data-view="table" type="button">
+            <span aria-hidden="true">03</span>
+            Practice Table
+          </button>
+          <button class="nav-button" data-view="quiz" type="button">
+            <span aria-hidden="true">04</span>
+            Group Quiz
+          </button>
+          <button class="nav-button" data-view="card" type="button">
+            <span aria-hidden="true">05</span>
+            2026 Card
+          </button>
+          <button class="nav-button" data-view="tools" type="button">
+            <span aria-hidden="true">06</span>
+            Tools
+          </button>
+        </nav>
+
+        <section class="progress-card" aria-label="Progress">
+          <div class="progress-head">
+            <span>Tonight's readiness</span>
+            <strong id="readinessScore">28%</strong>
+          </div>
+          <div class="meter" aria-hidden="true"><span id="readinessMeter"></span></div>
+          <p id="readinessNote">Start with turns, calls, and the four-set hand shape.</p>
+        </section>
+      </aside>
+
+      <section class="content">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">Chinese classical basics</p>
+            <h2 id="viewTitle">Lessons</h2>
+          </div>
+          <div class="group-controls" aria-label="Group setup">
+            <label>
+              Friends
+              <input id="friendCount" type="number" min="2" max="8" value="4" />
+            </label>
+            <button id="resetProgress" class="icon-text-button" type="button">Reset</button>
+          </div>
+        </header>
+
+        <section id="lesson" class="view active" aria-labelledby="viewTitle">
+          <div class="lesson-grid">
+            <article class="lesson-panel">
+              <div class="lesson-kicker">Step <span id="lessonNumber">1</span> of 6</div>
+              <h3 id="lessonTitle"></h3>
+              <p id="lessonBody"></p>
+              <ul id="lessonBullets" class="clean-list"></ul>
+              <div class="lesson-actions">
+                <button id="prevLesson" class="secondary-button" type="button">Back</button>
+                <button id="nextLesson" class="primary-button" type="button">Next Lesson</button>
+              </div>
+            </article>
+
+            <article class="table-visual" aria-label="Mahjong table diagram">
+              <div class="seat north">North<br /><span>opposite</span></div>
+              <div class="seat west">West<br /><span>left</span></div>
+              <div class="seat east active-seat">East<br /><span>dealer</span></div>
+              <div class="seat south">South<br /><span>you</span></div>
+              <div class="wall wall-top" aria-hidden="true"></div>
+              <div class="wall wall-right" aria-hidden="true"></div>
+              <div class="wall wall-bottom" aria-hidden="true"></div>
+              <div class="wall wall-left" aria-hidden="true"></div>
+              <div class="discard-pool" aria-hidden="true">
+                <span>一</span><span>二</span><span>三</span><span>發</span><span>七</span><span>南</span>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section id="tiles" class="view" aria-labelledby="viewTitle">
+          <div class="trainer-layout">
+            <article class="flashcard" aria-live="polite">
+              <div class="tile-card" id="flashTile">一</div>
+              <p class="tile-family" id="flashFamily">Characters</p>
+              <h3 id="flashName">One Character</h3>
+              <p id="flashHint">Suited tiles are numbered 1 through 9 and form sequences.</p>
+              <div class="lesson-actions">
+                <button id="knownTile" class="secondary-button" type="button">I knew it</button>
+                <button id="nextTile" class="primary-button" type="button">Next Tile</button>
+              </div>
+            </article>
+            <article class="tile-reference">
+              <h3>Tile Families</h3>
+              <div id="tileFamilies" class="family-grid"></div>
+            </article>
+          </div>
+        </section>
+
+        <section id="table" class="view" aria-labelledby="viewTitle">
+          <div class="practice-layout">
+            <article class="hand-builder">
+              <div class="section-head">
+                <div>
+                  <p class="eyebrow">Build a legal shape</p>
+                  <h3>Your Hand</h3>
+                </div>
+                <button id="dealHand" class="secondary-button" type="button">Deal Practice Hand</button>
+              </div>
+              <div id="practiceHand" class="hand-row" aria-label="Practice hand"></div>
+              <div class="hand-feedback" id="handFeedback">Try grouping tiles into four sets plus one pair.</div>
+              <div class="tile-bank" id="tileBank" aria-label="Tile bank"></div>
+            </article>
+            <article class="call-card">
+              <h3>Call Decisions</h3>
+              <p id="callScenario"></p>
+              <div id="callOptions" class="call-options"></div>
+              <p id="callFeedback" class="call-feedback"></p>
+            </article>
+          </div>
+        </section>
+
+        <section id="quiz" class="view" aria-labelledby="viewTitle">
+          <div class="quiz-layout">
+            <article class="quiz-card">
+              <div class="quiz-score"><span id="quizScore">0</span> correct</div>
+              <h3 id="quizQuestion"></h3>
+              <div id="quizAnswers" class="answer-grid"></div>
+              <p id="quizFeedback" class="quiz-feedback"></p>
+              <button id="nextQuestion" class="primary-button" type="button">Next Question</button>
+            </article>
+            <article class="night-card">
+              <h3>Friend Table Plan</h3>
+              <ol id="nightPlan" class="plan-list"></ol>
+            </article>
+          </div>
+        </section>
+
+        <section id="card" class="view" aria-labelledby="viewTitle">
+          <div class="card-layout">
+            <article class="card-guide">
+              <div class="section-head">
+                <div>
+                  <p class="eyebrow">American mahjong</p>
+                  <h3>How the Annual Card Works</h3>
+                </div>
+                <a
+                  class="text-link"
+                  href="https://nationalmahjonggleague.org/store.aspx"
+                  rel="noreferrer"
+                  target="_blank"
+                >Official card</a>
+              </div>
+              <p>
+                The official NMJL card changes each year. Use this guide beside your real card to
+                learn the notation, but play from the card your table agreed to use.
+              </p>
+              <div id="cardSections" class="card-section-grid"></div>
+              <p class="copyright-note">
+                This app teaches card-reading concepts. It does not reproduce the copyrighted
+                official NMJL hand list.
+              </p>
+            </article>
+
+            <article class="soap-lab">
+              <p class="eyebrow">Year section</p>
+              <h3>Soap as Zero</h3>
+              <div class="year-tiles" aria-label="2026 example">
+                <span class="mini-tile">2</span>
+                <span class="mini-tile soap-tile">白</span>
+                <span class="mini-tile">2</span>
+                <span class="mini-tile">6</span>
+              </div>
+              <p>
+                In year hands, the zero is represented by Soap, also called the White Dragon.
+                In 2027, the year changes, so you would read the current card's year pattern instead.
+              </p>
+              <div id="cardPrompt" class="practice-prompt"></div>
+              <div id="cardPromptOptions" class="answer-grid"></div>
+              <p id="cardPromptFeedback" class="quiz-feedback"></p>
+              <button id="nextCardPrompt" class="primary-button" type="button">Next Prompt</button>
+            </article>
+          </div>
+        </section>
+
+        <section id="tools" class="view" aria-labelledby="viewTitle">
+          <div class="tools-layout">
+            <article class="tool-panel hand-coach-panel">
+              <div class="section-head">
+                <div>
+                  <p class="eyebrow">Starting hand coach</p>
+                  <h3>Enter Your 13 Tiles</h3>
+                </div>
+                <div class="tool-actions">
+                  <button id="sampleCoachHand" class="secondary-button" type="button">Sample</button>
+                  <button id="clearCoachHand" class="secondary-button" type="button">Clear</button>
+                </div>
+              </div>
+              <div id="coachHand" class="hand-row coach-hand" aria-label="Your entered hand"></div>
+              <p id="coachCount" class="helper-line">Add tiles from the bank below.</p>
+              <div id="coachTileBank" class="tile-bank coach-bank" aria-label="Coach tile bank"></div>
+              <div id="coachAdvice" class="advice-grid" aria-live="polite"></div>
+            </article>
+
+            <article class="tool-panel">
+              <p class="eyebrow">Charleston helper</p>
+              <h3>Pick 3 to Pass</h3>
+              <p>Use this as a beginner check before passing. It favors isolated tiles, duplicate flowers, and low-flexibility singles.</p>
+              <div id="charlestonPicks" class="recommendation-list"></div>
+            </article>
+
+            <article class="tool-panel">
+              <p class="eyebrow">Tile identifier</p>
+              <h3>Designer Set Decoder</h3>
+              <div id="tileIdentifier" class="identifier-grid"></div>
+            </article>
+
+            <article class="tool-panel tile-set-panel">
+              <div class="section-head">
+                <div>
+                  <p class="eyebrow">Tile set customizer</p>
+                  <h3>Match Your Tiles</h3>
+                </div>
+                <button id="resetTileLabels" class="secondary-button" type="button">Reset Labels</button>
+              </div>
+              <p>
+                Add a photo as a private reference, then choose labels that match your set.
+                The photo and labels stay in this browser.
+              </p>
+              <label class="photo-picker">
+                <span>Tile set photo</span>
+                <input id="tilePhotoInput" type="file" accept="image/*" />
+              </label>
+              <img id="tilePhotoPreview" class="tile-photo-preview" alt="Uploaded tile set reference" hidden />
+              <div class="preset-buttons" aria-label="Tile label presets">
+                <button class="secondary-button" data-label-preset="beginner" type="button">Beginner names</button>
+                <button class="secondary-button" data-label-preset="american" type="button">Card shorthand</button>
+                <button class="secondary-button" data-label-preset="symbols" type="button">Symbols</button>
+              </div>
+              <div id="customLabelGrid" class="custom-label-grid"></div>
+            </article>
+
+            <article class="tool-panel">
+              <p class="eyebrow">Card notation</p>
+              <h3>Translate the Symbols</h3>
+              <div id="notationGrid" class="notation-grid"></div>
+            </article>
+
+            <article class="tool-panel">
+              <p class="eyebrow">Rules practice</p>
+              <h3>Jokers, Soap, and Calls</h3>
+              <div id="ruleDrillQuestion" class="practice-prompt"></div>
+              <div id="ruleDrillAnswers" class="answer-grid"></div>
+              <p id="ruleDrillFeedback" class="quiz-feedback"></p>
+              <button id="nextRuleDrill" class="primary-button" type="button">Next Drill</button>
+            </article>
+
+            <article class="tool-panel">
+              <p class="eyebrow">Table agreement</p>
+              <h3>Before You Start</h3>
+              <div id="tableChecklist" class="checklist"></div>
+            </article>
+
+            <article class="tool-panel">
+              <p class="eyebrow">Shared learning</p>
+              <h3>Group Prompt</h3>
+              <p id="groupPrompt" class="group-prompt"></p>
+              <button id="nextGroupPrompt" class="primary-button" type="button">New Prompt</button>
+            </article>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
