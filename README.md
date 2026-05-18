@@ -26,10 +26,12 @@ http://127.0.0.1:4177/
 
 This is a plain static site. It can be hosted on GitHub Pages, Netlify, Vercel, Render static sites, or any static file host.
 
+This repo includes a GitHub Pages workflow in `.github/workflows/pages.yml`.
+
 Recommended temporary URL plan:
 
-1. Create a standalone GitHub repo, for example `mahjong-table-coach`.
-2. Deploy this folder as a static site.
+1. In the GitHub repo settings, enable GitHub Pages with the source set to GitHub Actions.
+2. Push to `main`; the Pages workflow deploys the static site.
 3. After the new URL is live, keep `https://bookblendapp.com/mahjong.html` as a redirect so previously shared links keep working.
 
 ## Copyright Boundary
