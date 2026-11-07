@@ -1,0 +1,14 @@
+{
+  "date": "2026-11-07",
+  "scope": "Table-first design mock, including welcome, Learn, Practice, Reference and optional help",
+  "method": "Discipline-based expert review; not an observed beginner test",
+  "retained": ["Approved welcome headline", "Blue palette and visual hierarchy", "Learn / Practice / Reference navigation", "Short default instructions with optional help"],
+  "changes": {
+    "beginner_and_instructor": ["Explain card as the list of hands you can make before using row", "Start new visitors with tile names", "Clarify that jokers cannot be passed", "Distinguish declining a call from Charleston passing"],
+    "product_manager": ["Remove passing promise from the link directly to a post-Charleston hand", "Retain distinction between teaching card and official annual card", "Remove unsupported sound-setting promise and untested lesson times"],
+    "game_designer": ["Use Play South’s turn instead of Next player", "Use Pass on this tile instead of ambiguous Pass", "Reserve Declare mahjong for a real validating action; the preview help says How to win"],
+    "ux_and_visual_design": ["Keep friendly headline on welcome; use Play a practice hand on the game screen", "Replace vague destination headings with useful action descriptions", "Remove decorative confidence caption"],
+    "online_instruction": ["Keep brief next-move instructions visible", "Explain calls and exposures in requested help", "Keep hints tied to tiles currently shown"]
+  },
+  "remaining_gate": "Full desktop/mobile app QC after approved design implementation, plus an observed beginner session. See redesign-qc.json."
+}
