@@ -49,14 +49,15 @@ const demoSteps = new Map();
 function renderTeachingVisual(lesson) {
   const step=demoSteps.get(state.lesson)||0;
   switch(lesson.visual) {
+    case 'groups':return labeledTiles('Pair · two matching tiles',['2C','2C'])+labeledTiles('Pung · three matching tiles',['6D','6D','6D'])+labeledTiles('Kong · four matching tiles',['4B','4B','4B','4B']);
     case 'joker':return labeledTiles('You need this group',['6D','6D','6D'])+labeledTiles('This does the same job',['6D','6D','J']);
     case 'joker-limits':return labeledTiles('Allowed: a pung',['6D','6D','J'])+labeledTiles('Not allowed: a pair',['F','J']);
     case 'card':return patternMarkup(practiceCard[0]);
     case 'table':return tableDiagram('table');
     case 'deal':return tableDiagram('deal',step)+demoControls(step,4);
     case 'tail':return tableDiagram('tail')+wallMarkup();
-    case 'rol':case 'lor':return passingDiagram(lesson.visual,step)+demoControls(step,3);
-    case 'exposure':return `<div class="rack-comparison"><article><h4>X hand: exposures allowed</h4><p>Shown on top of the rack after a legal call:</p>${labeledTiles('One exposed pung',['2C','2C','2C'])}<p>Still hidden in your rack:</p>${tileBacks(10)}<p>3 shown + 10 hidden = 13 after discarding.</p></article><article><h4>C hand: no exposures before mahjong</h4><p>No groups shown on top of the rack.</p>${tileBacks(13)}<p>13 hidden after discarding. Reveal all 14 only when the hand is complete.</p></article></div>`;
+    case 'rol':case 'lor':return passingDiagram(lesson.visual,step)+demoControls(step,3)+'<details><summary>What is a blind pass?</summary><p>On the first left or second right, you may send on some or all of the tiles arriving from another player without looking at them. They replace rack tiles in your outgoing three: choose two from your rack plus one incoming blind tile, for example. The total sent is still three. Jokers may not be passed.</p></details>';
+    case 'exposure':return `<p>A player puts a discard face up in the center. A legal call moves that latest discard into a complete group on the caller’s rack.</p>${printedPattern(practiceCard[0])}${printedPattern(practiceCard[2])}<div class="rack-comparison"><article><h4>X hand: exposures allowed</h4><p>Shown on top of the rack after a legal call:</p>${labeledTiles('One exposed pung',['2C','2C','2C'])}<p>Still hidden in your rack:</p>${tileBacks(10)}<p>3 shown + 10 hidden = 13 after discarding.</p></article><article><h4>C hand: no exposures before mahjong</h4><p>No groups shown on top of the rack.</p>${tileBacks(13)}<p>13 hidden after discarding. Reveal all 14 only when the hand is complete.</p></article></div>`;
     case 'turn':return turnExample();
     case 'quiz-pairs':return printedPattern(practiceCard[2])+labeledTiles('After drawing: 14 tiles',[...practiceCard[2].groups.flat().slice(0,13),'J']);
     case 'quiz-count': {
@@ -64,7 +65,7 @@ function renderTeachingVisual(lesson) {
       return printedPattern(practiceCard[0])+labeledTiles('Starting rack: 13 tiles',rack)+labeledTiles('You draw this tile',['6D']);
     }
     case 'call':return printedPattern(practiceCard[0])+labeledTiles('In your hand: three 6 Dots',['6D','6D','6D'])+labeledTiles('The latest discard: fourth 6 Dot',['6D']);
-    case 'exchange':return labeledTiles('Other player’s exposed group',['6D','6D','J'])+labeledTiles('Your replacement tile',['6D']);
+    case 'exchange':return labeledTiles('Before · owner’s exposed group',['6D','6D','J'])+labeledTiles('You offer this matching tile',['6D'])+'<p>Ask the owner to replace their joker with your 6 Dot and hand you the joker. Never touch their tiles.</p>'+labeledTiles('After · owner’s group stays exposed',['6D','6D','6D'])+labeledTiles('After · joker joins your hand',['J']);
     default:return `<div class="example-tiles">${tileRow(lesson.tiles)}</div>`;
   }
 }

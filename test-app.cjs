@@ -119,6 +119,7 @@ assert.match(journey.innerHTML,/First Charleston complete/);jclick({go:'second'}
 for(let i=0;i<3;i++)passJourney();
 assert.match(journey.innerHTML,/One optional exchange/);
 elements.set('journeyCourtesy',{value:'0'});jclick({go:'courtesy'});jclick({go:'next'});
+assert.match(journey.innerHTML,/Continue to calls and exchanges/);assert.match(journey.innerHTML,/racking it/);
 assert.match(journey.innerHTML,/13 tiles/);jclick({go:'draw'});assert.equal(getSaved().game.racks[0].length,14);
 jclick({rack:'0'});
 assert.equal(getSaved().game.racks[0].length,14);assert.equal(getSaved().discardSelection,0);
@@ -128,9 +129,9 @@ assert.equal(JSON.stringify(getSaved().game),drawnBefore);
 assert.equal(getSaved().discardSelection,0);
 jclick({go:'resume'});jclick({go:'discard'});assert.equal(getSaved().game.racks[0].length,13);assert.equal(getSaved().discardSelection,null);
 jclick({go:'skip'});
-for(const choice of [0,1,2,1,1,0]){jclick({answer:String(choice)});jclick({go:'next'});}
+for(const [i,choice] of [0,1,2,1,1,0].entries()){assert.match(journey.innerHTML,new RegExp(['When a call is still open','A group call or the winning tile','Exchange a matching tile','A discarded joker stays discarded','Two people want','C still allows'][i]));jclick({answer:String(choice)});jclick({go:'next'});}
 for(const [i,choice] of [1,0,1,1,2,0].entries()){
- assert.match(journey.innerHTML,new RegExp(`New row ${i+1} of 6`));jclick({answer:String(choice)});jclick({go:'next'});
+ assert.match(journey.innerHTML,new RegExp(`New row ${i+1} of 6`));assert.match(journey.innerHTML,new RegExp(['Red Dragon matches Craks','Like numbers','Consecutive means','0 is Soap','Five identical tiles','Read the entire row'][i]));jclick({answer:String(choice)});jclick({go:'next'});
 }
 assert.match(journey.innerHTML,/Your practice recap/);assert.match(journey.innerHTML,/6 of 6/);
 jclick({go:'independent'});assert.match(journey.innerHTML,/Draws come in order from a shuffled wall/);

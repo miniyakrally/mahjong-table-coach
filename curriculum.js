@@ -23,7 +23,7 @@ const lessons = [
       "The whole table"
     ],
     "correct": "Your collection of tiles",
-    "why": "Your hand is the collection you are playing with. Tiles still in the wall belong to the shared supply.",
+    "why": "Your hand is the collection you are playing with. The wall is the shared supply of face-down tiles; those tiles are not in anyone’s hand yet.",
     "visual": null
   },
   {
@@ -84,7 +84,7 @@ const lessons = [
     "body": "Most Bam tiles show bamboo sticks. The exception is 1 Bam, which usually shows a bird.",
     "bullets": [
       "Count the sticks or read the corner number. The bird is the number 1 in the Bam suit.",
-      "Our optional Bird Bam toast happens when someone draws 1 Bam from the wall during play.",
+      "Our optional Bird Bam toast happens when someone draws—takes—1 Bam from the face-down shared supply during play.",
       "Join in with any drink, or skip the toast. This is our social tradition, not a game rule."
     ],
     "tiles": [
@@ -143,7 +143,7 @@ const lessons = [
     "title": "Winds: four names, four different tiles",
     "body": "The wind tiles are North, East, West, and South. They are not numbered suits.",
     "bullets": [
-      "Look for N, E, W, or S on a physical set. These pictures also show the Chinese characters.",
+      "Look for N, E, W, or S on a physical set. These pictures also show the Chinese characters. There are four copies of each wind.",
       "Two East tiles match. An East and a West do not.",
       "East is also the name for the dealer. The East tile itself does not decide who deals."
     ],
@@ -214,7 +214,7 @@ const lessons = [
   },
   {
     "title": "Pairs, pungs, and kongs",
-    "body": "A hand is built from smaller groups. First learn the names for groups of matching tiles.",
+    "body": "A winning hand must match a row on the card. The row tells you which smaller groups belong together; you cannot win with just any collection of pairs and groups.",
     "bullets": [
       "One tile is a single. Two matching tiles are a pair.",
       "Three matching tiles are a pung. Four matching tiles are a kong.",
@@ -240,11 +240,11 @@ const lessons = [
     ],
     "correct": "The three 6 Dots",
     "why": "A pung has three matching tiles. The 2 Craks form a pair; the 4 Bams form a kong.",
-    "visual": null
+    "visual": "groups"
   },
   {
     "title": "Jokers: fill one missing place",
-    "body": "A joker can stand in for a tile you are missing in a matching group. Start with this example: you need three 6 Dots, but you have only two.",
+    "body": "A joker can stand in for a missing tile in a matching group of three or more. It cannot replace a single tile or one tile of a pair. Start with this example: you need three 6 Dots, but you have only two.",
     "bullets": [
       "The first group below is the goal: three 6 Dots. There are eight joker tiles in the set.",
       "In the second group, a joker stands in for the missing 6 Dot. That group can do the same job.",
@@ -274,8 +274,8 @@ const lessons = [
     "body": "A card is a list of allowed hands. Each row uses repeated numbers and letters to show the exact groups to collect. Here is an original teaching row, laid out like a card row.",
     "bullets": [
       "Read 222 as three 2s, not the number two hundred twenty-two. Read FFF as three flowers.",
-      "Different colors mean different suits. In this example, we choose Craks for the blue group, Bams for green, and Dots for pink. On the official card, a printed color does not automatically mean one particular suit.",
-      "The words in parentheses limit your choices. This practice row fixes the numbers and uses three suits. Finish one whole row."
+      "For numbered groups, different colors mean different suits; the same color means the same suit. In this example, we choose Craks for blue, Bams for green, and Dots for pink. On the annual card, a color does not name one fixed suit. Flowers and winds do not become numbered suits because of their print color.",
+      "The words in parentheses limit your choices. This practice row fixes the numbers and uses three suits. Collect all 14 places in one row; do not mix groups from different rows."
     ],
     "visual": "card",
     "caption": "Read the printed row first. Then compare each printed group with the tiles underneath.",
@@ -314,7 +314,7 @@ const lessons = [
     "body": "The official card changes each year. Here is how to read the year 2026 in tiles. This is a notation example, not a complete official winning hand.",
     "bullets": [
       "The numbers read 2, zero, 2, 6. Soap is the zero.",
-      "The card decides which suits the numbered tiles use and what other groups complete the hand.",
+      "The card decides which suits the numbered tiles use and what other groups complete the hand. Read each place in the year separately; the two 2s are not an ordinary matching group that can use a joker.",
       "The full official 2026 hand list is not included. You do not need it for our original practice card."
     ],
     "tiles": [
@@ -336,9 +336,9 @@ const lessons = [
   },
   {
     "title": "X and C: what may other players see?",
-    "body": "Every hand starts with its tiles hidden from the other players. X and C tell you whether you may reveal groups during the hand—not whether you begin with your whole rack showing.",
+    "body": "Start with your tile faces turned toward you, so only you can see them. Find X or C beside the groups at the right end of your chosen card row, near its point value. This letter tells you whether you may show called groups while building the hand.",
     "bullets": [
-      "X means exposures are allowed. If a discard completes an allowed matching group, you may call—ask to take the discard—and put that complete group face up on top of your rack. The rest stays hidden.",
+      "A discard is a tile a player removes from their hand, names aloud, and places face up in the center of the table. X means you may call—claim—the latest available discard to complete an allowed matching group of three or more. Show that whole group face up on top of your rack. This is an exposure; the rest of your hand stays hidden.",
       "C means concealed. You cannot call a discard to reveal an unfinished part of the hand. You may call the one tile that completes the entire hand, then reveal everything for mahjong.",
       "An X hand can also be completed without exposing anything. Playing a teaching round with all tiles visible is a learning aid, not what X means."
     ],
@@ -416,14 +416,14 @@ const lessons = [
   },
   {
     "title": "First Charleston: ROL",
-    "body": "Before East makes the first discard, everyone trades tiles. Choose three tiles you do not need and pass them together. Never pass a joker.",
+    "body": "After the deal, before East starts play, everyone trades tiles in the Charleston. Compare your rack with a possible card row, choose three tiles that do not help it, and pass them together. Never pass a joker.",
     "bullets": [
-      "R: everyone passes three tiles to the player on their right. Receive your incoming tiles and look again at your hand.",
+      "R: everyone passes three tiles face down to the player on their right. You receive three from your left. Add those to your hand, then choose again for the next pass.",
       "O: everyone passes three across, or “over.” L: everyone passes three left. That is ROL: Right, Over, Left.",
       "Wait until everyone is ready before each pass. The next lesson shows the optional second Charleston and courtesy pass."
     ],
     "visual": "rol",
-    "caption": "Watch the arrows from your seat. “Over” means across the table.",
+    "caption": "Watch the arrows from your seat. “Over” means across the table. Passing exchanges tiles between hands; these tiles are not discards in the center.",
     "question": "You have finished passing right and then across. What finishes the first Charleston?",
     "answers": [
       "Any number across",
@@ -440,7 +440,7 @@ const lessons = [
     "bullets": [
       "Notice the two left passes next to each other: ROL | LOR. Finishing the first left does not mean the next pass is across.",
       "Once the second Charleston begins, finish all three passes: left, across, right. Jokers still stay in your rack.",
-      "After stopping or finishing the second Charleston, you and the player across may agree on a courtesy exchange of zero to three tiles. Use the smaller number requested."
+      "After stopping or finishing the second Charleston, you and the player across may agree on a courtesy exchange of zero to three tiles. Use the smaller number requested: if you ask for three and they ask for one, exchange one each. Zero means no exchange."
     ],
     "visual": "lor",
     "caption": "ROL | LOR. The second round reverses the first. Blind passing is explained separately in Charleston practice.",
@@ -459,7 +459,7 @@ const lessons = [
     "body": "We are using the practice row shown below. Your rack is one 6 Dot short of finishing it. First look at the row, then at your rack.",
     "bullets": [
       "East makes the first discard without drawing, because East started with 14 tiles. After that, turns move to the right.",
-      "On an ordinary turn, draw one tile. If you draw 9 Bam here, it does not fill the missing 6 Dot. Discard one tile and say its name.",
+      "On an ordinary turn, take the next face-down tile from the wall: this is a draw. You now have 14 tiles. If you draw 9 Bam here, it does not fill the missing 6 Dot. Choose one tile, say its name, and place it face up in the center. This discard returns you to 13 tiles.",
       "If you draw the missing 6 Dot, all 14 tiles match this row. Declare mahjong and keep that last tile; do not discard it."
     ],
     "visual": "turn",
@@ -476,9 +476,9 @@ const lessons = [
   },
   {
     "title": "Call a discard before it is too late",
-    "body": "A call asks for the latest discard. For an X hand, it must complete an allowed matching group. A call for mahjong must finish the entire hand.",
+    "body": "Discards collect face up in the center of the table. A call claims only the latest available discard, not an older one. For an X hand, an ordinary call must complete a matching group of three or more required by the row. A call for mahjong must finish the entire 14-tile hand.",
     "bullets": [
-      "For this row, if you hold three 6 Dots and someone discards the fourth, you may call it. Show the completed kong on top of your rack, then discard. Do not also draw.",
+      "For this row, if you hold three 6 Dots and someone discards the fourth, you may call it. Show the completed kong on top of your rack, then discard. Do not also draw. A single or pair may be called only to finish mahjong; a discarded joker can never be called, even for mahjong.",
       "Once the next player racks the tile they drew, the previous discard can no longer be called. “Rack” means place the drawn tile on the sloped part of their rack; merely lifting and looking at it is not enough.",
       "Other actions can also close that window: the next player names or discards the drawn tile, announces or begins a joker exchange, or declares mahjong. If players want the same discard, mahjong takes priority over a call for a group."
     ],
@@ -497,7 +497,7 @@ const lessons = [
   },
   {
     "title": "Exchange a joker without touching someone else’s tiles",
-    "body": "On your turn, after drawing or making a legal call, you may exchange a matching natural tile for a joker in a valid exposure.",
+    "body": "On your turn, after drawing or making a legal call, you may exchange a matching natural tile—a real tile such as 6 Dot, rather than another joker—for a joker in a valid face-up exposure.",
     "bullets": [
       "In the example, 6 Dot, 6 Dot, joker is exposed. If you hold a 6 Dot, offer it to the owner and ask for the joker in exchange.",
       "Never touch another player’s tiles or rack. That includes taking their joker, rearranging an exposure, or moving a tile to “help.” Let the owner handle their tiles.",

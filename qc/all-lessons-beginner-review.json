@@ -1,0 +1,347 @@
+{
+  "date": "2026-11-07",
+  "scope": "All 10 guided stages and 22 library lessons",
+  "review": "Simulated complete-beginner review of prerequisites, visual context, instructions before questions, and navigation",
+  "guided": [
+    {
+      "content": 1280,
+      "title": "Three numbered suits",
+      "width": 1280
+    },
+    {
+      "content": 1280,
+      "title": "Read a card row",
+      "width": 1280
+    },
+    {
+      "content": 1280,
+      "title": "Place a joker",
+      "width": 1280
+    },
+    {
+      "content": 1280,
+      "title": "Hidden or exposed?",
+      "width": 1280
+    },
+    {
+      "content": 1280,
+      "title": "Meet the table",
+      "width": 1280
+    },
+    {
+      "content": 1280,
+      "title": "Pass and rethink",
+      "width": 1280
+    },
+    {
+      "content": 1280,
+      "title": "Draw and discard",
+      "width": 1280
+    },
+    {
+      "content": 1280,
+      "title": "Calls and exchanges",
+      "width": 1280
+    },
+    {
+      "content": 1280,
+      "title": "Read a new row",
+      "width": 1280
+    },
+    {
+      "content": 1280,
+      "title": "Your next game",
+      "width": 1280
+    },
+    {
+      "content": 360,
+      "title": "Three numbered suits",
+      "width": 360
+    },
+    {
+      "content": 360,
+      "title": "Read a card row",
+      "width": 360
+    },
+    {
+      "content": 360,
+      "title": "Place a joker",
+      "width": 360
+    },
+    {
+      "content": 360,
+      "title": "Hidden or exposed?",
+      "width": 360
+    },
+    {
+      "content": 360,
+      "title": "Meet the table",
+      "width": 360
+    },
+    {
+      "content": 360,
+      "title": "Pass and rethink",
+      "width": 360
+    },
+    {
+      "content": 360,
+      "title": "Draw and discard",
+      "width": 360
+    },
+    {
+      "content": 360,
+      "title": "Calls and exchanges",
+      "width": 360
+    },
+    {
+      "content": 360,
+      "title": "Read a new row",
+      "width": 360
+    },
+    {
+      "content": 360,
+      "title": "Your next game",
+      "width": 360
+    }
+  ],
+  "library": [
+    {
+      "content": 360,
+      "title": "Start here: tiles, a rack, and a goal",
+      "width": 360
+    },
+    {
+      "content": 360,
+      "title": "Craks, Bams, and Dots are suits",
+      "width": 360
+    },
+    {
+      "content": 360,
+      "title": "Craks: look for the number",
+      "width": 360
+    },
+    {
+      "content": 360,
+      "title": "Bams: bamboo, with one bird",
+      "width": 360
+    },
+    {
+      "content": 360,
+      "title": "Dots: count the circles",
+      "width": 360
+    },
+    {
+      "content": 360,
+      "title": "Winds: four names, four different tiles",
+      "width": 360
+    },
+    {
+      "content": 360,
+      "title": "Dragons: red, green, and white",
+      "width": 360
+    },
+    {
+      "content": 360,
+      "title": "Flowers: different pictures, same tile",
+      "width": 360
+    },
+    {
+      "content": 360,
+      "title": "Pairs, pungs, and kongs",
+      "width": 360
+    },
+    {
+      "content": 360,
+      "title": "Jokers: fill one missing place",
+      "width": 360
+    },
+    {
+      "content": 360,
+      "title": "What a row on the card looks like",
+      "width": 360
+    },
+    {
+      "content": 360,
+      "title": "Jokers cannot fill singles or pairs",
+      "width": 360
+    },
+    {
+      "content": 360,
+      "title": "2026: read the zero as Soap",
+      "width": 360
+    },
+    {
+      "content": 360,
+      "title": "X and C: what may other players see?",
+      "width": 360
+    },
+    {
+      "content": 360,
+      "title": "Meet the table before building the walls",
+      "width": 360
+    },
+    {
+      "content": 360,
+      "title": "Break the wall, then deal in small batches",
+      "width": 360
+    },
+    {
+      "content": 360,
+      "title": "Mark the tail with a fishtail",
+      "width": 360
+    },
+    {
+      "content": 360,
+      "title": "First Charleston: ROL",
+      "width": 360
+    },
+    {
+      "content": 360,
+      "title": "Second Charleston: LOR",
+      "width": 360
+    },
+    {
+      "content": 360,
+      "title": "Take a turn with a pattern in view",
+      "width": 360
+    },
+    {
+      "content": 360,
+      "title": "Call a discard before it is too late",
+      "width": 360
+    },
+    {
+      "content": 360,
+      "title": "Exchange a joker without touching someone else’s tiles",
+      "width": 360
+    },
+    {
+      "content": 1280,
+      "title": "Start here: tiles, a rack, and a goal",
+      "width": 1280
+    },
+    {
+      "content": 1280,
+      "title": "Craks, Bams, and Dots are suits",
+      "width": 1280
+    },
+    {
+      "content": 1280,
+      "title": "Craks: look for the number",
+      "width": 1280
+    },
+    {
+      "content": 1280,
+      "title": "Bams: bamboo, with one bird",
+      "width": 1280
+    },
+    {
+      "content": 1280,
+      "title": "Dots: count the circles",
+      "width": 1280
+    },
+    {
+      "content": 1280,
+      "title": "Winds: four names, four different tiles",
+      "width": 1280
+    },
+    {
+      "content": 1280,
+      "title": "Dragons: red, green, and white",
+      "width": 1280
+    },
+    {
+      "content": 1280,
+      "title": "Flowers: different pictures, same tile",
+      "width": 1280
+    },
+    {
+      "content": 1280,
+      "title": "Pairs, pungs, and kongs",
+      "width": 1280
+    },
+    {
+      "content": 1280,
+      "title": "Jokers: fill one missing place",
+      "width": 1280
+    },
+    {
+      "content": 1280,
+      "title": "What a row on the card looks like",
+      "width": 1280
+    },
+    {
+      "content": 1280,
+      "title": "Jokers cannot fill singles or pairs",
+      "width": 1280
+    },
+    {
+      "content": 1280,
+      "title": "2026: read the zero as Soap",
+      "width": 1280
+    },
+    {
+      "content": 1280,
+      "title": "X and C: what may other players see?",
+      "width": 1280
+    },
+    {
+      "content": 1280,
+      "title": "Meet the table before building the walls",
+      "width": 1280
+    },
+    {
+      "content": 1280,
+      "title": "Break the wall, then deal in small batches",
+      "width": 1280
+    },
+    {
+      "content": 1280,
+      "title": "Mark the tail with a fishtail",
+      "width": 1280
+    },
+    {
+      "content": 1280,
+      "title": "First Charleston: ROL",
+      "width": 1280
+    },
+    {
+      "content": 1280,
+      "title": "Second Charleston: LOR",
+      "width": 1280
+    },
+    {
+      "content": 1280,
+      "title": "Take a turn with a pattern in view",
+      "width": 1280
+    },
+    {
+      "content": 1280,
+      "title": "Call a discard before it is too late",
+      "width": 1280
+    },
+    {
+      "content": 1280,
+      "title": "Exchange a joker without touching someone else’s tiles",
+      "width": 1280
+    }
+  ],
+  "changes": [
+    "Teach before testing in all six calls and six new-row activities",
+    "Pictured held tiles, visible whole card row, legal/illegal joker examples",
+    "Separate wall build/break/deal/tail diagrams",
+    "Charleston introduction, private passes versus center discards, blind and courtesy examples",
+    "Draw/discard explanation and explicit route onward without a win",
+    "Recap primary action opens four-player practice",
+    "Library prerequisite definitions and labeled groups, actual X/C rows, before/after joker exchange"
+  ],
+  "checks": [
+    "All syntax, learning, engine, storage, analytics and build tests passed",
+    "20 guided and44 library viewport checks without horizontal overflow"
+  ],
+  "limitations": [
+    "Simulated beginner review; not an observed human test",
+    "Viewport emulation; physical Safari not tested",
+    "Setup overview still benefits from host demonstration of final pickup order"
+  ]
+}
