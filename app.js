@@ -11,14 +11,14 @@ const callScenarios = [
     "feedback": "Call the latest discard, expose the full matching group, then discard. Do not draw as well."
   },
   {
-    "text": "You hold 3 and 4 Craks. Someone discards 2 Crak. Can you call a chow?",
+    "text": "You hold 3 and 4 Craks. Someone discards 2 Crak. These three tiles would not finish your hand. May you call them as a group?",
     "options": [
-      "No chow calls",
+      "No: these are not identical tiles",
       "Only from the left",
       "Yes, from anyone"
     ],
-    "answer": "No chow calls",
-    "feedback": "American mahjong follows the annual card. Three consecutive tiles are not a callable chow."
+    "answer": "No: these are not identical tiles",
+    "feedback": "To call an intermediate group, the discard must complete a matching group allowed by an X row. A sequence of different numbers is not that group."
   },
   {
     "text": "Your hand is marked C (concealed). A discard would complete a kong (four matching tiles), but not your whole hand. Can you call?",
@@ -352,7 +352,7 @@ const checklistItems = [
   "How strict are we about calling a hand dead?",
   "Are concealed hands being explained before the first round?",
   "Can everyone point to the drawing end and fishtailed tail?",
-  "Have we agreed to ask before touching anyone else’s rack, tiles, or wall?",
+  "Have we agreed never to touch anyone else’s rack or tiles, and to ask the owner to serve their wall?",
   "Our optional Bird Bam toast happens when 1 Bam is drawn. Any drink counts; joining in is optional."
 ];
 
@@ -450,7 +450,8 @@ function setView(viewId) {
     else button.removeAttribute("aria-current");
   });
   $("#viewTitle").textContent = {
-    lesson: "Lessons",
+    journey: "Play a guided hand",
+    lesson: "Lesson reference",
     tiles: "Tile Trainer",
     table: "Practice Table",
     quiz: "Quiz",
@@ -540,9 +541,11 @@ let turnMissingTile = null;
 let turnDrawn = false;
 let turnComplete = false;
 let turnDraws = 0;
+let turnWall = [];
+let turnDiscards = [];
 function renderHand() {
   $("#practiceHand").innerHTML = state.hand.map((code, index) => `<button class="hand-tile" data-index="${index}" type="button" ${!turnDrawn || turnComplete ? "disabled" : ""} aria-label="Discard ${escapeHtml(tileDisplay(code))}">${tileButtonMarkup(code)}</button>`).join("");
-  $("#tileBank").innerHTML = `<button id="drawPracticeTile" class="primary-button" type="button" ${turnDrawn || turnComplete ? "disabled" : ""}>Draw one tile</button><button id="declarePracticeWin" class="secondary-button" type="button" ${!turnDrawn || turnComplete ? "disabled" : ""}>Declare mahjong</button>`;
+  $("#tileBank").innerHTML = `<button id="drawPracticeTile" class="primary-button" type="button" ${turnDrawn || turnComplete || !turnWall.length ? "disabled" : ""}>Draw one tile</button><button id="declarePracticeWin" class="secondary-button" type="button" ${!turnDrawn || turnComplete ? "disabled" : ""}>Declare mahjong</button>`;
   $("#turnCount").textContent = `${state.hand.length} tiles in your rack`;
 }
 function dealPracticeHand() {
@@ -551,6 +554,9 @@ function dealPracticeHand() {
   const missingIndex=turnStart.includes("6D")?turnStart.lastIndexOf("6D"):turnStart.length-1;
   [turnMissingTile] = turnStart.splice(missingIndex,1);
   state.hand = [...turnStart]; turnDrawn = false; turnComplete = false; turnDraws = 0;
+  turnWall = GuidedEngine.shuffle(GuidedEngine.supply());
+  state.hand.forEach(code => GuidedEngine.take(turnWall, code));
+  turnDiscards = [];
   $("#handFeedback").textContent = "You have 13 tiles. Draw one, then compare your rack with the pattern above. Tap a tile in your rack to discard it. The other players’ turns are skipped in this short exercise.";
   $("#practiceTarget").innerHTML = patternMarkup(currentPattern());
   renderHand();
@@ -828,7 +834,10 @@ function bindEvents() {
 
   $("#tileBank").addEventListener("click", event => {
     if (event.target.closest("#drawPracticeTile") && !turnDrawn && !turnComplete) {
-      state.hand.push(turnDraws++ === 0 ? "9B" : turnMissingTile); turnDrawn = true;
+      if (!turnWall.length) return;
+      const wanted = turnDraws++ === 0 ? "9B" : comparePattern(state.hand).missing[0];
+      const next = turnWall.includes(wanted) ? GuidedEngine.take(turnWall, wanted) : turnWall.shift();
+      state.hand.push(next); turnDrawn = true;
       $("#handFeedback").textContent = "You have 14 tiles. Tap a tile you do not need to discard it. If every tile matches the pattern, declare mahjong instead.";
       renderHand();
     } else if (event.target.closest("#declarePracticeWin") && turnDrawn && !turnComplete) {
@@ -842,7 +851,8 @@ function bindEvents() {
     const button = event.target.closest("button[data-index]");
     if (!button || !turnDrawn || turnComplete) return;
     const [code] = state.hand.splice(Number(button.dataset.index), 1); turnDrawn = false;
-    $("#handFeedback").textContent = `You discarded ${tileDisplay(code)}. Back to 13 tiles. The other players take their turns; then draw again. This short drill skips their turns.`;
+    turnDiscards.push(code);
+    $("#handFeedback").textContent = `You discarded ${tileDisplay(code)}. Back to 13 tiles. The other players take their turns; then draw again. This short drill skips their turns.${turnWall.length ? "" : " The wall is empty; start a new hand."}`;
     renderHand();
   });
   $("#dealHand").addEventListener("click", dealPracticeHand);

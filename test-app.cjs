@@ -2,8 +2,8 @@
 const fs=require('node:fs'),vm=require('node:vm'),assert=require('node:assert/strict');
 const html=fs.readFileSync('index.html','utf8');
 const elements=new Map([...html.matchAll(/id="([^"]+)"/g)].map(([,id])=>[id,{value:id==='blindCount'||id==='courtesyCount'?'0':id==='friendCount'?'4':'',style:{},classList:{toggle(){}},listeners:{},addEventListener(e,f){this.listeners[e]=f;},removeAttribute(){},setAttribute(){}}]));
-const context=vm.createContext({document:{querySelector(s){assert.ok(elements.has(s.slice(1)),`Missing element ${s}`);return elements.get(s.slice(1));},querySelectorAll(){return[];}},localStorage:{getItem(){return null},setItem(){},removeItem(){}},window:{},console});
-vm.runInContext(fs.readFileSync('tile-art.js','utf8')+'\n'+fs.readFileSync('curriculum.js','utf8')+'\n'+fs.readFileSync('charleston.js','utf8')+'\n'+fs.readFileSync('teaching-visuals.js','utf8')+'\n'+fs.readFileSync('app.js','utf8'),context);
+const context=vm.createContext({document:{querySelector(s){if(s.startsWith('[data-rack='))return {focus(){}};assert.ok(elements.has(s.slice(1)),`Missing element ${s}`);return elements.get(s.slice(1));},querySelectorAll(){return[];}},localStorage:{getItem(){return null},setItem(){},removeItem(){}},window:{},console});
+vm.runInContext(fs.readFileSync('tile-art.js','utf8')+'\n'+fs.readFileSync('curriculum.js','utf8')+'\n'+fs.readFileSync('charleston.js','utf8')+'\n'+fs.readFileSync('teaching-visuals.js','utf8')+'\n'+fs.readFileSync('practice-engine.js','utf8')+'\n'+fs.readFileSync('app.js','utf8'),context);
 const run=s=>vm.runInContext(s,context);
 const click=id=>elements.get(id).listeners.click({target:{closest:s=>s==='#drawPracticeTile'?{}:null}});
 assert.match(elements.get('lessonTitle').textContent,/Start here/);
@@ -63,3 +63,30 @@ for (const mode of ['rol','lor']) for(let i=0;i<3;i++) assert.ok(run(`passingDia
 for(let i=0;i<4;i++) assert.ok(run(`tableDiagram('deal',${i}).includes('East')`));
 run(`state.lesson=0;state.quiz=0;renderLesson();renderQuiz()`);
 console.log('Passed: no premature jargon, old wrap-up removed, printed notation, all scenario quiz views, both Charleston diagram sequences, four deal stages.');
+
+// Run the new journey through its actual delegated event handler, including all card rows.
+elements.set('journeyTitle',{focus(){},scrollIntoView(){}});
+vm.runInContext(fs.readFileSync('guided-hand.js','utf8'),context);
+const journey=elements.get('journey');
+const jclick=dataset=>journey.listeners.click({target:{closest:()=>({dataset,disabled:false})}});
+assert.match(journey.innerHTML,/Meet the tiles/);
+for(const choice of [1,2,1,1,0]){jclick({answer:String(choice)});assert.match(journey.innerHTML,/Continue →/);jclick({go:'next'});}
+assert.match(journey.innerHTML,/Pass 1: right/);
+function passJourney(){
+ const buttons=[...journey.innerHTML.matchAll(/<button[^>]*data-rack="(\d+)"[^>]*>/g)].filter(m=>!m[0].includes('disabled'));
+ buttons.slice(0,3).forEach(m=>jclick({rack:m[1]}));jclick({go:'pass'});
+}
+for(let i=0;i<3;i++)passJourney();
+assert.match(journey.innerHTML,/First Charleston complete/);jclick({go:'second'});
+for(let i=0;i<3;i++)passJourney();
+assert.match(journey.innerHTML,/One optional exchange/);
+elements.set('journeyCourtesy',{value:'0'});jclick({go:'courtesy'});jclick({go:'next'});
+assert.match(journey.innerHTML,/13 tiles: draw next/);jclick({go:'draw'});assert.match(journey.innerHTML,/14 tiles: decide/);
+jclick({go:'skip'});
+for(const choice of [0,1,2,1,1,0]){jclick({answer:String(choice)});jclick({go:'next'});}
+for(const [i,choice] of [1,0,1,1,2,0].entries()){
+ assert.match(journey.innerHTML,new RegExp(`New row ${i+1} of 6`));jclick({answer:String(choice)});jclick({go:'next'});
+}
+assert.match(journey.innerHTML,/Your practice recap/);assert.match(journey.innerHTML,/6 of 6/);
+jclick({go:'independent'});assert.match(journey.innerHTML,/Independent practice/);
+console.log('Passed: entire guided UI path, six Charleston passes, carry-over rack, six call decisions, six new card rows, recap and independent practice.');

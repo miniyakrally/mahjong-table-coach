@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Mahjong Table Coach</title>
     <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="experience.css" />
   </head>
   <body>
     <main class="app-shell">
@@ -18,9 +19,10 @@
         </div>
 
         <nav class="mode-nav" aria-label="App modes">
-          <button class="nav-button active" data-view="lesson" aria-current="page" type="button">
+          <button class="nav-button active" data-view="journey" aria-current="page" type="button">Play a guided hand</button>
+          <button class="nav-button" data-view="lesson" type="button">
             <span aria-hidden="true">01</span>
-            Lessons
+            Lesson reference
           </button>
           <button class="nav-button" data-view="tiles" type="button">
             <span aria-hidden="true">02</span>
@@ -59,7 +61,7 @@
         <header class="topbar">
           <div>
             <p class="eyebrow">American mahjong · Learn at your own pace</p>
-            <h2 id="viewTitle">Lessons</h2>
+            <h2 id="viewTitle">Play a guided hand</h2>
           </div>
           <div class="group-controls" aria-label="Group setup">
             <label>
@@ -68,9 +70,10 @@
             </label>
             <button id="resetProgress" class="icon-text-button" type="button">Reset</button>
           </div>
-        </header><p class="learning-path">Start with Lessons. Each one shows you something, then gives you a quick try. The practice card is included: no tiles, annual card, or sign-in needed.</p>
+        </header><p class="learning-path">Learn the tiles, read a card row, then carry your hand through passing and play. No supplies or sign-in needed. Already played? Jump straight to practice.</p>
 
-        <section id="lesson" class="view active" aria-labelledby="viewTitle">
+        <section id="journey" class="view active" aria-labelledby="viewTitle"></section>
+        <section id="lesson" class="view" aria-labelledby="viewTitle">
           <div class="lesson-grid">
             <article class="lesson-panel">
               <label class="lesson-picker">Choose a lesson <select id="lessonJump" aria-label="Choose a lesson"></select></label><div class="lesson-kicker">Lesson <span id="lessonNumber">1</span> of <span id="lessonTotal">22</span></div>
@@ -132,7 +135,7 @@
                 </div>
                 <button id="dealHand" class="secondary-button" type="button">Start this hand again</button>
               </div>
-              <p>Match the practice pattern below. The first draw lets you try a discard; the next draw can complete the pattern if you kept the right tiles. Choose another pattern in Practice card.</p><div id="practiceTarget" class="hand-row" aria-label="Your practice pattern"></div><div id="practiceHand" class="hand-row" aria-label="Practice hand"></div>
+              <p>Match the practice pattern below. This short exercise starts one tile away. Draws come from a finite tile supply; useful draws are brought forward for practice. Choose another pattern in Practice card.</p><div id="practiceTarget" class="hand-row" aria-label="Your practice pattern"></div><div id="practiceHand" class="hand-row" aria-label="Practice hand"></div>
               <div class="hand-feedback" id="handFeedback" role="status">Draw, compare with the target, then discard.</div>
               <div class="tile-bank" id="tileBank" aria-label="Tile bank"></div>
             </article>
@@ -291,6 +294,8 @@
     <script src="curriculum.js"></script>
     <script src="charleston.js"></script>
     <script src="teaching-visuals.js"></script>
+    <script src="practice-engine.js"></script>
     <script src="app.js"></script>
+    <script src="guided-hand.js"></script>
   </body>
 </html>
