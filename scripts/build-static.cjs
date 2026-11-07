@@ -3,7 +3,7 @@ const path = require('node:path');
 const { execFileSync } = require('node:child_process');
 const root = path.resolve(__dirname, '..');
 const output = path.join(root, 'dist');
-const assets = ['index.html', 'styles.css', 'experience.css', 'tile-art.js', 'curriculum.js', 'charleston.js', 'teaching-visuals.js', 'practice-engine.js', 'learning-progress.js', 'app.js', 'guided-hand.js', 'analytics-config.js', 'learning-analytics.js', 'rack-arrange.js'];
+const assets = ['index.html', 'styles.css', 'experience.css', 'tile-art.js', 'curriculum.js', 'charleston.js', 'teaching-visuals.js', 'practice-engine.js', 'learning-progress.js', 'app.js', 'guided-hand.js', 'analytics-config.js', 'learning-analytics.js', 'rack-arrange.js', 'reference-guide.js'];
 fs.rmSync(output, { recursive: true, force: true });
 fs.mkdirSync(output);
 for (const asset of assets) fs.copyFileSync(path.join(root, asset), path.join(output, asset));

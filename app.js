@@ -440,8 +440,8 @@ function escapeHtml(value) {
 
 function setView(viewId) {
   const practiceViews = ['practice','charleston','table','quiz','tiles','tools'];
-  const referenceViews = ['reference','lesson','card'];
-  const section = viewId === 'tiles' && setView.section === 'reference' ? 'reference' : viewId === 'journey' ? 'journey' : practiceViews.includes(viewId) ? 'practice' : referenceViews.includes(viewId) ? 'reference' : 'settings';
+  const referenceViews = ['reference','card','tile-guide','card-guide','passing-guide','calls-guide','table-guide'];
+  const section = ['journey','lesson'].includes(viewId) ? 'journey' : practiceViews.includes(viewId) ? 'practice' : referenceViews.includes(viewId) ? 'reference' : 'settings';
   setView.section = section;
   if(viewId !== 'journey') $('#learningAnnouncement').textContent = '';
   $$('.nav-button').forEach(button => {
@@ -452,10 +452,10 @@ function setView(viewId) {
   $$('.view').forEach(view => view.classList.toggle('active', view.id === viewId));
   $('#viewTitle').textContent = {
     journey:'Learn by playing', practice:'Practice a skill', reference:'Reference', settings:'Settings',
-    lesson:'Rules and table etiquette', tiles:'Tile names and suits', table:'Draw and discard',
+    lesson:'All lessons', 'tile-guide':'Tile guide', 'card-guide':'Reading the card', 'passing-guide':'Charleston order', 'calls-guide':'Calls and jokers', 'table-guide':'Turns and table etiquette', tiles:'Practice tile names', table:'Draw and discard',
     quiz:'Rules decisions', card:'Card rows and notation', charleston:'Practice the Charleston', tools:'Compare your hand'
   }[viewId];
-  $('#sectionLinks').innerHTML = viewId !== section ? `<button class="text-button" data-open-view="${section}">← All ${section === 'practice' ? 'practice exercises' : 'reference topics'}</button><button class="text-button" data-open-view="journey">Return to learning →</button>` : '';
+  $('#sectionLinks').innerHTML = viewId !== section ? `<button class="text-button" data-open-view="${section}">← All ${section === 'practice' ? 'practice exercises' : section === 'journey' ? 'learning' : 'reference topics'}</button><button class="text-button" data-open-view="journey">Return to learning →</button>` : '';
   const heading = viewId === 'journey' ? $('#journeyTitle') : $('#viewTitle');
   heading.setAttribute?.('tabindex','-1');
   heading.focus?.({preventScroll:true});

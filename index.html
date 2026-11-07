@@ -64,12 +64,19 @@
         <section id="reference" class="view" aria-labelledby="viewTitle">
           <p class="hub-intro">Look something up, then return to your hand.</p>
           <div class="hub-grid">
-            <button class="hub-card" data-open-view="lesson"><strong>Rules and table etiquette</strong><span>Illustrated explanations, organized by topic.</span></button>
-            <button class="hub-card" data-open-view="card"><strong>Card rows and notation</strong><span>Original practice patterns and annual-card reading.</span></button>
-            <button class="hub-card" data-open-view="tiles"><strong>Tile names and suits</strong><span>Craks, Bams, Dots, winds, dragons, flowers, and jokers.</span></button>
+            <button class="hub-card" data-open-view="tile-guide"><strong>Tile guide</strong><span>What is this tile? See every suit and tile name.</span></button>
+            <button class="hub-card" data-open-view="card-guide"><strong>Reading the card</strong><span>What do the colors, groups, letters, and points mean?</span></button>
+            <button class="hub-card" data-open-view="passing-guide"><strong>Charleston order</strong><span>Which way do we pass next?</span></button>
+            <button class="hub-card" data-open-view="calls-guide"><strong>Calls and jokers</strong><span>Am I allowed to call or exchange this tile?</span></button>
+            <button class="hub-card" data-open-view="table-guide"><strong>Turns and table etiquette</strong><span>What happens next, and what do I touch?</span></button>
           </div>
         </section>
-        <section id="settings" class="view" aria-labelledby="viewTitle">
+        <section id="tile-guide" class="view lookup-view" aria-labelledby="viewTitle"></section>
+<section id="card-guide" class="view lookup-view" aria-labelledby="viewTitle"></section>
+<section id="passing-guide" class="view lookup-view" aria-labelledby="viewTitle"></section>
+<section id="calls-guide" class="view lookup-view" aria-labelledby="viewTitle"></section>
+<section id="table-guide" class="view lookup-view" aria-labelledby="viewTitle"></section>
+<section id="settings" class="view" aria-labelledby="viewTitle">
           <p>Your learning progress saves in this browser. Photos and custom tile labels also stay here.</p>
           <div id="analyticsNotice" hidden><p>Anonymous counts help us see which lessons people reach. We do not send names, answers, hands, or photos.</p><label><input id="analyticsOptOut" type="checkbox"> Turn off anonymous usage counts</label></div>
           <button id="restartLearning" class="secondary-button" type="button">Restart learning…</button>
@@ -307,6 +314,7 @@
     <script src="learning-analytics.js"></script>
     <script src="rack-arrange.js"></script>
     <script src="app.js"></script>
+    <script src="reference-guide.js"></script>
     <script src="guided-hand.js"></script>
   </body>
 </html>
