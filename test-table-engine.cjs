@@ -20,3 +20,13 @@ assert.equal(E.option(g,0).group,1);E.claim(g,0);assert.equal(g.exposed[0][0].ti
 g.racks[0].push('4B');assert.equal(E.exchanges(g,0).length,1);E.exchange(g,0,0,0);assert.deepEqual(g.racks[0],['J']);assert.ok(!g.exposed[0][0].tiles.includes('J'));
 g.pending={code:'J',seat:1};assert.equal(E.option(g,0),null);
 console.log('Passed: 50 full four-player hands, finite walls, physical supply conservation, legal exposures, joker exchanges and discard limits.');
+// A physically valid simultaneous group call and mahjong: mahjong wins.
+const priority=E.create([rows[0],rows[0],rows[1],rows[2]]),deck=G.supply();
+const consume=code=>G.take(deck,code);
+priority.racks=[['4B','4B','J'].map(consume),['2C','2C','2C','4B','J','J','6D','6D','6D','6D','F','F','F'].map(consume),[],[]];
+consume('4B');priority.discards=[{code:'4B',seat:3}];priority.pending={code:'4B',seat:3};priority.drawn=false;priority.turn=0;
+priority.racks.forEach(r=>{while(r.length<13)r.push(deck.shift());});priority.wall=deck;conserve(priority);
+assert.equal(E.option(priority,0).win,false);assert.equal(E.option(priority,1).win,true);assert.throws(()=>E.claim(priority,0),/priority/);E.advance(priority);assert.equal(priority.winner,1);conserve(priority);
+const pair=E.create([rows[2],rows[0],rows[1],rows[0]]);pair.racks[0]=rows[2].groups.flat().slice(0,13);pair.pending={seat:1,code:'Soap'};pair.discards=[{seat:1,code:'Soap'}];pair.drawn=false;pair.turn=2;assert.equal(E.option(pair,0).win,true);E.claim(pair,0);assert.equal(pair.winner,0);
+const invalid=E.create([rows[2],rows[0],rows[1],rows[0]]);invalid.racks[0]=rows[2].groups.flat();invalid.racks[0][0]='J';assert.equal(E.declare(invalid),false);
+console.log('Passed: mahjong priority over a group call, concealed final-pair call, and rejected joker in a pair.');

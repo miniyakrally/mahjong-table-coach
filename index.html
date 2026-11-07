@@ -4,22 +4,17 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Mahjong Table Coach</title>
-    <link rel="stylesheet" href="styles.css" />
-    <link rel="stylesheet" href="experience.css" />
+    <link rel="stylesheet" href="styles.css?v=table-first" />
+    <link rel="stylesheet" href="experience.css?v=table-first" />
+    <link rel="stylesheet" href="table-first.css?v=table-first" />
   </head>
-  <body>
+  <body data-current-view="home">
     <main class="app-shell">
       <aside class="sidebar" aria-label="Learning navigation">
-        <div class="brand">
-          <div class="brand-mark" aria-hidden="true">東</div>
-          <div>
-            <p class="eyebrow">Table Coach</p>
-            <h1>Learn Mahjong Together</h1>
-          </div>
-        </div>
+        <button class="brand" type="button" data-open-view="home" aria-label="Table Coach home"><span class="brand-icon" aria-hidden="true">東</span><span>Table Coach</span></button>
 
         <nav class="mode-nav" aria-label="Main navigation">
-          <button class="nav-button active" data-view="journey" aria-current="page" type="button">Learn</button>
+          <button class="nav-button" data-view="learn-home" type="button">Learn</button>
           <button class="nav-button" data-view="practice" type="button">Practice</button>
           <button class="nav-button" data-view="reference" type="button">Reference</button>
         </nav>
@@ -39,7 +34,7 @@
         <header class="topbar">
           <div>
             <p class="eyebrow">American mahjong · Learn at your own pace</p>
-            <h2 id="viewTitle">Play a guided hand</h2>
+            <h1 id="viewTitle">Welcome</h1>
           </div>
           <div class="group-controls" aria-label="Group setup">
             <label>
@@ -51,7 +46,13 @@
         </header><div id="sectionLinks" class="section-links"></div>
 
 
-        <section id="practice" class="view" aria-labelledby="viewTitle">
+        <section id="home" class="view active">
+<div class="welcome-hero"><div class="welcome-copy"><p class="welcome-kicker">LEARN & PRACTICE AMERICAN MAHJONG</p><h1>Your first mahjong night starts here.</h1><p>Meet the tiles, learn the rules, and try a hand before you sit down with friends.</p><button class="primary" data-open-view="learn-home">Start learning →</button><span class="welcome-included">On-screen tiles and a practice card are included.</span></div><div class="welcome-art" aria-label="A few tiles from the practice set"><div class="art-circle"></div><div id="welcomeTiles"></div></div></div>
+<div class="welcome-paths"><button data-open-view="learn-home"><span class="path-number">01 / LEARN</span><h2>Learn the basics.</h2><p>Meet the tiles, read a hand on the card, and learn to pass, draw, and discard.</p><span class="path-link">See the lessons ↗</span></button><button data-open-view="live-table"><span class="path-number">02 / PRACTICE</span><h2>Play a practice hand.</h2><p>Play with three computer players. Choose your discards and decide when to call.</p><span class="path-link">Start a hand ↗</span></button><button data-open-view="reference"><span class="path-number">03 / REFERENCE</span><h2>Find a quick answer.</h2><p>Find a tile’s name, check which way to pass, or look up a rule.</p><span class="path-link">Open the guide ↗</span></button></div><div class="welcome-footer"><span>New players and returning players welcome.</span><span>Practice uses our teaching card, not the official annual card.</span></div>
+</section>
+
+<section id="learn-home" class="view" aria-labelledby="viewTitle"></section>
+<section id="practice" class="view" aria-labelledby="viewTitle">
           <p class="hub-intro">Choose a skill to practice. Each exercise includes its own instructions.</p>
           <div class="hub-grid"><button class="hub-card" data-open-view="live-table"><strong>Play a practice hand</strong><span>Four players, shuffled draws, visible discards, calls, and joker exchanges.</span></button>
             <button class="hub-card" data-open-view="charleston"><strong>Pass in the Charleston</strong><span>Both rounds, blind passes, and the courtesy exchange.</span></button>
@@ -109,7 +110,7 @@
             </article>
         </section>
         <div id="learningAnnouncement" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></div>
-        <section id="journey" class="view active" aria-labelledby="viewTitle"></section>
+        <section id="journey" class="view" aria-labelledby="viewTitle"></section>
         <section id="lesson" class="view" aria-labelledby="viewTitle">
           <div class="lesson-grid">
             <article class="lesson-panel">
@@ -153,17 +154,15 @@
 
         <section id="charleston" class="view" aria-labelledby="viewTitle">
   <article class="lesson-panel">
-    <p class="eyebrow">A seat at a four-player table</p><h3>Pass, receive, rethink</h3>
-    <p>You are one of four players. You have 13 tiles; the dealer, East, has 14. Three computer players exchange tiles with you. Keep tiles that help the practice pattern below.</p>
-    <details class="target-reference" open><summary>Your practice pattern</summary><div id="charlestonTarget"></div><p>Choose a different pattern in Practice card. These are original teaching hands, not official 2026 hands.</p></details><ol id="passSteps" class="pass-steps" aria-label="Passing order"></ol>
+    <div class="tf-row-strip"><div id="charlestonTarget"></div><button class="row-help" data-help-pattern="true" aria-label="Explain the practice row">What do I need? ↗</button></div><div class="passing-surface"><ol id="passSteps" class="pass-steps" aria-label="Passing order"></ol>
     <h3 id="passTitle"></h3><p id="passHelp"></p>
     <div id="charlestonRack" class="hand-row" aria-label="Select tiles to pass"></div>
     <p id="passStatus" role="status"></p>
     <div class="lesson-actions"><button id="confirmPass" class="primary-button" type="button">Pass selected tiles</button><button id="passHint" class="secondary-button" type="button">Show a hint</button></div>
-    <div id="secondChoice" hidden><p>The first Charleston is complete. Any player can stop the second before it begins. For this drill, the other players agree to continue if you do.</p><button id="continueSecond" class="primary-button" type="button">Practice the second Charleston</button><button id="stopSecond" class="secondary-button" type="button">Stop here</button></div>
+    </div><div id="secondChoice" hidden><p>The first Charleston is complete. Any player can stop the second before it begins. For this drill, the other players agree to continue if you do.</p><button id="continueSecond" class="primary-button" type="button">Practice the second Charleston</button><button id="stopSecond" class="secondary-button" type="button">Stop here</button></div>
     <div id="courtesyChoice" hidden><label>Courtesy tiles requested by you <select id="courtesyCount"><option value="0">0 — no exchange</option><option>1</option><option>2</option><option>3</option></select></label><p>Your opposite player offers up to 2 tiles. The smaller requested number sets the exchange.</p><button id="agreeCourtesy" class="secondary-button" type="button">Agree courtesy exchange</button></div>
     <details><summary>Already played? Try a blind pass</summary><p>On the first left or second right only, you can send on up to three incoming tiles without looking. Pick any rack tiles you want to pass, then add blind tiles to reach three. Incoming blind tiles stay hidden until the exchange.</p><label>Blind tiles <select id="blindCount"><option value="0">0</option><option>1</option><option>2</option><option>3</option></select></label></details>
-    <p id="passReceipt" role="status"></p><button id="restartCharleston" class="secondary-button" type="button">Start a new Charleston</button>
+    <p id="passReceipt" role="status"></p><details><summary>How this works</summary><p>Three computer players exchange tiles with you. Keep tiles that help your row and pass unwanted tiles face down. Jokers stay in your rack. After each exchange, compare your rack with the row again.</p><button class="text-button" data-open-view="card">Choose another practice row →</button></details><button id="restartCharleston" class="secondary-button" type="button">Start a new Charleston</button>
   </article>
 </section>
 
@@ -306,20 +305,22 @@
       </section>
     </main>
 
-    <script src="tile-art.js"></script>
-    <script src="curriculum.js"></script>
-    <script src="charleston.js"></script>
-    <script src="teaching-visuals.js"></script>
-    <script src="practice-engine.js"></script>
-    <script src="learning-progress.js"></script>
-    <script src="analytics-config.js"></script>
-    <script src="learning-analytics.js"></script>
-    <script src="rack-arrange.js"></script>
-    <script src="app.js"></script>
-    <script src="table-engine.js"></script>
-    <script src="decision-practice.js"></script>
-    <script src="table-play.js"></script>
-    <script src="reference-guide.js"></script>
-    <script src="guided-hand.js"></script>
+    <dialog id="coachDialog" aria-labelledby="coachDialogTitle"><div class="dialog-heading"><h2 id="coachDialogTitle"></h2><button type="button" id="closeCoachDialog" aria-label="Close help">✕</button></div><div id="coachDialogBody"></div></dialog>
+    <script src="tile-art.js?v=table-first"></script>
+    <script src="curriculum.js?v=table-first"></script>
+    <script src="charleston.js?v=table-first"></script>
+    <script src="teaching-visuals.js?v=table-first"></script>
+    <script src="practice-engine.js?v=table-first"></script>
+    <script src="learning-progress.js?v=table-first"></script>
+    <script src="analytics-config.js?v=table-first"></script>
+    <script src="learning-analytics.js?v=table-first"></script>
+    <script src="rack-arrange.js?v=table-first"></script>
+    <script src="app.js?v=table-first"></script>
+    <script src="shell.js?v=table-first"></script>
+    <script src="table-engine.js?v=table-first"></script>
+    <script src="decision-practice.js?v=table-first"></script>
+    <script src="table-play.js?v=table-first"></script>
+    <script src="reference-guide.js?v=table-first"></script>
+    <script src="guided-hand.js?v=table-first"></script>
   </body>
 </html>

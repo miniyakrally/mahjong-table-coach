@@ -12,8 +12,9 @@
     if(!Number.isInteger(from)||!Number.isInteger(to)||from<0||to<0||from>=rack.length||to>=rack.length)return false;
     rack.splice(to,0,rack.splice(from,1)[0]);return true;
   }
-  function mount(element,key,onMove,redraw){
+  function mount(element,key,onMove,redraw,placement){
     if(!element)return;
+    element.dataset.arrangeRack=key;
     element.parentElement.querySelector(`[data-arrange-toolbar="${key}"]`)?.remove();
     const state=modes.get(key)||{active:false,index:null};modes.set(key,state);
     const tiles=[...element.querySelectorAll('button.hand-tile')];
@@ -26,15 +27,16 @@
       for(const [label,delta] of [['Move left',-1],['Move right',1]]){
         const button=document.createElement('button');button.type='button';button.className='secondary-button';button.textContent=label;
         button.disabled=state.index===null||state.index+delta<0||state.index+delta>=tiles.length;
-        button.onclick=()=>{const from=state.index,to=from+delta;state.index=to;onMove(from,to);redraw();document.querySelector(`[data-arrange-toolbar="${key}"]`)?.previousElementSibling?.querySelectorAll('button.hand-tile')[to]?.focus();};toolbar.append(button);
+        button.onclick=()=>{const from=state.index,to=from+delta;state.index=to;onMove(from,to);redraw();document.querySelector(`[data-arrange-rack="${key}"]`)?.querySelectorAll('button.hand-tile')[to]?.focus();};toolbar.append(button);
       }
       tiles.forEach((tile,index)=>{
         tile.disabled=false;tile.classList.toggle('arrange-selected',state.index===index);
         tile.setAttribute('aria-pressed',String(state.index===index));tile.setAttribute('aria-label',`Arrange tile ${index+1}: ${tile.getAttribute('aria-label')}`);
-        tile.addEventListener('click',event=>{event.stopImmediatePropagation();state.index=index;redraw();document.querySelector(`[data-arrange-toolbar="${key}"]`)?.previousElementSibling?.querySelectorAll('button.hand-tile')[index]?.focus();});
+        tile.addEventListener('click',event=>{event.stopImmediatePropagation();state.index=index;redraw();document.querySelector(`[data-arrange-rack="${key}"]`)?.querySelectorAll('button.hand-tile')[index]?.focus();});
       });
     }
     element.after(toolbar);
+    if(placement&&!state.active)placement.prepend(toolbar);
   }
   window.RackArrange={mount,move,remap};
 })();

@@ -1,0 +1,777 @@
+{
+  "date": "2026-11-07",
+  "browser": "Chromium viewport emulation",
+  "reference": [
+    {
+      "content": 1440,
+      "tiles": 36,
+      "view": "tile-guide",
+      "width": 1440
+    },
+    {
+      "content": 1440,
+      "tiles": 14,
+      "view": "card-guide",
+      "width": 1440
+    },
+    {
+      "content": 1440,
+      "tiles": 0,
+      "view": "passing-guide",
+      "width": 1440
+    },
+    {
+      "content": 1440,
+      "tiles": 0,
+      "view": "calls-guide",
+      "width": 1440
+    },
+    {
+      "content": 1440,
+      "tiles": 1,
+      "view": "table-guide",
+      "width": 1440
+    },
+    {
+      "content": 1024,
+      "tiles": 36,
+      "view": "tile-guide",
+      "width": 1024
+    },
+    {
+      "content": 1024,
+      "tiles": 14,
+      "view": "card-guide",
+      "width": 1024
+    },
+    {
+      "content": 1024,
+      "tiles": 0,
+      "view": "passing-guide",
+      "width": 1024
+    },
+    {
+      "content": 1024,
+      "tiles": 0,
+      "view": "calls-guide",
+      "width": 1024
+    },
+    {
+      "content": 1024,
+      "tiles": 1,
+      "view": "table-guide",
+      "width": 1024
+    },
+    {
+      "content": 390,
+      "tiles": 36,
+      "view": "tile-guide",
+      "width": 390
+    },
+    {
+      "content": 390,
+      "tiles": 14,
+      "view": "card-guide",
+      "width": 390
+    },
+    {
+      "content": 390,
+      "tiles": 0,
+      "view": "passing-guide",
+      "width": 390
+    },
+    {
+      "content": 390,
+      "tiles": 0,
+      "view": "calls-guide",
+      "width": 390
+    },
+    {
+      "content": 390,
+      "tiles": 1,
+      "view": "table-guide",
+      "width": 390
+    },
+    {
+      "content": 360,
+      "tiles": 36,
+      "view": "tile-guide",
+      "width": 360
+    },
+    {
+      "content": 360,
+      "tiles": 14,
+      "view": "card-guide",
+      "width": 360
+    },
+    {
+      "content": 360,
+      "tiles": 0,
+      "view": "passing-guide",
+      "width": 360
+    },
+    {
+      "content": 360,
+      "tiles": 0,
+      "view": "calls-guide",
+      "width": 360
+    },
+    {
+      "content": 360,
+      "tiles": 1,
+      "view": "table-guide",
+      "width": 360
+    },
+    {
+      "content": 844,
+      "tiles": 36,
+      "view": "tile-guide",
+      "width": 844
+    },
+    {
+      "content": 844,
+      "tiles": 14,
+      "view": "card-guide",
+      "width": 844
+    },
+    {
+      "content": 844,
+      "tiles": 0,
+      "view": "passing-guide",
+      "width": 844
+    },
+    {
+      "content": 844,
+      "tiles": 0,
+      "view": "calls-guide",
+      "width": 844
+    },
+    {
+      "content": 844,
+      "tiles": 1,
+      "view": "table-guide",
+      "width": 844
+    }
+  ],
+  "practice": [
+    {
+      "buttons": 21,
+      "content": 1440,
+      "view": "live-table",
+      "width": 1440
+    },
+    {
+      "buttons": 16,
+      "content": 1440,
+      "view": "charleston",
+      "width": 1440
+    },
+    {
+      "buttons": 7,
+      "content": 1440,
+      "view": "table",
+      "width": 1440
+    },
+    {
+      "buttons": 4,
+      "content": 1440,
+      "view": "decision-practice",
+      "width": 1440
+    },
+    {
+      "buttons": 2,
+      "content": 1440,
+      "view": "tiles",
+      "width": 1440
+    },
+    {
+      "buttons": 43,
+      "content": 1440,
+      "view": "tools",
+      "width": 1440
+    },
+    {
+      "buttons": 21,
+      "content": 1024,
+      "view": "live-table",
+      "width": 1024
+    },
+    {
+      "buttons": 16,
+      "content": 1024,
+      "view": "charleston",
+      "width": 1024
+    },
+    {
+      "buttons": 7,
+      "content": 1024,
+      "view": "table",
+      "width": 1024
+    },
+    {
+      "buttons": 4,
+      "content": 1024,
+      "view": "decision-practice",
+      "width": 1024
+    },
+    {
+      "buttons": 2,
+      "content": 1024,
+      "view": "tiles",
+      "width": 1024
+    },
+    {
+      "buttons": 43,
+      "content": 1024,
+      "view": "tools",
+      "width": 1024
+    },
+    {
+      "buttons": 21,
+      "content": 390,
+      "view": "live-table",
+      "width": 390
+    },
+    {
+      "buttons": 16,
+      "content": 390,
+      "view": "charleston",
+      "width": 390
+    },
+    {
+      "buttons": 7,
+      "content": 390,
+      "view": "table",
+      "width": 390
+    },
+    {
+      "buttons": 4,
+      "content": 390,
+      "view": "decision-practice",
+      "width": 390
+    },
+    {
+      "buttons": 2,
+      "content": 390,
+      "view": "tiles",
+      "width": 390
+    },
+    {
+      "buttons": 43,
+      "content": 390,
+      "view": "tools",
+      "width": 390
+    },
+    {
+      "buttons": 21,
+      "content": 360,
+      "view": "live-table",
+      "width": 360
+    },
+    {
+      "buttons": 16,
+      "content": 360,
+      "view": "charleston",
+      "width": 360
+    },
+    {
+      "buttons": 7,
+      "content": 360,
+      "view": "table",
+      "width": 360
+    },
+    {
+      "buttons": 4,
+      "content": 360,
+      "view": "decision-practice",
+      "width": 360
+    },
+    {
+      "buttons": 2,
+      "content": 360,
+      "view": "tiles",
+      "width": 360
+    },
+    {
+      "buttons": 43,
+      "content": 360,
+      "view": "tools",
+      "width": 360
+    },
+    {
+      "buttons": 21,
+      "content": 844,
+      "view": "live-table",
+      "width": 844
+    },
+    {
+      "buttons": 16,
+      "content": 844,
+      "view": "charleston",
+      "width": 844
+    },
+    {
+      "buttons": 7,
+      "content": 844,
+      "view": "table",
+      "width": 844
+    },
+    {
+      "buttons": 4,
+      "content": 844,
+      "view": "decision-practice",
+      "width": 844
+    },
+    {
+      "buttons": 2,
+      "content": 844,
+      "view": "tiles",
+      "width": 844
+    },
+    {
+      "buttons": 43,
+      "content": 844,
+      "view": "tools",
+      "width": 844
+    }
+  ],
+  "guided": [
+    {
+      "content": 1440,
+      "title": "Three numbered suits",
+      "width": 1440
+    },
+    {
+      "content": 1440,
+      "title": "Read a card row",
+      "width": 1440
+    },
+    {
+      "content": 1440,
+      "title": "Place a joker",
+      "width": 1440
+    },
+    {
+      "content": 1440,
+      "title": "Hidden or exposed?",
+      "width": 1440
+    },
+    {
+      "content": 1440,
+      "title": "Meet the table",
+      "width": 1440
+    },
+    {
+      "content": 1440,
+      "title": "Pass and rethink",
+      "width": 1440
+    },
+    {
+      "content": 1440,
+      "title": "Draw and discard",
+      "width": 1440
+    },
+    {
+      "content": 1440,
+      "title": "Calls and exchanges",
+      "width": 1440
+    },
+    {
+      "content": 1440,
+      "title": "Read a new row",
+      "width": 1440
+    },
+    {
+      "content": 1440,
+      "title": "Your next game",
+      "width": 1440
+    },
+    {
+      "content": 390,
+      "title": "Three numbered suits",
+      "width": 390
+    },
+    {
+      "content": 390,
+      "title": "Read a card row",
+      "width": 390
+    },
+    {
+      "content": 390,
+      "title": "Place a joker",
+      "width": 390
+    },
+    {
+      "content": 390,
+      "title": "Hidden or exposed?",
+      "width": 390
+    },
+    {
+      "content": 390,
+      "title": "Meet the table",
+      "width": 390
+    },
+    {
+      "content": 390,
+      "title": "Pass and rethink",
+      "width": 390
+    },
+    {
+      "content": 390,
+      "title": "Draw and discard",
+      "width": 390
+    },
+    {
+      "content": 390,
+      "title": "Calls and exchanges",
+      "width": 390
+    },
+    {
+      "content": 390,
+      "title": "Read a new row",
+      "width": 390
+    },
+    {
+      "content": 390,
+      "title": "Your next game",
+      "width": 390
+    },
+    {
+      "content": 360,
+      "title": "Three numbered suits",
+      "width": 360
+    },
+    {
+      "content": 360,
+      "title": "Read a card row",
+      "width": 360
+    },
+    {
+      "content": 360,
+      "title": "Place a joker",
+      "width": 360
+    },
+    {
+      "content": 360,
+      "title": "Hidden or exposed?",
+      "width": 360
+    },
+    {
+      "content": 360,
+      "title": "Meet the table",
+      "width": 360
+    },
+    {
+      "content": 360,
+      "title": "Pass and rethink",
+      "width": 360
+    },
+    {
+      "content": 360,
+      "title": "Draw and discard",
+      "width": 360
+    },
+    {
+      "content": 360,
+      "title": "Calls and exchanges",
+      "width": 360
+    },
+    {
+      "content": 360,
+      "title": "Read a new row",
+      "width": 360
+    },
+    {
+      "content": 360,
+      "title": "Your next game",
+      "width": 360
+    }
+  ],
+  "library": [
+    {
+      "content": 1024,
+      "lesson": "1",
+      "width": 1024
+    },
+    {
+      "content": 1024,
+      "lesson": "2",
+      "width": 1024
+    },
+    {
+      "content": 1024,
+      "lesson": "3",
+      "width": 1024
+    },
+    {
+      "content": 1024,
+      "lesson": "4",
+      "width": 1024
+    },
+    {
+      "content": 1024,
+      "lesson": "5",
+      "width": 1024
+    },
+    {
+      "content": 1024,
+      "lesson": "6",
+      "width": 1024
+    },
+    {
+      "content": 1024,
+      "lesson": "7",
+      "width": 1024
+    },
+    {
+      "content": 1024,
+      "lesson": "8",
+      "width": 1024
+    },
+    {
+      "content": 1024,
+      "lesson": "9",
+      "width": 1024
+    },
+    {
+      "content": 1024,
+      "lesson": "10",
+      "width": 1024
+    },
+    {
+      "content": 1024,
+      "lesson": "11",
+      "width": 1024
+    },
+    {
+      "content": 1024,
+      "lesson": "12",
+      "width": 1024
+    },
+    {
+      "content": 1024,
+      "lesson": "13",
+      "width": 1024
+    },
+    {
+      "content": 1024,
+      "lesson": "14",
+      "width": 1024
+    },
+    {
+      "content": 1024,
+      "lesson": "15",
+      "width": 1024
+    },
+    {
+      "content": 1024,
+      "lesson": "16",
+      "width": 1024
+    },
+    {
+      "content": 1024,
+      "lesson": "17",
+      "width": 1024
+    },
+    {
+      "content": 1024,
+      "lesson": "18",
+      "width": 1024
+    },
+    {
+      "content": 1024,
+      "lesson": "19",
+      "width": 1024
+    },
+    {
+      "content": 1024,
+      "lesson": "20",
+      "width": 1024
+    },
+    {
+      "content": 1024,
+      "lesson": "21",
+      "width": 1024
+    },
+    {
+      "content": 1024,
+      "lesson": "22",
+      "width": 1024
+    },
+    {
+      "content": 390,
+      "lesson": "1",
+      "width": 390
+    },
+    {
+      "content": 390,
+      "lesson": "2",
+      "width": 390
+    },
+    {
+      "content": 390,
+      "lesson": "3",
+      "width": 390
+    },
+    {
+      "content": 390,
+      "lesson": "4",
+      "width": 390
+    },
+    {
+      "content": 390,
+      "lesson": "5",
+      "width": 390
+    },
+    {
+      "content": 390,
+      "lesson": "6",
+      "width": 390
+    },
+    {
+      "content": 390,
+      "lesson": "7",
+      "width": 390
+    },
+    {
+      "content": 390,
+      "lesson": "8",
+      "width": 390
+    },
+    {
+      "content": 390,
+      "lesson": "9",
+      "width": 390
+    },
+    {
+      "content": 390,
+      "lesson": "10",
+      "width": 390
+    },
+    {
+      "content": 390,
+      "lesson": "11",
+      "width": 390
+    },
+    {
+      "content": 390,
+      "lesson": "12",
+      "width": 390
+    },
+    {
+      "content": 390,
+      "lesson": "13",
+      "width": 390
+    },
+    {
+      "content": 390,
+      "lesson": "14",
+      "width": 390
+    },
+    {
+      "content": 390,
+      "lesson": "15",
+      "width": 390
+    },
+    {
+      "content": 390,
+      "lesson": "16",
+      "width": 390
+    },
+    {
+      "content": 390,
+      "lesson": "17",
+      "width": 390
+    },
+    {
+      "content": 390,
+      "lesson": "18",
+      "width": 390
+    },
+    {
+      "content": 390,
+      "lesson": "19",
+      "width": 390
+    },
+    {
+      "content": 390,
+      "lesson": "20",
+      "width": 390
+    },
+    {
+      "content": 390,
+      "lesson": "21",
+      "width": 390
+    },
+    {
+      "content": 390,
+      "lesson": "22",
+      "width": 390
+    }
+  ],
+  "decisions": [
+    "Call and expose four 4 Bams, using your joker for one place. Picking up the next draw alone has not closed the window. Then discard; do not draw.",
+    "The calling window has closed. Once the next draw is racked, the preceding discard is unavailable.",
+    "A concealed row cannot expose groups on the way to mahjong. A pair cannot be called by itself either.",
+    "A discarded joker can never be called, including for mahjong.",
+    "Offer your 6 Dot and ask the owner to replace their exposed joker. Never touch their tiles yourself. You still finish your turn with a discard unless you win.",
+    "You cannot call a discarded tile solely to exchange it for a joker. Exchange using a tile you hold, during your own turn.",
+    "A concealed hand may call its final tile for mahjong. Reveal all 14 tiles and check the complete row; do not discard.",
+    "American mahjong does not allow a chow call for three consecutive tiles. Calls form matching groups permitted by your card row, or complete mahjong."
+  ],
+  "charleston": [
+    "0 rack tiles selected · 13 tiles in your rack",
+    "0 rack tiles selected · 13 tiles in your rack",
+    "0 rack tiles selected · 13 tiles in your rack",
+    "0 rack tiles selected · 13 tiles in your rack",
+    "0 rack tiles selected · 13 tiles in your rack",
+    "0 rack tiles selected · 13 tiles in your rack"
+  ],
+  "computerTurns": [
+    "South discarded Soap / White.",
+    "West discarded 9 Dot.",
+    "North discarded 3 Dot."
+  ],
+  "finalSizes": [
+    {
+      "content": 360,
+      "headerHeight": 70,
+      "width": 360
+    },
+    {
+      "content": 390,
+      "headerHeight": 70,
+      "width": 390
+    },
+    {
+      "content": 844,
+      "headerHeight": 86,
+      "width": 844
+    },
+    {
+      "content": 1024,
+      "headerHeight": 86,
+      "width": 1024
+    },
+    {
+      "content": 1440,
+      "headerHeight": 86,
+      "width": 1440
+    }
+  ],
+  "passed": [
+    "explicit discard confirmation",
+    "rack rearrangement preserves focus and tile identity",
+    "dialog keyboard trap, Escape and focus return",
+    "saved progress and restart cancel",
+    "all six Charleston passes including blind and courtesy",
+    "no console errors",
+    "full syntax, engine, analytics, storage and build suites"
+  ],
+  "limitations": [
+    "Physical-device iOS Safari was not tested",
+    "720px reflow tested; actual browser 200 percent zoom not tested",
+    "Observed complete beginner session remains to be done",
+    "No new photo upload or analytics database roundtrip performed in this redesign pass"
+  ]
+}

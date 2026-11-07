@@ -1,7 +1,13 @@
 {
-  "status": "Pending approved design implementation; mockup review is not full app QC",
+  "status": "Implemented; automated and Chromium desktop/phone viewport QC passed. Physical-device Safari and observed beginner session remain external checks.",
   "scope": "Full app on desktop and mobile before calling the redesign complete",
-  "viewports": ["1440x900 desktop", "1024x768 small desktop/tablet", "390x844 phone", "360x800 narrow phone", "phone landscape"],
+  "viewports": [
+    "1440x900 desktop",
+    "1024x768 small desktop/tablet",
+    "390x844 phone",
+    "360x800 narrow phone",
+    "phone landscape"
+  ],
   "checks": [
     "Learn: each tile activity, retries, progression, back, skip, lesson library and saved resume",
     "Card reading: visible tile context, no explanation before answer, all six rows, first-attempt results",

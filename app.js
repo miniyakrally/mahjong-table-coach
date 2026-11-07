@@ -438,11 +438,12 @@ function escapeHtml(value) {
   })[char]);
 }
 
-function setView(viewId) {
+function setView(viewId,skipStageTracking=false) {
   const practiceViews = ['practice','decision-practice','live-table','charleston','table','quiz','tiles','tools'];
   const referenceViews = ['reference','card','tile-guide','card-guide','passing-guide','calls-guide','table-guide'];
-  const section = ['journey','lesson'].includes(viewId) ? 'journey' : practiceViews.includes(viewId) ? 'practice' : referenceViews.includes(viewId) ? 'reference' : 'settings';
+  const section = viewId==='home'?'home':['journey','lesson','learn-home'].includes(viewId) ? 'learn-home' : practiceViews.includes(viewId) ? 'practice' : referenceViews.includes(viewId) ? 'reference' : 'settings';
   setView.section = section;
+  if(document.body)document.body.dataset.currentView=viewId;
   if(viewId !== 'journey') $('#learningAnnouncement').textContent = '';
   $$('.nav-button').forEach(button => {
     button.classList.toggle('active', button.dataset.view === section);
@@ -451,15 +452,17 @@ function setView(viewId) {
   });
   $$('.view').forEach(view => view.classList.toggle('active', view.id === viewId));
   $('#viewTitle').textContent = {
-    'decision-practice':'Can I do this?', 'live-table':'Play a practice hand', journey:'Learn by playing', practice:'Practice a skill', reference:'Reference', settings:'Settings',
+    home:'Welcome', 'learn-home':'Learn the game, one move at a time.', 'decision-practice':'Can I do this?', 'live-table':'Play a practice hand', journey:'Learn by playing', practice:'Practice a skill', reference:'Reference', settings:'Settings',
     lesson:'All lessons', 'tile-guide':'Tile guide', 'card-guide':'Reading the card', 'passing-guide':'Charleston order', 'calls-guide':'Calls and jokers', 'table-guide':'Turns and table etiquette', tiles:'Practice tile names', table:'Draw and discard',
     quiz:'Rules decisions', card:'Card rows and notation', charleston:'Practice the Charleston', tools:'Compare your hand'
   }[viewId];
-  $('#sectionLinks').innerHTML = viewId !== section ? `<button class="text-button" data-open-view="${section}">← All ${section === 'practice' ? 'practice exercises' : section === 'journey' ? 'learning' : 'reference topics'}</button><button class="text-button" data-open-view="journey">Return to learning →</button>` : '';
-  const heading = viewId === 'journey' ? $('#journeyTitle') : $('#viewTitle');
+  $('#sectionLinks').innerHTML = !['home','learn-home','practice','reference','settings'].includes(viewId) ? `<button class="text-button" data-open-view="${section}">← ${section==='practice'?'Practice':section==='learn-home'?'Learn':'Reference'}</button>` : '';
+  window.CoachUI?.viewChanged(viewId);
+  if(viewId==='journey'&&!skipStageTracking)window.GuidedJourney?.shown();
+  const heading = viewId==='home'?document.querySelector('#home h1'):viewId === 'journey' ? $('#journeyTitle') : $('#viewTitle');
   heading.setAttribute?.('tabindex','-1');
   heading.focus?.({preventScroll:true});
-  heading.scrollIntoView?.({block:'start'});
+  window.scrollTo?.(0,0);
 }
 
 function updateReadiness() {
@@ -534,7 +537,7 @@ function comparePattern(hand, line = currentPattern()) {
 }
 function renderPracticeCard() {
   $("#practiceCardRows").innerHTML = practiceCard.map((line,i)=>`<article class="practice-line">${patternMarkup(line)}<button class="secondary-button" data-pattern-index="${i}" aria-pressed="${practiceIndex===i}" type="button">${practiceIndex===i?'Using this pattern':'Use this pattern'}</button></article>`).join('');
-  $("#charlestonTarget").innerHTML = patternMarkup(currentPattern());
+  $("#charlestonTarget").innerHTML = printedPattern(currentPattern());
 }
 let turnTarget = [];
 let turnStart = [];
@@ -781,7 +784,7 @@ function focusLesson() {
 function bindEvents() {
   document.addEventListener?.('click', event => {
     const button = event.target.closest('[data-open-view]');
-    if (button) setView(button.dataset.openView);
+    if (button) setView(button.dataset.openView,button.dataset.lessonStage!==undefined||button.dataset.readingCheck!==undefined);
   });
 
   $("#lessonExample").addEventListener('click',event=>{
@@ -1083,13 +1086,14 @@ function renderCharleston() {
   const count = game.phase === 'courtesy' ? game.courtesy : 3;
   $("#passSteps").innerHTML = passNames.map((name,i) => `<li ${game.phase === 'passing' && i === game.step ? 'aria-current="step"' : ''}>${i < game.step ? '✓ ' : ''}${name}</li>`).join('');
   $("#passTitle").textContent = game.phase === 'done' ? 'Ready for the first discard' : game.phase === 'second' ? 'Continue or stop?' : game.phase === 'courtesyChoice' ? 'Optional courtesy exchange' : game.phase === 'courtesy' ? `Pass ${count} across` : `Pass 3 · ${passNames[game.step]}`;
-  $("#passHelp").textContent = game.phase === 'done' ? 'East discards first. Try the Practice Table next, or start again.' : active ? `Choose ${count - blind} tiles from your rack${blind ? ` plus ${blind} unseen incoming tiles` : ''}. Jokers cannot be passed. Compare your rack with the practice pattern above. Look for tiles it does not need.` : 'Your rack still has 13 tiles. Look again at the practice pattern before exchanging more.';
+  $("#passHelp").textContent = game.phase === 'done' ? 'East discards first. Try the Practice Table next, or start again.' : active ? `Choose ${count - blind} tiles${blind ? ` + ${blind} incoming tiles blind` : ''}, then confirm the pass. Keep jokers.` : 'Your rack still has 13 tiles. Look again at the practice pattern before exchanging more.';
   $("#charlestonRack").innerHTML = game.racks[0].map((code,i) => `<button class="hand-tile ${selectedPass.includes(i) ? 'selected-pass' : ''}" data-pass-index="${i}" aria-pressed="${selectedPass.includes(i)}" aria-label="${escapeHtml(tileDisplay(code))}${code === 'J' ? ', keep: jokers cannot be passed' : ''}" type="button" ${!active || code === 'J' ? 'disabled' : ''}>${tileButtonMarkup(code)}</button>`).join('');
   window.RackArrange?.mount($("#charlestonRack"),'charleston',(from,to)=>{RackArrange.move(game.racks[0],from,to);selectedPass=selectedPass.map(i=>RackArrange.remap(i,from,to));},renderCharleston);
   $("#passStatus").textContent = `${selectedPass.length} rack tiles selected${blind ? ` + ${blind} blind` : ''} · ${game.racks[0].length} tiles in your rack`;
   $("#confirmPass").disabled = !active || selectedPass.length + blind !== count;
   $("#confirmPass").textContent = !active ? "Finish this stage first" : selectedPass.length + blind === count ? `Pass ${count} tiles →` : `Select ${count - blind - selectedPass.length} more tiles`;
   $("#passHint").disabled = !active;
+  $("#confirmPass").hidden=!active; $("#passHint").hidden=!active;
   $("#secondChoice").hidden = game.phase !== 'second';
   $("#courtesyChoice").hidden = game.phase !== 'courtesyChoice';
 }

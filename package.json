@@ -4,9 +4,9 @@
   "private": true,
   "description": "A static app that helps friends learn American mahjong together.",
   "scripts": {
-    "check": "node --check app.js && node --check charleston.js && node --check curriculum.js && node --check tile-art.js && node --check teaching-visuals.js && node --check practice-engine.js && node --check guided-hand.js && node --check learning-progress.js && node --check learning-analytics.js && node --check rack-arrange.js && node --check reference-guide.js && node --check table-engine.js && node --check table-play.js && node --check decision-practice.js",
+    "check": "node --check app.js && node --check charleston.js && node --check curriculum.js && node --check tile-art.js && node --check teaching-visuals.js && node --check practice-engine.js && node --check guided-hand.js && node --check learning-progress.js && node --check learning-analytics.js && node --check rack-arrange.js && node --check reference-guide.js && node --check table-engine.js && node --check table-play.js && node --check decision-practice.js && node --check shell.js",
     "start": "python3 -m http.server 4177",
     "test": "node test-charleston.cjs && node test-app.cjs && node test-practice-engine.cjs && node test-analytics.cjs && node test-rack-arrange.cjs && node test-table-engine.cjs",
-    "build": "node scripts/build-static.cjs"
+    "build": "node scripts/build-static.cjs && node scripts/check-static-build.cjs"
   }
 }
