@@ -18,34 +18,12 @@
           </div>
         </div>
 
-        <nav class="mode-nav" aria-label="App modes">
-          <button class="nav-button active" data-view="journey" aria-current="page" type="button">Play a guided hand</button>
-          <button class="nav-button" data-view="lesson" type="button">
-            <span aria-hidden="true">01</span>
-            Lesson reference
-          </button>
-          <button class="nav-button" data-view="tiles" type="button">
-            <span aria-hidden="true">02</span>
-            Tile Trainer
-          </button>
-          <button class="nav-button" data-view="charleston" type="button"><span aria-hidden="true">03</span>Charleston</button>
-          <button class="nav-button" data-view="table" type="button">
-            <span aria-hidden="true">04</span>
-            Practice Table
-          </button>
-          <button class="nav-button" data-view="quiz" type="button">
-            <span aria-hidden="true">05</span>
-            Quiz
-          </button>
-          <button class="nav-button" data-view="card" type="button">
-            <span aria-hidden="true">06</span>
-            Practice card
-          </button>
-          <button class="nav-button" data-view="tools" type="button">
-            <span aria-hidden="true">07</span>
-            Tools
-          </button>
+        <nav class="mode-nav" aria-label="Main navigation">
+          <button class="nav-button active" data-view="journey" aria-current="page" type="button">Learn</button>
+          <button class="nav-button" data-view="practice" type="button">Practice</button>
+          <button class="nav-button" data-view="reference" type="button">Reference</button>
         </nav>
+        <button class="settings-trigger secondary-button" data-open-view="settings" type="button">Settings</button>
 
         <section class="progress-card" aria-label="Lesson position">
           <div class="progress-head">
@@ -70,8 +48,57 @@
             </label>
             <button id="resetProgress" class="icon-text-button" type="button">Reset</button>
           </div>
-        </header><p class="learning-path">Learn the tiles, read a card row, then carry your hand through passing and play. No supplies or sign-in needed. Already played? Jump straight to practice.</p>
+        </header><div id="sectionLinks" class="section-links"></div>
 
+
+        <section id="practice" class="view" aria-labelledby="viewTitle">
+          <p class="hub-intro">Choose a skill to practice. Each exercise includes its own instructions.</p>
+          <div class="hub-grid">
+            <button class="hub-card" data-open-view="charleston"><strong>Pass in the Charleston</strong><span>Both rounds, blind passes, and the courtesy exchange.</span></button>
+            <button class="hub-card" data-open-view="table"><strong>Draw and discard</strong><span>Compare your rack with a row and finish a hand.</span></button>
+            <button class="hub-card" data-open-view="quiz"><strong>Make a rules decision</strong><span>Calls, concealed hands, and jokers in context.</span></button>
+            <button class="hub-card" data-open-view="tiles"><strong>Recognize the tiles</strong><span>Review tile faces and say their names.</span></button>
+            <button class="hub-card" data-open-view="tools"><strong>Compare your own hand</strong><span>Enter tiles and compare with a teaching row.</span></button>
+          </div>
+        </section>
+        <section id="reference" class="view" aria-labelledby="viewTitle">
+          <p class="hub-intro">Look something up, then return to your hand.</p>
+          <div class="hub-grid">
+            <button class="hub-card" data-open-view="lesson"><strong>Rules and table etiquette</strong><span>Illustrated explanations, organized by topic.</span></button>
+            <button class="hub-card" data-open-view="card"><strong>Card rows and notation</strong><span>Original practice patterns and annual-card reading.</span></button>
+            <button class="hub-card" data-open-view="tiles"><strong>Tile names and suits</strong><span>Craks, Bams, Dots, winds, dragons, flowers, and jokers.</span></button>
+          </div>
+        </section>
+        <section id="settings" class="view" aria-labelledby="viewTitle">
+          <p>Your learning progress saves in this browser. Photos and custom tile labels also stay here.</p>
+          <button id="restartLearning" class="secondary-button" type="button">Restart learning…</button>
+          <div id="restartConfirm" hidden><p>Start at the first lesson and clear the saved hand and decision history? Your photo and tile labels will stay.</p><button id="confirmRestartLearning" class="primary-button" type="button">Yes, restart learning</button><button id="cancelRestartLearning" class="secondary-button" type="button">Keep my progress</button></div>
+            <article class="tool-panel tile-set-panel">
+              <div class="section-head">
+                <div>
+                  <p class="eyebrow">Tile set customizer</p>
+                  <h3>Match your tile labels</h3>
+                </div>
+                <button id="resetTileLabels" class="secondary-button" type="button">Reset Labels</button>
+              </div>
+              <p>
+                Add a photo as a private reference, then choose labels that match your set.
+                The photo and labels stay in this browser.
+              </p>
+              <label class="photo-picker">
+                <span>Tile set photo</span>
+                <input id="tilePhotoInput" type="file" accept="image/*" />
+              </label>
+              <img id="tilePhotoPreview" class="tile-photo-preview" alt="Uploaded tile set reference" hidden />
+              <div class="preset-buttons" aria-label="Tile label presets">
+                <button class="secondary-button" data-label-preset="beginner" type="button">Beginner names</button>
+                <button class="secondary-button" data-label-preset="american" type="button">Short labels</button>
+                <button class="secondary-button" data-label-preset="symbols" type="button">Symbols</button>
+              </div>
+              <div id="customLabelGrid" class="custom-label-grid"></div>
+            </article>
+        </section>
+        <div id="learningAnnouncement" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></div>
         <section id="journey" class="view active" aria-labelledby="viewTitle"></section>
         <section id="lesson" class="view" aria-labelledby="viewTitle">
           <div class="lesson-grid">
@@ -105,6 +132,11 @@
             <article class="tile-reference">
               <h3>Tile Families</h3>
               <div id="tileFamilies" class="family-grid"></div>
+            </article>
+            <article class="tool-panel">
+              <p class="eyebrow">Tile identifier</p>
+              <h3>Tile names you may hear</h3>
+              <div id="tileIdentifier" class="identifier-grid"></div>
             </article>
           </div>
         </section>
@@ -198,6 +230,11 @@
               <p id="cardPromptFeedback" class="quiz-feedback"></p>
               <button id="nextCardPrompt" class="primary-button" type="button">Next question</button>
             </article>
+            <article class="tool-panel">
+              <p class="eyebrow">Card notation</p>
+              <h3>Read the card symbols</h3>
+              <div id="notationGrid" class="notation-grid"></div>
+            </article>
           </div>
         </section>
 
@@ -227,42 +264,11 @@
               <div id="charlestonPicks" class="recommendation-list"></div>
             </article>
 
-            <article class="tool-panel">
-              <p class="eyebrow">Tile identifier</p>
-              <h3>Tile names you may hear</h3>
-              <div id="tileIdentifier" class="identifier-grid"></div>
-            </article>
 
-            <article class="tool-panel tile-set-panel">
-              <div class="section-head">
-                <div>
-                  <p class="eyebrow">Tile set customizer</p>
-                  <h3>Match your tile labels</h3>
-                </div>
-                <button id="resetTileLabels" class="secondary-button" type="button">Reset Labels</button>
-              </div>
-              <p>
-                Add a photo as a private reference, then choose labels that match your set.
-                The photo and labels stay in this browser.
-              </p>
-              <label class="photo-picker">
-                <span>Tile set photo</span>
-                <input id="tilePhotoInput" type="file" accept="image/*" />
-              </label>
-              <img id="tilePhotoPreview" class="tile-photo-preview" alt="Uploaded tile set reference" hidden />
-              <div class="preset-buttons" aria-label="Tile label presets">
-                <button class="secondary-button" data-label-preset="beginner" type="button">Beginner names</button>
-                <button class="secondary-button" data-label-preset="american" type="button">Short labels</button>
-                <button class="secondary-button" data-label-preset="symbols" type="button">Symbols</button>
-              </div>
-              <div id="customLabelGrid" class="custom-label-grid"></div>
-            </article>
 
-            <article class="tool-panel">
-              <p class="eyebrow">Card notation</p>
-              <h3>Read the card symbols</h3>
-              <div id="notationGrid" class="notation-grid"></div>
-            </article>
+
+
+
 
             <article class="tool-panel">
               <p class="eyebrow">Rules practice</p>
@@ -295,6 +301,7 @@
     <script src="charleston.js"></script>
     <script src="teaching-visuals.js"></script>
     <script src="practice-engine.js"></script>
+    <script src="learning-progress.js"></script>
     <script src="app.js"></script>
     <script src="guided-hand.js"></script>
   </body>

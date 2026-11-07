@@ -21,7 +21,12 @@ for(let n=0;n<30;n++){
  }
  assert.equal(g.wall.length,0);assert.equal(g.exhausted,true);check(g);
 }
-const g=Engine.create(target);g.racks[0].forEach(c=>g.wall.push(c));g.racks[0]=groups.flat().slice(0,13).map(c=>Engine.take(g.wall,c));g.phase='done';check(g);
+// Reserve the winning hand before dealing opponents, so this fixture cannot
+// randomly place a required natural tile in somebody else's rack.
+const deck=Engine.shuffle(Engine.supply());
+const start=groups.flat().slice(0,13).map(c=>Engine.take(deck,c));
+const winning=Engine.take(deck,groups.flat()[13]);
+const g={racks:[start,deck.splice(0,13),deck.splice(0,13),deck.splice(0,14)],wall:deck.concat(winning),discards:[],step:6,phase:'done',courtesy:0,target,independent:false,drawn:false,won:false,exhausted:false};check(g);
 Engine.draw(g);assert.equal(Engine.win(g),true);check(g);assert.throws(()=>Engine.discard(g,0));
 assert.equal(Engine.missing(['F','J'],[['F','F']]).length,1);
 assert.equal(Engine.missing(['6D','J','J'],[['6D','6D','6D']]).length,0);

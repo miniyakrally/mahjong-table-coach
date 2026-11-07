@@ -439,26 +439,27 @@ function escapeHtml(value) {
 }
 
 function setView(viewId) {
-  $$(".nav-button").forEach((button) => {
-    button.classList.toggle("active", button.dataset.view === viewId);
+  const practiceViews = ['practice','charleston','table','quiz','tiles','tools'];
+  const referenceViews = ['reference','lesson','card'];
+  const section = viewId === 'tiles' && setView.section === 'reference' ? 'reference' : viewId === 'journey' ? 'journey' : practiceViews.includes(viewId) ? 'practice' : referenceViews.includes(viewId) ? 'reference' : 'settings';
+  setView.section = section;
+  if(viewId !== 'journey') $('#learningAnnouncement').textContent = '';
+  $$('.nav-button').forEach(button => {
+    button.classList.toggle('active', button.dataset.view === section);
+    if (button.dataset.view === section) button.setAttribute('aria-current','page');
+    else button.removeAttribute('aria-current');
   });
-  $$(".view").forEach((view) => {
-    view.classList.toggle("active", view.id === viewId);
-  });
-  $$(".nav-button").forEach(button => {
-    if (button.dataset.view === viewId) button.setAttribute("aria-current", "page");
-    else button.removeAttribute("aria-current");
-  });
-  $("#viewTitle").textContent = {
-    journey: "Play a guided hand",
-    lesson: "Lesson reference",
-    tiles: "Tile Trainer",
-    table: "Practice Table",
-    quiz: "Quiz",
-    card: "Practice card & 2026 notation",
-    charleston: "Practice the Charleston",
-    tools: "Tools"
+  $$('.view').forEach(view => view.classList.toggle('active', view.id === viewId));
+  $('#viewTitle').textContent = {
+    journey:'Learn by playing', practice:'Practice a skill', reference:'Reference', settings:'Settings',
+    lesson:'Rules and table etiquette', tiles:'Tile names and suits', table:'Draw and discard',
+    quiz:'Rules decisions', card:'Card rows and notation', charleston:'Practice the Charleston', tools:'Compare your hand'
   }[viewId];
+  $('#sectionLinks').innerHTML = viewId !== section ? `<button class="text-button" data-open-view="${section}">← All ${section === 'practice' ? 'practice exercises' : 'reference topics'}</button><button class="text-button" data-open-view="journey">Return to learning →</button>` : '';
+  const heading = viewId === 'journey' ? $('#journeyTitle') : $('#viewTitle');
+  heading.setAttribute?.('tabindex','-1');
+  heading.focus?.({preventScroll:true});
+  heading.scrollIntoView?.({block:'start'});
 }
 
 function updateReadiness() {
@@ -777,6 +778,11 @@ function focusLesson() {
   $("#lessonTitle").scrollIntoView?.({block:'start'});
 }
 function bindEvents() {
+  document.addEventListener?.('click', event => {
+    const button = event.target.closest('[data-open-view]');
+    if (button) setView(button.dataset.openView);
+  });
+
   $("#lessonExample").addEventListener('click',event=>{
     const button=event.target.closest('[data-demo-move]');
     if(!button||button.disabled)return;
@@ -1076,6 +1082,7 @@ function renderCharleston() {
   $("#charlestonRack").innerHTML = game.racks[0].map((code,i) => `<button class="hand-tile ${selectedPass.includes(i) ? 'selected-pass' : ''}" data-pass-index="${i}" aria-pressed="${selectedPass.includes(i)}" aria-label="${escapeHtml(tileDisplay(code))}${code === 'J' ? ', keep: jokers cannot be passed' : ''}" type="button" ${!active || code === 'J' ? 'disabled' : ''}>${tileButtonMarkup(code)}</button>`).join('');
   $("#passStatus").textContent = `${selectedPass.length} rack tiles selected${blind ? ` + ${blind} blind` : ''} · ${game.racks[0].length} tiles in your rack`;
   $("#confirmPass").disabled = !active || selectedPass.length + blind !== count;
+  $("#confirmPass").textContent = !active ? "Finish this stage first" : selectedPass.length + blind === count ? `Pass ${count} tiles →` : `Select ${count - blind - selectedPass.length} more tiles`;
   $("#passHint").disabled = !active;
   $("#secondChoice").hidden = game.phase !== 'second';
   $("#courtesyChoice").hidden = game.phase !== 'courtesyChoice';
