@@ -47,3 +47,7 @@ Desktop Chrome review exercised lesson feedback/focus, the lesson picker, illust
 ## Deployment
 
 The GitHub Pages workflow deploys on pushes to `main`. Current work stays local on `revive-american-mahjong` for review. Do not publish it merely to make the local preview available. Keep this app standalone from Bookblend.
+
+## Visual palette
+
+Caroline’s preppy mahjong reference informs the palette: pink gingham navigation, fresh green selections and tile edges, turquoise buttons, warm white tile faces, and navy text. Tile artwork keeps recognizable red/green/blue markings for teaching. Main text/button combinations were checked for at least 4.5:1 contrast; the desktop preview was visually reviewed. This color update remains local until publication is requested.
