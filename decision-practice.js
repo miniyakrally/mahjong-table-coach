@@ -1,7 +1,7 @@
 (() => {
  const root=document.querySelector('#decision-practice');let index=0,answered=false,feedback='',attempts=0;
  const cases=[
-  {row:0,hand:['4B','4B','J'],tile:'4B',context:'You are building the X row below. The next player has picked up a draw but has not racked it or taken another closing action. You have these tiles for its kong.',right:'call',why:'Call and expose four 4 Bams, using your joker for one place. Picking up the next draw alone has not closed the window. Then discard; do not draw.'},
+  {row:0,hand:['4B','4B','J'],tile:'4B',context:'You are building the X row shown. The next player has picked up a draw but has not racked it or taken another closing action. You have these tiles for its kong.',right:'call',why:'Call and expose four 4 Bams, using your joker for one place. Picking up the next draw alone has not closed the window. Then discard; do not draw.'},
   {row:0,hand:['4B','4B','4B'],tile:'4B',context:'The next player has already racked their draw. You would like the preceding discard.',right:'pass',why:'The calling window has closed. Once the next draw is racked, the preceding discard is unavailable.'},
   {row:2,hand:['1C'],tile:'1C',context:'You are building this C row. This discard would complete a pair, but the rest of your hand is unfinished.',right:'pass',why:'A concealed row cannot expose groups on the way to mahjong. A pair cannot be called by itself either.'},
   {row:0,hand:['6D','6D','6D'],tile:'J',context:'A joker was discarded. It would complete your last kong and your whole hand.',right:'pass',why:'A discarded joker can never be called, including for mahjong.'},
