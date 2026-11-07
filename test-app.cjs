@@ -77,6 +77,16 @@ const journey=elements.get('journey');
 const jclick=dataset=>journey.listeners.click({target:{closest:()=>({dataset,disabled:false})}});
 assert.match(journey.innerHTML,/Three numbered suits/);
 assert.doesNotMatch(journey.innerHTML,/Four winds/);
+// Explicit lesson entry restarts its topics; ordinary resume retains its place.
+jclick({tileTopic:'4'});assert.match(journey.innerHTML,/Meet the joker/);
+vm.runInContext(fs.readFileSync('guided-hand.js','utf8'),context);
+assert.match(journey.innerHTML,/Meet the joker/);
+run('window.GuidedJourney.open(0)');assert.match(journey.innerHTML,/Three numbered suits/);
+assert.match(journey.innerHTML,/Craks · characters/);assert.match(journey.innerHTML,/Bams · bamboo/);
+assert.match(journey.innerHTML,/data-tile-topic="1"/);
+jclick({tileTopic:'1'});assert.match(journey.innerHTML,/Four winds/);
+jclick({stage:'0'});assert.match(journey.innerHTML,/Three numbered suits/);
+
 // Wrong choices remain retryable and do not become first-attempt successes.
 jclick({activityIndex:'0'});jclick({go:'checkActivity'});assert.match(journey.innerHTML,/Try again/);
 jclick({activityIndex:'0'});

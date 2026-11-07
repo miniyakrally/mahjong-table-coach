@@ -17,3 +17,5 @@
 @media(max-width:700px){.sidebar{flex-wrap:nowrap;min-height:70px;padding:12px 16px;gap:10px}.brand{font-size:14px;gap:6px;flex:1;order:0;white-space:nowrap}.mode-nav{order:0;flex-basis:auto;width:auto;justify-content:initial;gap:14px}.nav-button{flex:none;padding:10px 0;font-size:11px}.settings-trigger{order:0;width:32px;min-width:32px;height:44px;min-height:44px;margin:0;font-size:0!important;text-align:center}.settings-trigger:after{content:'⚙';font-size:17px}.tf-action-line{box-shadow:0 -8px 12px #fcfcf7}}
 @media(max-width:370px){.sidebar{gap:7px}.mode-nav{gap:11px}.brand{font-size:13px}.brand-icon{font-size:20px}}
 @media(max-width:700px){.tf-rack .tile-label,#charleston #charlestonRack .tile-label{font-size:9px;line-height:1.15;overflow-wrap:anywhere}.tf-rack .tile-badge{font-size:9px}}
+
+.tile-topic-nav{display:flex;flex-wrap:wrap;gap:4px 12px;margin:16px 0 24px}.tile-topic-nav button{min-height:44px}.tile-topic-nav [aria-current]{color:var(--navy);text-decoration:underline;text-underline-offset:7px}.lesson-topics{display:block;font-size:13px;font-weight:400;line-height:1.5;margin-top:6px;color:#527087}

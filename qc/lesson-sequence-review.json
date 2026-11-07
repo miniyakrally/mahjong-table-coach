@@ -1,0 +1,34 @@
+{
+  "date": "2026-11-07",
+  "scope": "10 guided stages, five tile-family activities, 22 illustrated lessons, six transfer rows",
+  "sequence": [
+    "Suits: Craks, Bams, Dots, numbers, matching, Bird Bam",
+    "Winds: North, East, West, South",
+    "Dragons: Red, Green, White / Soap",
+    "Flowers",
+    "Recognize a joker; defer placement rules",
+    "Read a visible 14-tile row; pung and kong",
+    "Joker placement, singles and pairs",
+    "Hidden versus exposed; define discard and call",
+    "Table, wall, deal, fishtail and etiquette",
+    "First and second Charleston, blind passes and courtesy",
+    "Draw, select and confirm discard; legal mahjong",
+    "Call timing, priorities and joker exchange",
+    "Six unfamiliar rows: suit choices, like numbers, runs, zero, quints, concealed",
+    "Independent practice and recap"
+  ],
+  "findingsFixed": [
+    "Explicit lesson 1 previously retained introIndex from saved progress, opening at joker",
+    "Tile subtopics invisible until encountered; now directly navigable",
+    "Too few suit examples; now show 1, 3, 9 of each suit with names",
+    "Joker recognition introduced placement and Charleston jargon too early; defer rules",
+    "Define single, pair, discard and call before exercises use them",
+    "Continue learning now names the saved tile subtopic"
+  ],
+  "coverage": "Core beginner play and annual-card notation covered by guided activities and illustrated library. Original examples do not reproduce the official 2026 hand list. Not a complete tournament rulings or scoring course.",
+  "verification": [
+    "Regression: saved joker topic resumes, explicit lesson entry starts at suits",
+    "All syntax, learning, game engine, privacy and static build checks pass",
+    "Browser confirmed first lesson displays all three suits before winds and jokers"
+  ]
+}
