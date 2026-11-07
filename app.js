@@ -27,6 +27,33 @@ const lessons = [
     ]
   },
   {
+    "title": "Set the table together",
+    "body": "Table routine · Before the Charleston, everyone helps mix the tiles face down and build four walls. A standard American set has 152 playing tiles.",
+    "bullets": [
+      "Each player builds a wall 19 stacks long and two tiles high. Leave extra blanks or spare tiles out unless you agreed otherwise.",
+      "Choose East, roll the dice, and have an experienced friend demonstrate the wall break and deal before everyone tries it.",
+      "Wait until the deal is finished before racking your tiles. Check the counts together: 14 for East, 13 for each other player."
+    ]
+  },
+  {
+    "title": "Fishtail the end of the wall",
+    "body": "Wall marker · Fishtailing means turning the last tiles at the tail end sideways to mark where the wall ends. It helps everyone distinguish the end from the drawing side.",
+    "bullets": [
+      "After the wall is broken, ask the player tending that wall to identify the drawing end and the tail.",
+      "Turn the tail tiles at a right angle without exposing their faces or changing their order. This is a helpful marker, not a required move to win.",
+      "Draw from the active drawing end, not from the fishtail. Ask before moving or straightening someone else’s wall."
+    ]
+  },
+  {
+    "title": "Your tiles, your hands",
+    "body": "Table etiquette · Handle your own rack and tiles. Even helpful rearranging can expose someone’s hand or make a play unclear.",
+    "bullets": [
+      "Do not touch another player’s rack, hand, or exposures. Ask them to move or show a tile instead.",
+      "For a legal joker exchange on your turn, ask the owner to exchange the matching tile with you; do not reach over and take their joker.",
+      "Name each discard clearly. Give everyone a moment to react, take your turn at a comfortable pace, and offer strategy advice only when invited."
+    ]
+  },
+  {
     "title": "Before play: the Charleston",
     "body": "After the deal, East has 14 tiles and everyone else has 13. The Charleston lets you exchange unwanted tiles before discarding begins.",
     "bullets": [
@@ -42,6 +69,15 @@ const lessons = [
       "After discarding you have 13 tiles total, counting any exposed tiles.",
       "Call the latest discard only if it completes a permitted exposure for your hand, or completes mahjong. No drawing after a call.",
       "You cannot call a discard for a single or pair unless it completes your entire winning hand. A discarded joker cannot be called."
+    ]
+  },
+  {
+    "title": "Bird Bam: a little table celebration",
+    "body": "Optional social tradition · The bird tile is 1 Bam. At this gathering, it is also an excuse for a friendly toast or sip, if you want to join in.",
+    "bullets": [
+      "Agree before playing on the Bird Bam moment: for example, when it is discarded. Your group chooses the trigger; it is not an official game rule.",
+      "Any drink counts, and passing on the toast is always fine. Keep glasses beside the playing area so tiles and cards stay dry.",
+      "Say “One Bam” clearly when discarding. A bird toast does not pause the rules, change the tile’s value, or take away anyone’s chance to call."
     ]
   },
   {
@@ -180,6 +216,33 @@ const quizQuestions = [
       "Only with flowers"
     ],
     "correct": "No"
+  },
+  {
+    "question": "What does the fishtail mark?",
+    "answers": [
+      "The tail end of the wall",
+      "The next tile to draw",
+      "A bonus tile"
+    ],
+    "correct": "The tail end of the wall"
+  },
+  {
+    "question": "Someone has an exposed joker you can legally exchange for. What is the polite approach?",
+    "answers": [
+      "Ask the owner to exchange it with you",
+      "Reach over and take it",
+      "Rearrange their exposure"
+    ],
+    "correct": "Ask the owner to exchange it with you"
+  },
+  {
+    "question": "Is the Bird Bam toast an official game rule?",
+    "answers": [
+      "No, it is an optional social tradition",
+      "Yes, everyone must drink",
+      "Yes, it changes the score"
+    ],
+    "correct": "No, it is an optional social tradition"
   }
 ];
 
@@ -336,10 +399,16 @@ const checklistItems = [
   "Are we playing for points, coins, or just practice?",
   "Will beginners get one table-talk hint per hand?",
   "How strict are we about calling a hand dead?",
-  "Are concealed hands being explained before the first round?"
+  "Are concealed hands being explained before the first round?",
+  "Can everyone point to the drawing end and fishtailed tail?",
+  "Have we agreed to ask before touching anyone else’s rack, tiles, or wall?",
+  "When is our optional Bird Bam toast? Any drink counts; joining in is optional."
 ];
 
 const groupPrompts = [
+  "Point to the drawing end and the fishtail without moving anyone else’s wall.",
+  "Practice asking for a joker exchange without reaching into another player’s exposure.",
+  "Find 1 Bam and explain our optional bird-toast tradition to a new friend.",
   "Everyone name one tile in your hand that supports more than one possible direction.",
   "Before discarding, say which card section you are currently watching.",
   "Find one joker rule on the table: where could a joker legally help, and where could it not?",
@@ -450,6 +519,7 @@ function updateReadiness() {
 function renderLesson() {
   const lesson = lessons[state.lesson];
   $("#lessonNumber").textContent = String(state.lesson + 1);
+  $("#lessonTotal").textContent = String(lessons.length);
   $("#lessonTitle").textContent = lesson.title;
   $("#lessonBody").textContent = lesson.body;
   $("#lessonBullets").innerHTML = lesson.bullets.map((item) => `<li>${item}</li>`).join("");
@@ -526,7 +596,8 @@ function renderNightPlan() {
   const friends = Number($("#friendCount").value) || 4;
   const minutes = friends > 4 ? 90 : 60;
   const plan = [
-    `Spend 10 minutes naming tiles and sorting suits together.`,
+    `Spend 10 minutes naming tiles, building walls, and identifying the drawing end and fishtail.`,
+    "Agree on hands-to-yourself etiquette, beginner hints, and the optional Bird Bam toast.",
     `Play ${friends <= 4 ? "one table" : "rotating-table"} open-hand practice for ${minutes} minutes.`,
     "Practice right, across, left together, then explain each call against your card.",
     "End with one closed-hand round where table talk is limited to rules questions."

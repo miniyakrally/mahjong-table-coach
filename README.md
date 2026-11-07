@@ -53,3 +53,9 @@ Rules references: [National Mah Jongg League](https://www.nationalmahjonggleague
 Verification: `npm run check` and `npm test`. Tests cover tile conservation, rack counts, passing direction, joker retention, blind-pass limits, courtesy counts, app initialization, the scripted turn, stopping the second Charleston, and reset. Desktop Chrome was visually reviewed and the first exchange exercised. Phone layout and a complete novice walkthrough still need review.
 
 Publishing: pushing `main` deploys to GitHub Pages. This draft stays on `revive-american-mahjong` until reviewed; the existing public site remains unchanged.
+
+### Table rituals and etiquette (2026-11-06)
+
+The lessons now include wall building, waiting to rack until the deal is complete, fishtailing the tail end, handling only your own tiles/rack, asking for joker exchanges, naming discards, and giving other players time. The quiz and group prompts reinforce these habits. Fishtailing is labeled as a wall marker; etiquette and the optional 1 Bam bird toast are distinguished from game rules. The exact bird-toast trigger is awaiting Caroline’s preference, so the app asks the table to agree and labels discarding as an example only. Any drink or opting out is welcome.
+
+References: [wall-tail guidance](https://mahjongg.org/mah-jongg-rules/) and [MahjCon etiquette](https://mahjcon.com/mahjpedia/id15-etiquette-and-sportsmanship/). The bird-toast tradition was requested by Caroline; it is not presented as an NMJL requirement.

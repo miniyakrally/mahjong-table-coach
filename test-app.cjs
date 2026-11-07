@@ -19,3 +19,12 @@ assert.equal(run('passingGame.phase'),'second');
 click('stopSecond');click('agreeCourtesy');assert.equal(run('passingGame.phase'),'done');
 click('resetProgress');assert.equal(run('passingGame.phase'),'passing');assert.equal(run('state.hand.length'),13);
 console.log('Passed: app initialization, draw/discard/win drill, first Charleston, stop second, skip courtesy, reset.');
+
+assert.equal(run('lessons.length'),10);
+assert.equal(elements.get('lessonTotal').textContent,'10');
+for(let i=0;i<10;i++) {
+  run(`state.lesson=${i};renderLesson()`);
+  assert.equal(elements.get('lessonNumber').textContent,String(i+1));
+}
+assert.equal(elements.get('readinessScore').textContent,'10 / 10');
+console.log('Passed: all ten lessons render with the correct lesson count.');
