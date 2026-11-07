@@ -142,3 +142,7 @@ select,input:not([type=checkbox]):not([type=file]) { font:inherit; color:var(--i
 
 #practiceHand .hand-tile { position:relative; }
 #practiceHand .selected-pass { outline:2px solid var(--blue); background:#eaf1f8; }
+
+.rack-arrange { display:flex; flex-wrap:wrap; align-items:center; gap:10px; margin:14px 0; }
+.rack-arrange span { flex:1 1 220px; color:var(--muted); font-size:.9rem; }
+.hand-tile.arrange-selected { outline:3px solid var(--blue); outline-offset:3px; transform:translateY(-5px); }
