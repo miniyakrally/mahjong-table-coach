@@ -47,7 +47,7 @@ Browser checks exercised the guided introduction, both Charlestons, courtesy cho
 
 ## Deployment
 
-The GitHub Pages workflow deploys on pushes to `main`. Current work stays local on `revive-american-mahjong` for review. Do not publish it merely to make the local preview available. Keep this app standalone from Bookblend.
+Production uses a separate Render Static Site, deploying the `render-production` branch from this repository. The intended custom address is https://mahjong.bookblendapp.com. Build: `npm run check && npm test && npm run build`; publish directory: `dist`. The build copies only runtime assets and adds a non-secret `version.json` commit identifier. The Bookblend repository, main domain, and application are separate. The older GitHub Pages workflow still targets `main`; this release does not update that legacy destination.
 
 ## Visual palette
 
