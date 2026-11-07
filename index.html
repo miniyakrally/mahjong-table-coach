@@ -71,6 +71,7 @@
         </section>
         <section id="settings" class="view" aria-labelledby="viewTitle">
           <p>Your learning progress saves in this browser. Photos and custom tile labels also stay here.</p>
+          <div id="analyticsNotice" hidden><p>Anonymous counts help us see which lessons people reach. We do not send names, answers, hands, or photos.</p><label><input id="analyticsOptOut" type="checkbox"> Turn off anonymous usage counts</label></div>
           <button id="restartLearning" class="secondary-button" type="button">Restart learning…</button>
           <div id="restartConfirm" hidden><p>Start at the first lesson and clear the saved hand and decision history? Your photo and tile labels will stay.</p><button id="confirmRestartLearning" class="primary-button" type="button">Yes, restart learning</button><button id="cancelRestartLearning" class="secondary-button" type="button">Keep my progress</button></div>
             <article class="tool-panel tile-set-panel">
@@ -167,7 +168,7 @@
                 </div>
                 <button id="dealHand" class="secondary-button" type="button">Start this hand again</button>
               </div>
-              <p>Match the practice pattern below. This short exercise starts one tile away. Draws come from a finite tile supply; useful draws are brought forward for practice. Choose another pattern in Practice card.</p><div id="practiceTarget" class="hand-row" aria-label="Your practice pattern"></div><div id="practiceHand" class="hand-row" aria-label="Practice hand"></div>
+              <p>Match the practice pattern below. Your rack and wall are shuffled. Draws are not selected to help your pattern, and a hand can end without mahjong. Choose another pattern in Practice card.</p><div id="practiceTarget" class="hand-row" aria-label="Your practice pattern"></div><div id="practiceHand" class="hand-row" aria-label="Practice hand"></div>
               <div class="hand-feedback" id="handFeedback" role="status">Draw, compare with the target, then discard.</div>
               <div class="tile-bank" id="tileBank" aria-label="Tile bank"></div>
             </article>
@@ -302,6 +303,8 @@
     <script src="teaching-visuals.js"></script>
     <script src="practice-engine.js"></script>
     <script src="learning-progress.js"></script>
+    <script src="analytics-config.js"></script>
+    <script src="learning-analytics.js"></script>
     <script src="app.js"></script>
     <script src="guided-hand.js"></script>
   </body>

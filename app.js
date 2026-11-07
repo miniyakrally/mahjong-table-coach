@@ -538,27 +538,23 @@ function renderPracticeCard() {
 }
 let turnTarget = [];
 let turnStart = [];
-let turnMissingTile = null;
+let turnSelected = null;
 let turnDrawn = false;
 let turnComplete = false;
-let turnDraws = 0;
+let turnOtherRacks = [];
 let turnWall = [];
 let turnDiscards = [];
 function renderHand() {
-  $("#practiceHand").innerHTML = state.hand.map((code, index) => `<button class="hand-tile" data-index="${index}" type="button" ${!turnDrawn || turnComplete ? "disabled" : ""} aria-label="Discard ${escapeHtml(tileDisplay(code))}">${tileButtonMarkup(code)}</button>`).join("");
-  $("#tileBank").innerHTML = `<button id="drawPracticeTile" class="primary-button" type="button" ${turnDrawn || turnComplete || !turnWall.length ? "disabled" : ""}>Draw one tile</button><button id="declarePracticeWin" class="secondary-button" type="button" ${!turnDrawn || turnComplete ? "disabled" : ""}>Declare mahjong</button>`;
+  $("#practiceHand").innerHTML = state.hand.map((code, index) => `<button class="hand-tile ${turnSelected===index?'selected-pass':''}" aria-pressed="${turnSelected===index}" data-index="${index}" type="button" ${!turnDrawn || turnComplete ? "disabled" : ""} aria-label="Select discard ${escapeHtml(tileDisplay(code))}">${tileButtonMarkup(code)}${turnSelected===index?'<span class="selection-check" aria-hidden="true">✓</span>':''}</button>`).join("");
+  $("#tileBank").innerHTML = `<button id="drawPracticeTile" class="primary-button" type="button" ${turnDrawn || turnComplete || !turnWall.length ? "disabled" : ""}>Draw one tile</button><button id="declarePracticeWin" class="secondary-button" type="button" ${!turnDrawn || turnComplete ? "disabled" : ""}>Declare mahjong</button><button id="confirmPracticeDiscard" class="primary-button" type="button" ${!turnDrawn || turnComplete || turnSelected===null ? "disabled" : ""}>${turnSelected===null?'Select a tile to discard':`Discard ${escapeHtml(tileDisplay(state.hand[turnSelected]))}`}</button>`;
   $("#turnCount").textContent = `${state.hand.length} tiles in your rack`;
 }
 function dealPracticeHand() {
   turnTarget = currentPattern().groups.flat();
-  turnStart = [...turnTarget];
-  const missingIndex=turnStart.includes("6D")?turnStart.lastIndexOf("6D"):turnStart.length-1;
-  [turnMissingTile] = turnStart.splice(missingIndex,1);
-  state.hand = [...turnStart]; turnDrawn = false; turnComplete = false; turnDraws = 0;
-  turnWall = GuidedEngine.shuffle(GuidedEngine.supply());
-  state.hand.forEach(code => GuidedEngine.take(turnWall, code));
-  turnDiscards = [];
-  $("#handFeedback").textContent = "You have 13 tiles. Draw one, then compare your rack with the pattern above. Tap a tile in your rack to discard it. The other players’ turns are skipped in this short exercise.";
+  const dealt=GuidedEngine.create(currentPattern(),true);
+  state.hand=dealt.racks[0];turnStart=[...state.hand];turnOtherRacks=dealt.racks.slice(1);
+  turnDrawn=false;turnComplete=false;turnSelected=null;turnWall=dealt.wall;turnDiscards=[];
+  $("#handFeedback").textContent = "You have 13 tiles. Draw one, then compare your rack with the pattern above. Select one tile in your rack, then press Discard to confirm. Draws come from a shuffled wall. The other players’ turns are skipped in this short exercise.";
   $("#practiceTarget").innerHTML = patternMarkup(currentPattern());
   renderHand();
 }
@@ -841,10 +837,14 @@ function bindEvents() {
   $("#tileBank").addEventListener("click", event => {
     if (event.target.closest("#drawPracticeTile") && !turnDrawn && !turnComplete) {
       if (!turnWall.length) return;
-      const wanted = turnDraws++ === 0 ? "9B" : comparePattern(state.hand).missing[0];
-      const next = turnWall.includes(wanted) ? GuidedEngine.take(turnWall, wanted) : turnWall.shift();
-      state.hand.push(next); turnDrawn = true;
-      $("#handFeedback").textContent = "You have 14 tiles. Tap a tile you do not need to discard it. If every tile matches the pattern, declare mahjong instead.";
+      const next=turnWall.shift();
+      state.hand.push(next); turnDrawn=true; turnSelected=null;
+      $("#handFeedback").textContent = "You have 14 tiles. Select a tile you do not need, then press Discard to confirm. If every tile matches the pattern, declare mahjong instead.";
+      renderHand();
+    } else if (event.target.closest("#confirmPracticeDiscard") && turnDrawn && !turnComplete && turnSelected!==null) {
+      window.LearningAnalytics?.capture('practice_turn_completed',{mode:'independent'});
+      const [code]=state.hand.splice(turnSelected,1);turnDrawn=false;turnSelected=null;turnDiscards.push(code);
+      $("#handFeedback").textContent=`You discarded ${tileDisplay(code)}. Back to 13 tiles. Draw again after the other players’ skipped turns.${turnWall.length?'':' The wall is empty; start a new hand.'}`;
       renderHand();
     } else if (event.target.closest("#declarePracticeWin") && turnDrawn && !turnComplete) {
       const matches = comparePattern(state.hand).complete;
@@ -856,9 +856,9 @@ function bindEvents() {
   $("#practiceHand").addEventListener("click", event => {
     const button = event.target.closest("button[data-index]");
     if (!button || !turnDrawn || turnComplete) return;
-    const [code] = state.hand.splice(Number(button.dataset.index), 1); turnDrawn = false;
-    turnDiscards.push(code);
-    $("#handFeedback").textContent = `You discarded ${tileDisplay(code)}. Back to 13 tiles. The other players take their turns; then draw again. This short drill skips their turns.${turnWall.length ? "" : " The wall is empty; start a new hand."}`;
+    const i=Number(button.dataset.index);
+    turnSelected=turnSelected===i?null:i;
+    $("#handFeedback").textContent=turnSelected===null?'No tile selected. Choose one, then confirm its discard.':`Selected ${tileDisplay(state.hand[turnSelected])}. Press Discard to confirm, or choose a different tile.`;
     renderHand();
   });
   $("#dealHand").addEventListener("click", dealPracticeHand);

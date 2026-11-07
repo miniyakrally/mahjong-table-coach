@@ -19,8 +19,8 @@ The app explains annual-card notation, including reading 2026 as 2–Soap–2–
 ## Practice limits
 
 - Charleston: four racks dealt from a 152-tile supply; correct pass directions; joker retention; a choice before the second Charleston; courtesy exchange; optional blind passing only on first left/second right. Computer players make legal, simple passes, not strategic moves.
-- Guided turns: the actual Charleston rack continues into a finite-wall draw/discard/declare exercise. Assisted draws bring needed tiles forward only when those tiles remain in the wall. Independent practice uses a shuffled wall without hints. Opponents are paused, so neither mode is a four-player game simulation. A wall may exhaust without a winner.
-- Practice Table: the earlier short exercise now also uses a finite physical tile supply and tracks discards. It no longer manufactures repeated copies of its missing tile.
+- Guided turns: the actual Charleston rack continues into a finite-wall draw/discard/declare exercise. Every draw takes the next tile from a shuffled wall, regardless of the target or whether hints are enabled. A tile tap selects a proposed discard; a separate button confirms it. Opponents are paused, so neither mode is a four-player game simulation. A wall may exhaust without a winner.
+- Practice Table: the earlier short exercise now also uses a finite physical tile supply and tracks discards. It also starts with a randomly dealt rack, draws in shuffled order, and requires discard confirmation.
 - Calls and quizzes: pictured scenarios with answers and explanations, not live multiplayer calls.
 - Tools: compare 13 entered tiles with the selected practice pattern. Photos and custom labels remain in local browser storage. Reset preserves those preferences.
 
@@ -61,3 +61,7 @@ The approved palette uses dusty blue (#b8cde3), porcelain (#fcfcf7), powder blue
 - [AMJA card interpretation](https://guide.americanmahjonggassociation.com/supplemental-guidance/understanding-the-card/)
 
 The NMJL FAQ was under construction when checked. These sources inform the explanations; official NMJL rulings and its current card remain authoritative for NMJL play. The simulated expert-panel perspectives informed this revision; no independent human expert or complete beginner has tested it.
+
+### Anonymous usage counts
+
+Tracking is disabled unless the production build receives `POSTHOG_PROJECT_TOKEN` and optionally `POSTHOG_API_HOST` (US ingestion by default). Before enabling, configure the PostHog project to discard IP data. Only explicit visits, stages reached, successful activities, and first practice-turn milestones are sent. A random per-tab session expires after 30 minutes of inactivity. Counts describe visits, not unique people; separate tabs count separately. No names, answers, racks, photos, URLs, replay, or automatic click collection. DNT/GPC and the Settings opt-out suppress events. Skipping to a stage counts as reaching it, not completing its activities.

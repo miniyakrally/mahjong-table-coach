@@ -26,8 +26,17 @@ for(let n=0;n<30;n++){
 const deck=Engine.shuffle(Engine.supply());
 const start=groups.flat().slice(0,13).map(c=>Engine.take(deck,c));
 const winning=Engine.take(deck,groups.flat()[13]);
-const g={racks:[start,deck.splice(0,13),deck.splice(0,13),deck.splice(0,14)],wall:deck.concat(winning),discards:[],step:6,phase:'done',courtesy:0,target,independent:false,drawn:false,won:false,exhausted:false};check(g);
-Engine.draw(g);assert.equal(Engine.win(g),true);check(g);assert.throws(()=>Engine.discard(g,0));
+const g={racks:[start,deck.splice(0,13),deck.splice(0,13),deck.splice(0,14)],wall:[winning,...deck],discards:[],step:6,phase:'done',courtesy:0,target,independent:false,drawn:false,won:false,exhausted:false};check(g);
+assert.equal(Engine.draw(g),winning);assert.equal(Engine.win(g),true);check(g);assert.throws(()=>Engine.discard(g,0));
+// Hints on/off must both draw the next wall tile, even if a useful tile is later.
+for(const independent of [false,true]){
+ const orderGame=Engine.create(target,independent);
+ const expected=[...orderGame.wall];
+ for(let turn=0;turn<20;turn++){
+  assert.equal(Engine.draw(orderGame),expected[turn]);Engine.discard(orderGame,13);
+ }
+ check(orderGame);
+}
 assert.equal(Engine.missing(['F','J'],[['F','F']]).length,1);
 assert.equal(Engine.missing(['6D','J','J'],[['6D','6D','6D']]).length,0);
 console.log('Passed: 30 complete Charleston sessions, blind/courtesy passes, 152-tile conservation through repeated poor discards, finite walls, draw/discard counts, wins and joker limits.');

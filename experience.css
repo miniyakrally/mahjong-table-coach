@@ -139,3 +139,6 @@ select,input:not([type=checkbox]):not([type=file]) { font:inherit; color:var(--i
 #charlestonRack .selected-pass:after { content:'✓'; position:absolute; right:-6px; top:-8px; width:23px; height:23px; border:2px solid white; border-radius:50%; background:var(--blue); color:white; font-size:14px; display:grid; place-items:center; }
 .view:not(#journey) .correct:before { content:'✓ '; }.view:not(#journey) .incorrect:before { content:'↻ '; }
 .sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+
+#practiceHand .hand-tile { position:relative; }
+#practiceHand .selected-pass { outline:2px solid var(--blue); background:#eaf1f8; }

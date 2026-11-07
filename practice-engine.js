@@ -20,10 +20,9 @@ const GuidedEngine = (() => {
   function draw(game) {
     if(game.drawn||game.won||game.exhausted) throw Error('Finish this turn before drawing again.');
     if(!game.wall.length){game.exhausted=true;return null;}
-    // Assisted practice reorders only tiles actually remaining in the wall.
-    const needed=missing(game.racks[0],game.target.groups);
-    let i=game.independent?0:game.wall.findIndex(c=>needed.includes(c));if(i<0)i=0;
-    const code=game.wall.splice(i,1)[0];game.racks[0].push(code);game.drawn=true;return code;
+    // The wall was shuffled when dealt. Always draw its next physical tile;
+    // hints and the target pattern must never change draw order.
+    const code=game.wall.shift();game.racks[0].push(code);game.drawn=true;return code;
   }
   function discard(game,index) {
     if(!game.drawn||game.won||!Number.isInteger(index)||index<0||index>=game.racks[0].length)throw Error('Draw before choosing your discard.');

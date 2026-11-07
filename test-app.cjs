@@ -9,10 +9,15 @@ const run=s=>vm.runInContext(s,context);
 const click=id=>elements.get(id).listeners.click({target:{closest:s=>s==='#drawPracticeTile'?{}:null}});
 assert.match(elements.get('lessonTitle').textContent,/Start here/);
 assert.equal(run('state.hand.length'),13);
-click('tileBank');assert.equal(run('state.hand.length'),14);
+const nextWallTile=run('turnWall[0]');
+click('tileBank');assert.equal(run('state.hand.length'),14);assert.equal(run('state.hand[13]'),nextWallTile);
 run(`document.querySelector('#practiceHand').listeners.click({target:{closest:()=>({dataset:{index:'13'}})}})`);
+assert.equal(run('state.hand.length'),14,'Selection does not discard');
+assert.equal(run('turnSelected'),13);
+run(`document.querySelector('#tileBank').listeners.click({target:{closest:s=>s==='#confirmPracticeDiscard'?{}:null}})`);
 assert.equal(run('state.hand.length'),13);
 click('tileBank');
+run('state.hand=[...turnTarget];turnDrawn=true');
 run(`document.querySelector('#tileBank').listeners.click({target:{closest:s=>s==='#declarePracticeWin'?{}:null}})`);
 assert.equal(run('turnComplete'),true);
 for(let n=0;n<3;n++)run(`selectedPass=passingGame.racks[0].map((c,i)=>c==='J'?-1:i).filter(i=>i>=0).slice(0,3);document.querySelector('#confirmPass').listeners.click()`);
@@ -104,16 +109,20 @@ for(let i=0;i<3;i++)passJourney();
 assert.match(journey.innerHTML,/One optional exchange/);
 elements.set('journeyCourtesy',{value:'0'});jclick({go:'courtesy'});jclick({go:'next'});
 assert.match(journey.innerHTML,/13 tiles/);jclick({go:'draw'});assert.equal(getSaved().game.racks[0].length,14);
+jclick({rack:'0'});
+assert.equal(getSaved().game.racks[0].length,14);assert.equal(getSaved().discardSelection,0);
 const drawnBefore=JSON.stringify(getSaved().game);
 vm.runInContext(fs.readFileSync('guided-hand.js','utf8'),context);
 assert.equal(JSON.stringify(getSaved().game),drawnBefore);
-jclick({go:'resume'});jclick({go:'skip'});
+assert.equal(getSaved().discardSelection,0);
+jclick({go:'resume'});jclick({go:'discard'});assert.equal(getSaved().game.racks[0].length,13);assert.equal(getSaved().discardSelection,null);
+jclick({go:'skip'});
 for(const choice of [0,1,2,1,1,0]){jclick({answer:String(choice)});jclick({go:'next'});}
 for(const [i,choice] of [1,0,1,1,2,0].entries()){
  assert.match(journey.innerHTML,new RegExp(`New row ${i+1} of 6`));jclick({answer:String(choice)});jclick({go:'next'});
 }
 assert.match(journey.innerHTML,/Your practice recap/);assert.match(journey.innerHTML,/6 of 6/);
-jclick({go:'independent'});assert.match(journey.innerHTML,/The wall is shuffled/);
+jclick({go:'independent'});assert.match(journey.innerHTML,/Draws come in order from a shuffled wall/);
 // Invalid or old progress never restores an impossible hand.
 const valid=getSaved();assert.equal(run('LearningProgress.validate(JSON.parse(localStorage.getItem(LearningProgress.key))) !== null'),true);
 valid.game.wall.push('6D');savedProgress.set('mahjongTableCoach.journey.v2',JSON.stringify(valid));
