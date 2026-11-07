@@ -95,6 +95,7 @@ for(const index of [1,1,2,0,1]){
 }
 assert.match(journey.innerHTML,/Read a card row/);
 for(const indices of [[2],[2],[0,2,3]]){
+ if(indices.length===3){assert.match(journey.innerHTML,/Center of the table · discards/);assert.match(journey.innerHTML,/X at the end of this row/);jclick({concealedCheck:'yes'});assert.match(journey.innerHTML,/Try again/);jclick({concealedCheck:'no'});assert.match(journey.innerHTML,/✓ Correct/);}
  indices.forEach(i=>jclick({activityIndex:String(i)}));jclick({go:'checkActivity'});assert.match(journey.innerHTML,/✓ Correct/);jclick({go:'next'});
 }
 jclick({answer:'0'});jclick({go:'next'});
