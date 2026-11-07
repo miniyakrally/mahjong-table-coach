@@ -1033,3 +1033,50 @@ select { font: inherit; padding: 10px; min-height: 44px; margin: 8px; }
 #secondChoice button { margin: 4px; }
 [hidden] { display: none !important; }
 #passReceipt, #handFeedback { line-height: 1.6; min-height: 3em; }
+
+/* Keep every teaching example beside its explanation, including on phones. */
+.lesson-grid { grid-template-columns: minmax(0, 1fr); max-width: 1080px; }
+.lesson-panel > p, .lesson-panel > ul { max-width: 76ch; line-height: 1.65; }
+.lesson-panel h3 { line-height: 1.3; }
+.example-tiles, .pattern-groups { display: flex; flex-wrap: wrap; gap: 12px; align-items: flex-start; }
+.shown-tile { display: flex; flex-direction: column; align-items: center; justify-content: space-between; width: 68px; min-height: 114px; padding: 5px 4px 10px; border: 1px solid #c3b79f; border-radius: 8px; background: #fffdf7; box-shadow: inset 0 -5px 0 #e7decd; flex-shrink: 0; }
+.tile-art { display: block; width: 54px; height: 76px; flex-shrink: 0; }
+.shown-tile .tile-label, .hand-tile .tile-label, .bank-tile .tile-label { display: block; overflow: visible; -webkit-line-clamp: unset; font-size: 11px; line-height: 1.2; }
+.hand-tile, .coach-bank-tile { width: 68px; height: auto; min-height: 116px; align-content: start; }
+#flashTile { width: 132px; height: 180px; }
+#flashTile .tile-art { width: 112px; height: 154px; }
+#lessonExample { margin: 22px 0 12px; }
+.example-caption { color: var(--muted); font-size: .95rem; margin-bottom: 24px; }
+.lesson-check { border: 1px solid var(--line); border-radius: 10px; padding: 20px; margin: 24px 0; max-width: 76ch; }
+.lesson-check legend { font-weight: 750; padding: 0 8px; }
+.lesson-check button { text-align: left; min-height: 46px; line-height: 1.5; }
+.lesson-check .correct { border: 2px solid var(--jade-dark); background: #e6f3eb; }
+.lesson-check .incorrect { border: 2px solid var(--red); background: #fff2ee; }
+#lessonFeedback { min-height: 2em; line-height: 1.5; margin: 18px 0 0; }
+.pattern-group { display: flex; flex-wrap: wrap; gap: 3px; max-width: 100%; border-bottom: 2px solid var(--line); padding-bottom: 8px; }
+.pattern-group > span:last-child:not(.shown-tile) { flex-basis: 100%; font-size: .8rem; padding-top: 7px; }
+.practice-line { border-top: 1px solid var(--line); padding: 22px 0; }
+.practice-line button { margin-top: 16px; }
+.practice-line [aria-pressed="true"] { background: var(--jade-dark); color: white; }
+.target-reference { background: var(--panel-strong); padding: 16px; border-radius: 10px; }
+.target-reference summary { cursor: pointer; font-weight: 750; min-height: 44px; }
+#practiceTarget { display: block; }
+.wall-example { display: flex; flex-wrap: wrap; align-items: center; gap: 18px; background: #e5efe7; padding: 24px 16px; border-radius: 8px; }
+.example-stacks { display: flex; gap: 5px; align-items: center; min-height: 70px; }
+.example-stacks i { display: block; width: 29px; height: 45px; border: 1px solid #bfb69e; border-radius: 5px; background: #fffdf7; box-shadow: 0 6px 0 #17664b; }
+.example-stacks .tail-stack { transform: rotate(90deg); margin-left: 15px; }
+#charlestonRack .selected-pass { outline: 3px solid var(--jade-dark); background: #e0f1e5; }
+@media (max-width: 680px) {
+  .lesson-panel { padding: 20px 16px; }
+  .lesson-check { padding: 14px; }
+  .example-tiles, .pattern-groups { gap: 8px; }
+  .shown-tile { width: 58px; min-height: 108px; }
+  .shown-tile .tile-art { width: 48px; height: 69px; }
+  .family { min-width: 0; }
+  .target-reference { padding: 12px; }
+}
+.lesson-picker { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-bottom: 20px; }
+.lesson-picker select { max-width: 100%; margin: 0; min-width: 0; }
+#lessonTitle { scroll-margin-top: 24px; }
+@media (max-width: 680px) { .lesson-picker select { width: 100%; } }
+#quizExample, #callExample { margin: 18px 0; }

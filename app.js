@@ -1,129 +1,7 @@
-const lessons = [
-  {
-    "title": "Your goal: match a hand on the card",
-    "body": "American mahjong is a four-player game. You build a 14-tile hand that matches one complete line on the annual card, including its instructions.",
-    "bullets": [
-      "Use the same annual card as the rest of your table.",
-      "The card decides the groups, numbers, and suits you need. There is no universal four-sets-and-a-pair goal.",
-      "This app teaches the rules; keep your official card beside you for real hands."
-    ]
-  },
-  {
-    "title": "Meet your tiles",
-    "body": "Sort your rack into Craks, Bams, Dots, winds, dragons, flowers, and jokers.",
-    "bullets": [
-      "Each numbered suit runs from 1 to 9. A bird often marks 1 Bam.",
-      "Winds are North, East, West, and South. Dragons are red, green, and white (Soap).",
-      "Flowers stay in your hand. A joker can replace a tile in a matching group of three or more, never a single or pair."
-    ]
-  },
-  {
-    "title": "Read one line, then choose a direction",
-    "body": "Read the whole line and its parenthetical instructions before choosing a hand. Card colors distinguish suits; they do not require the physical tile colors.",
-    "bullets": [
-      "A pung has three matching tiles; a kong has four; a quint has five.",
-      "X allows exposures when a call is legal. C means concealed: call only for your final winning tile.",
-      "Consecutive Runs is a card category. You cannot call a chow or invent a free-form run."
-    ]
-  },
-  {
-    "title": "Set the table together",
-    "body": "Table routine · Before the Charleston, everyone helps mix the tiles face down and build four walls. A standard American set has 152 playing tiles.",
-    "bullets": [
-      "Each player builds a wall 19 stacks long and two tiles high. Leave extra blanks or spare tiles out unless you agreed otherwise.",
-      "Choose East, roll the dice, and have an experienced friend demonstrate the wall break and deal before everyone tries it.",
-      "Wait until the deal is finished before racking your tiles. Check the counts together: 14 for East, 13 for each other player."
-    ]
-  },
-  {
-    "title": "Fishtail the end of the wall",
-    "body": "Wall marker · Fishtailing means turning the last tiles at the tail end sideways to mark where the wall ends. It helps everyone distinguish the end from the drawing side.",
-    "bullets": [
-      "After the wall is broken, ask the player tending that wall to identify the drawing end and the tail.",
-      "Turn the tail tiles at a right angle without exposing their faces or changing their order. This is a helpful marker, not a required move to win.",
-      "Draw from the active drawing end, not from the fishtail. Ask before moving or straightening someone else’s wall."
-    ]
-  },
-  {
-    "title": "Your tiles, your hands",
-    "body": "Table etiquette · Handle your own rack and tiles. Even helpful rearranging can expose someone’s hand or make a play unclear.",
-    "bullets": [
-      "Do not touch another player’s rack, hand, or exposures. Ask them to move or show a tile instead.",
-      "For a legal joker exchange on your turn, ask the owner to exchange the matching tile with you; do not reach over and take their joker.",
-      "Name each discard clearly. Give everyone a moment to react, take your turn at a comfortable pace, and offer strategy advice only when invited."
-    ]
-  },
-  {
-    "title": "Before play: the Charleston",
-    "body": "After the deal, East has 14 tiles and everyone else has 13. The Charleston lets you exchange unwanted tiles before discarding begins.",
-    "bullets": [
-      "First pass three right, then three across, then three left. Never pass a joker.",
-      "Any player may stop the second Charleston before it starts. Otherwise complete left, across, right.",
-      "An optional courtesy exchange is across: agree on zero to three tiles, using the smaller requested number. Try the Charleston practice next."
-    ]
-  },
-  {
-    "title": "Draw, decide, discard",
-    "body": "East starts by discarding from 14 tiles. Play then moves to the right. On an ordinary turn, draw from the wall, consider your card, then discard and name one tile.",
-    "bullets": [
-      "After discarding you have 13 tiles total, counting any exposed tiles.",
-      "Call the latest discard only if it completes a permitted exposure for your hand, or completes mahjong. No drawing after a call.",
-      "You cannot call a discard for a single or pair unless it completes your entire winning hand. A discarded joker cannot be called."
-    ]
-  },
-  {
-    "title": "Bird Bam: a little table celebration",
-    "body": "Optional social tradition · The bird tile is 1 Bam. At this gathering, it is also an excuse for a friendly toast or sip, if you want to join in.",
-    "bullets": [
-      "When someone draws 1 Bam from the wall, that is our Bird Bam toast moment. It is a house tradition, not an official game rule.",
-      "Any drink counts, and passing on the toast is always fine. Keep glasses beside the playing area so tiles and cards stay dry.",
-      "Say “One Bam” clearly when discarding. A bird toast does not pause the rules, change the tile’s value, or take away anyone’s chance to call."
-    ]
-  },
-  {
-    "title": "Your first game together",
-    "body": "Start slowly, with racks visible and rules questions welcome. Experienced friends can explain their decisions without choosing every tile for someone else.",
-    "bullets": [
-      "Practice the Charleston together before playing a full hand.",
-      "For each call, check the card, expose the complete group, then discard. For mahjong, reveal and verify all 14 tiles.",
-      "Skip money and penalties during the teaching round. Use the official rules and your agreed card when you move into regular play."
-    ]
-  }
-];
-
-const tileDeck = [
-  { symbol: "一", name: "One Character", family: "Characters", hint: "Characters are one of the three suited families." },
-  { symbol: "五", name: "Five Character", family: "Characters", hint: "Compare this number with the groups required on your card." },
-  { symbol: "九", name: "Nine Character", family: "Characters", hint: "A 9 is useful when your chosen card line needs it." },
-  { symbol: "🀐", name: "One Bamboo", family: "Bamboo", hint: "Bams run from 1 through 9. American mahjong has no chow calls." },
-  { symbol: "🀕", name: "Six Bamboo", family: "Bamboo", hint: "Consecutive numbers matter only as specified by the card." },
-  { symbol: "🀙", name: "One Dot", family: "Dots", hint: "Dots are one of the three numbered suits." },
-  { symbol: "🀞", name: "Six Dot", family: "Dots", hint: "Compare your Dots with the numbers and group sizes on the card." },
-  { symbol: "東", name: "East Wind", family: "Winds", hint: "Winds are honor tiles and cannot form sequences." },
-  { symbol: "南", name: "South Wind", family: "Winds", hint: "A wind triplet is a pung." },
-  { symbol: "中", name: "Red Dragon", family: "Dragons", hint: "Dragons only form pairs, pungs, or kongs." },
-  { symbol: "發", name: "Green Dragon", family: "Dragons", hint: "Green dragons match Bams when a card line requires matching dragons." },
-  { symbol: "白", name: "White Dragon", family: "Dragons", hint: "Many sets mark this as a blank or framed tile." }
-];
-
-const familyReference = [
-  { name: "Characters", tiles: ["一", "二", "三", "四", "五", "六", "七", "八", "九"], note: "Craks: numbered 1–9." },
-  { name: "Bamboo", tiles: ["🀐", "🀑", "🀒", "🀓", "🀔", "🀕", "🀖", "🀗", "🀘"], note: "Bams: numbered 1–9; 1 often shows a bird." },
-  { name: "Dots", tiles: ["🀙", "🀚", "🀛", "🀜", "🀝", "🀞", "🀟", "🀠", "🀡"], note: "Dots: numbered 1–9." },
-  { name: "Flowers and Jokers", tiles: ["花", "★"], note: "Flowers count alike. Jokers cannot replace singles or pairs." },
-  { name: "Honors", tiles: ["東", "南", "西", "北", "中", "發", "白"], note: "Use exactly the winds and dragons your card requires." }
-];
-
-const tileBank = ["一", "二", "三", "三", "四", "五", "六", "七", "八", "九", "東", "東", "南", "中", "發", "白"];
-const practiceDeals = [
-  ["二", "三", "四", "四", "五", "六", "🀙", "🀚", "🀛", "東", "東", "中", "中"],
-  ["一", "二", "三", "七", "八", "九", "🀐", "🀐", "🀐", "南", "南", "發", "白"],
-  ["三", "四", "五", "五", "六", "七", "🀜", "🀝", "🀞", "西", "西", "白", "白"]
-];
 
 const callScenarios = [
   {
-    "text": "Your exposed-type (X) card line needs a pung of Red Dragons. You hold two, and someone discards the third. What can you do?",
+    "text": "You chose an X pattern that needs three Red Dragons. You have two, and someone discards the third. What can you do?",
     "options": [
       "Call and expose the pung",
       "Draw, then call",
@@ -143,7 +21,7 @@ const callScenarios = [
     "feedback": "American mahjong follows the annual card. Three consecutive tiles are not a callable chow."
   },
   {
-    "text": "Your hand is marked C. A discard would complete a kong, but not your whole hand. Can you call?",
+    "text": "Your hand is marked C (concealed). A discard would complete a kong (four matching tiles), but not your whole hand. Can you call?",
     "options": [
       "No, stay concealed",
       "Yes, expose the kong"
@@ -158,93 +36,11 @@ const callScenarios = [
       "No pair calls ever"
     ],
     "answer": "Yes, reveal and verify",
-    "feedback": "The winning tile may complete a single or pair. Reveal and check the complete hand against your card."
+    "feedback": "The winning tile may complete a single or pair. Reveal all 14 tiles and check them against the complete pattern."
   }
 ];
 
-const quizQuestions = [
-  {
-    "question": "What makes a winning American mahjong hand?",
-    "answers": [
-      "Match a complete line on the agreed card",
-      "Any four sets and a pair",
-      "Any fourteen tiles"
-    ],
-    "correct": "Match a complete line on the agreed card"
-  },
-  {
-    "question": "What is the first Charleston order?",
-    "answers": [
-      "Right, across, left",
-      "Left, right, across",
-      "Across, left, right"
-    ],
-    "correct": "Right, across, left"
-  },
-  {
-    "question": "Can you pass a joker in the Charleston?",
-    "answers": [
-      "No",
-      "Yes, if you have two",
-      "Only across"
-    ],
-    "correct": "No"
-  },
-  {
-    "question": "Who can stop the second Charleston before it begins?",
-    "answers": [
-      "Any one player",
-      "Only East",
-      "Only a majority"
-    ],
-    "correct": "Any one player"
-  },
-  {
-    "question": "What happens on an ordinary turn?",
-    "answers": [
-      "Draw, decide, discard",
-      "Draw three and pass",
-      "Call a chow"
-    ],
-    "correct": "Draw, decide, discard"
-  },
-  {
-    "question": "Can a joker fill a pair?",
-    "answers": [
-      "No",
-      "Yes",
-      "Only with flowers"
-    ],
-    "correct": "No"
-  },
-  {
-    "question": "What does the fishtail mark?",
-    "answers": [
-      "The tail end of the wall",
-      "The next tile to draw",
-      "A bonus tile"
-    ],
-    "correct": "The tail end of the wall"
-  },
-  {
-    "question": "Someone has an exposed joker you can legally exchange for. What is the polite approach?",
-    "answers": [
-      "Ask the owner to exchange it with you",
-      "Reach over and take it",
-      "Rearrange their exposure"
-    ],
-    "correct": "Ask the owner to exchange it with you"
-  },
-  {
-    "question": "Is the Bird Bam toast an official game rule?",
-    "answers": [
-      "No, it is an optional social tradition",
-      "Yes, everyone must drink",
-      "Yes, it changes the score"
-    ],
-    "correct": "No, it is an optional social tradition"
-  }
-];
+const quizQuestions = lessons.map(lesson => ({question:lesson.question, answers:lesson.answers, correct:lesson.correct, feedback:lesson.why, tiles:lesson.tiles}));
 
 const annualCardSections = [
   {
@@ -260,7 +56,7 @@ const annualCardSections = [
   {
     title: "Consecutive Runs",
     shorthand: "Neighbor numbers",
-    note: "Hands that use connected numbers from the card, not free-form chows."
+    note: "Patterns using consecutive numbers in specified groups. You cannot call a chow."
   },
   {
     title: "Winds and Dragons",
@@ -276,28 +72,42 @@ const annualCardSections = [
 
 const cardPrompts = [
   {
-    question: "On the 2026 card, what tile represents the zero in 2026?",
-    answers: ["Soap / White Dragon", "Any joker", "A blank tile"],
-    correct: "Soap / White Dragon",
-    feedback: "Right. The zero in a year pattern is Soap, also called White Dragon."
+    "question": "In a year pattern, what does 0 mean?",
+    "answers": [
+      "Soap / White Dragon",
+      "Joker",
+      "Flower"
+    ],
+    "correct": "Soap / White Dragon",
+    "feedback": "Soap is the White Dragon. It represents zero in a year pattern."
   },
   {
-    question: "Do you need to know the 2025 card to play the 2026 card?",
-    answers: ["No, only the agreed current card", "Yes, all old cards build up", "Only for jokers"],
-    correct: "No, only the agreed current card",
-    feedback: "Exactly. Each table plays from one agreed card, usually the current NMJL card."
+    "question": "A card row shows two different suit colors. How many different suits does it need?",
+    "answers": [
+      "Two",
+      "One",
+      "Any number"
+    ],
+    "correct": "Two",
+    "feedback": "Different colors mean different suits. The printed color does not force a particular physical suit."
   },
   {
-    question: "Can a joker replace a single tile in a Singles and Pairs hand?",
-    answers: ["No", "Yes", "Only if it is Soap"],
-    correct: "No",
-    feedback: "Correct. Jokers are for larger matching groups, not singles or pairs."
+    "question": "Can you win by finishing parts of two different rows?",
+    "answers": [
+      "No",
+      "Yes"
+    ],
+    "correct": "No",
+    "feedback": "Your 14 tiles must match one complete row, including its written instructions."
   },
   {
-    question: "If the 2027 card has a year section, what changes?",
-    answers: ["The year pattern on the new card", "The physical Soap tile", "All previous year hands stay legal"],
-    correct: "The year pattern on the new card",
-    feedback: "Yes. The tile set stays the same; the card's valid hands change."
+    "question": "Does this app contain the full official 2026 NMJL hand list?",
+    "answers": [
+      "No, it includes original practice hands",
+      "Yes"
+    ],
+    "correct": "No, it includes original practice hands",
+    "feedback": "The practice hands are included so you can learn without a separate card. They are not the official 2026 hands."
   }
 ];
 
@@ -351,12 +161,12 @@ const tileIdentifierRows = [
 
 const notationRows = [
   { mark: "F", meaning: "Flower" },
-  { mark: "D", meaning: "Dragon; color usually follows the suit shown by the hand." },
+  { mark: "D", meaning: "Dragon; read the row’s instructions for which dragon to use." },
   { mark: "0", meaning: "Soap / White Dragon when reading a year." },
   { mark: "N E W S", meaning: "North, East, West, South winds." },
   { mark: "X", meaning: "Exposed hand. You may call tiles where the rules allow." },
-  { mark: "C", meaning: "Concealed hand. Do not expose, except to declare mahjong." },
-  { mark: "Any", meaning: "The card lets you choose a suit, number, or dragon that fits that line." },
+  { mark: "C", meaning: "Concealed hand. Keep tiles hidden during play; call only to finish mahjong." },
+  { mark: "Any", meaning: "Choose only what the words allow. “Any one suit” means pick one suit and keep that choice throughout the row." },
   { mark: "Pair", meaning: "Two matching tiles. Jokers cannot be used here." }
 ];
 
@@ -365,7 +175,7 @@ const ruleDrills = [
     question: "You have two 6 Bams and a joker. Can that complete a pung of 6 Bams?",
     answers: ["Yes", "No", "Only in concealed hands"],
     correct: "Yes",
-    feedback: "Yes. Jokers can fill larger matching groups like pungs, kongs, quints, or sextets."
+    feedback: "Yes. A joker can replace a missing tile in a matching group of three or more."
   },
   {
     question: "You need a pair of flowers and have one flower plus a joker. Is that pair legal?",
@@ -389,12 +199,12 @@ const ruleDrills = [
     question: "Can you call a discard just to complete a pair before mahjong?",
     answers: ["No", "Yes", "Only if it is Soap"],
     correct: "No",
-    feedback: "No. In American mahjong, calls are generally for exposed larger groups or for mahjong."
+    feedback: "No. In American mahjong, a call must complete a permitted exposure of three or more matching tiles, or finish mahjong."
   }
 ];
 
 const checklistItems = [
-  "Which annual card are we using?",
+  "Are we using the included practice card, or has everyone brought the same official annual card?",
   "Are blanks or house-rule tiles in play?",
   "Are we playing for points, coins, or just practice?",
   "Will beginners get one table-talk hint per hand?",
@@ -409,12 +219,12 @@ const groupPrompts = [
   "Point to the drawing end and the fishtail without moving anyone else’s wall.",
   "Practice asking for a joker exchange without reaching into another player’s exposure.",
   "Find 1 Bam and explain our optional toast when it is drawn to a new friend.",
-  "Everyone name one tile in your hand that supports more than one possible direction.",
-  "Before discarding, say which card section you are currently watching.",
+  "Everyone name one tile in your hand that could help more than one of our practice patterns.",
+  "Before discarding, point to the practice pattern you are trying to finish.",
   "Find one joker rule on the table: where could a joker legally help, and where could it not?",
-  "Spot a Soap use: is it acting as White Dragon, zero, or neither in this possible hand?",
-  "Choose one discard and explain why your card direction does not need it.",
-  "After a call, pause and name whether it was for pung, kong, quint, sextet, or mahjong."
+  "Spot a Soap use: is it a White Dragon here, or zero in a year example?",
+  "Choose one discard and show why the selected practice pattern does not need it.",
+  "After a call, explain what group it completes and why the pattern allows you to show it."
 ];
 
 const state = {
@@ -471,9 +281,8 @@ function tileSymbol(code) {
 }
 
 function tileButtonMarkup(code) {
-  const symbol = tileSymbol(code);
   return `
-    <span class="tile-symbol">${escapeHtml(symbol)}</span>
+    ${tileArt(code)}
     <span class="tile-label">${escapeHtml(tileDisplay(code))}</span>
   `;
 }
@@ -503,8 +312,8 @@ function setView(viewId) {
     lesson: "Lessons",
     tiles: "Tile Trainer",
     table: "Practice Table",
-    quiz: "Group Quiz",
-    card: "2026 Card",
+    quiz: "Quiz",
+    card: "Practice card & 2026 notation",
     charleston: "Practice the Charleston",
     tools: "Tools"
   }[viewId];
@@ -516,64 +325,97 @@ function updateReadiness() {
   $("#readinessNote").textContent = "Read the basics, then try the Charleston and a practice turn. Go back whenever you need a reminder.";
 }
 
+const lessonAnswers = new Map();
+function tileRow(codes) {
+  return codes.map(code => `<span class="shown-tile" role="img" aria-label="${escapeHtml(getTile(code).name)}">${tileButtonMarkup(code)}</span>`).join('');
+}
+function patternMarkup(line) {
+  return `<h4>${escapeHtml(line.title)}</h4><p>${escapeHtml(line.note)}</p><div class="pattern-groups">${line.groups.map(group => `<div class="pattern-group">${tileRow(group)}<span>${group.length === 2 ? 'Pair' : group.length === 3 ? 'Pung' : 'Kong'} of ${escapeHtml(tileDisplay(group[0]))}</span></div>`).join('')}</div>`;
+}
+function wallMarkup() {
+  return `<div class="wall-example" role="img" aria-label="Face-down wall viewed from above. Drawing end on the left, tail turned sideways on the right."><span>Draw here →</span><div class="example-stacks">${Array.from({length:5},()=>'<i></i>').join('')}<i class="tail-stack"></i></div><span>↑ Fishtailed tail</span></div><p>A short section of wall, viewed from above. Each block is a stack of two face-down tiles.</p>`;
+}
 function renderLesson() {
   const lesson = lessons[state.lesson];
+  $("#lessonJump").innerHTML = lessons.map((item,i)=>`<option value="${i}">${i+1}. ${escapeHtml(item.title)}</option>`).join('');
+  $("#lessonJump").value = String(state.lesson);
   $("#lessonNumber").textContent = String(state.lesson + 1);
   $("#lessonTotal").textContent = String(lessons.length);
   $("#lessonTitle").textContent = lesson.title;
   $("#lessonBody").textContent = lesson.body;
-  $("#lessonBullets").innerHTML = lesson.bullets.map((item) => `<li>${item}</li>`).join("");
+  $("#lessonBullets").innerHTML = lesson.bullets.map(item => `<li>${escapeHtml(item)}</li>`).join('');
+  $("#lessonExample").innerHTML = lesson.visual === 'wall' ? wallMarkup() : lesson.visual === 'card' ? patternMarkup(practiceCard[0]) : `<div class="example-tiles">${tileRow(lesson.tiles)}</div>`;
+  $("#lessonCaption").textContent = lesson.caption;
+  $("#lessonQuestion").textContent = lesson.question;
+  const answer = lessonAnswers.get(state.lesson);
+  $("#lessonChoices").innerHTML = lesson.answers.map((choice,i) => `<button class="secondary-button ${answer === choice ? choice === lesson.correct ? 'correct' : 'incorrect' : ''}" type="button" data-lesson-choice="${i}" aria-pressed="${answer === choice}">${escapeHtml(choice)}</button>`).join('');
+  $("#lessonFeedback").textContent = answer ? `${answer === lesson.correct ? 'Yes.' : 'Try again.'} ${lesson.why}` : '';
   $("#prevLesson").disabled = state.lesson === 0;
-  $("#nextLesson").textContent = state.lesson === lessons.length - 1 ? "Review Again" : "Next Lesson";
+  $("#nextLesson").textContent = state.lesson === lessons.length - 1 ? 'Try a practice turn' : 'Next lesson';
   updateReadiness();
 }
-
 function renderFlashcard() {
-  const tile = tileDeck[state.tile % tileDeck.length];
-  $("#flashTile").textContent = tile.symbol;
-  $("#flashFamily").textContent = tile.family;
+  const tile = coachTiles[state.tile % coachTiles.length];
+  $("#flashTile").innerHTML = tileArt(tile.code);
+  $("#flashFamily").textContent = tile.kind === 'suit' ? ({C:'Craks — characters',B:'Bams — bamboo',D:'Dots — circles'})[tile.suit] : ({wind:'Wind',dragon:'Dragon',flower:'Flower',joker:'Joker'})[tile.kind];
   $("#flashName").textContent = tile.name;
-  $("#flashHint").textContent = tile.hint;
+  $("#flashHint").textContent = tile.code === '1B' ? 'The bird is 1 Bam. It belongs to the bamboo suit.' : tile.kind === 'suit' ? 'Say the number and the suit together. Same number, different suit means a different tile.' : tile.kind === 'wind' ? 'Match the wind name: North, East, West, or South.' : tile.kind === 'flower' ? 'All eight flowers count alike, even when their pictures differ.' : tile.kind === 'joker' ? 'Use a joker in matching groups of three or more. Never in a single or pair.' : tile.code === 'Soap' ? 'White Dragon is also called Soap. It is zero in a year pattern.' : 'Red Dragon matches Craks; Green Dragon matches Bams; White Dragon matches Dots.';
 }
-
 function renderFamilies() {
-  $("#tileFamilies").innerHTML = familyReference
-    .map(
-      (family) => `
-        <div class="family">
-          <div>
-            <h4>${family.name}</h4>
-            <p>${family.note}</p>
-          </div>
-          <div class="mini-row">
-            ${family.tiles.map((tile) => `<span class="mini-tile">${tile}</span>`).join("")}
-          </div>
-        </div>
-      `
-    )
-    .join("");
+  const families = [
+    ['Craks — characters','One numbered suit. Look for the number above 萬.',coachTiles.filter(t=>t.suit==='C')],
+    ['Bams — bamboo','One numbered suit. 1 Bam is usually a bird.',coachTiles.filter(t=>t.suit==='B')],
+    ['Dots — circles','One numbered suit. Count the circles.',coachTiles.filter(t=>t.suit==='D')],
+    ['Winds','Four separate tiles: North, East, West, South.',coachTiles.filter(t=>t.kind==='wind')],
+    ['Dragons','Red, Green, and White (Soap).',coachTiles.filter(t=>t.kind==='dragon')],
+    ['Flowers and jokers','Flowers count alike. Jokers fill matching groups of three or more.',coachTiles.filter(t=>['flower','joker'].includes(t.kind))]
+  ];
+  $("#tileFamilies").innerHTML = families.map(([title,note,tiles])=>`<div class="family"><div><h4>${title}</h4><p>${note}</p></div><div class="example-tiles">${tileRow(tiles.map(t=>t.code))}</div></div>`).join('');
 }
-
-const turnStart = ["2C", "2C", "2C", "4B", "4B", "4B", "4B", "6D", "6D", "6D", "F", "F", "F"];
-const turnTarget = [...turnStart, "6D"];
+let practiceIndex = 0;
+function currentPattern() { return practiceCard[practiceIndex]; }
+function comparePattern(hand, line = currentPattern()) {
+  const counts = {};
+  hand.forEach(code=>{counts[code]=(counts[code]||0)+1;});
+  let jokers=counts.J||0;
+  const missing=[];
+  line.groups.forEach(group=>{
+    const code=group[0], natural=Math.min(counts[code]||0,group.length);
+    counts[code]=(counts[code]||0)-natural;
+    let need=group.length-natural;
+    const used=group.length>=3?Math.min(jokers,need):0;
+    jokers-=used;need-=used;
+    missing.push(...Array(need).fill(code));
+  });
+  return {missing, complete:hand.length===14 && missing.length===0};
+}
+function renderPracticeCard() {
+  $("#practiceCardRows").innerHTML = practiceCard.map((line,i)=>`<article class="practice-line">${patternMarkup(line)}<button class="secondary-button" data-pattern-index="${i}" aria-pressed="${practiceIndex===i}" type="button">${practiceIndex===i?'Using this pattern':'Use this pattern'}</button></article>`).join('');
+  $("#charlestonTarget").innerHTML = patternMarkup(currentPattern());
+}
+let turnTarget = [];
+let turnStart = [];
 let turnDrawn = false;
 let turnComplete = false;
 let turnDraws = 0;
 function renderHand() {
   $("#practiceHand").innerHTML = state.hand.map((code, index) => `<button class="hand-tile" data-index="${index}" type="button" ${!turnDrawn || turnComplete ? "disabled" : ""} aria-label="Discard ${escapeHtml(tileDisplay(code))}">${tileButtonMarkup(code)}</button>`).join("");
-  $("#tileBank").innerHTML = `<button id="drawPracticeTile" class="primary-button" type="button" ${turnDrawn || turnComplete ? "disabled" : ""}>Draw a tile</button><button id="declarePracticeWin" class="secondary-button" type="button" ${!turnDrawn || turnComplete ? "disabled" : ""}>Declare mahjong</button>`;
+  $("#tileBank").innerHTML = `<button id="drawPracticeTile" class="primary-button" type="button" ${turnDrawn || turnComplete ? "disabled" : ""}>Draw one tile</button><button id="declarePracticeWin" class="secondary-button" type="button" ${!turnDrawn || turnComplete ? "disabled" : ""}>Declare mahjong</button>`;
   $("#turnCount").textContent = `${state.hand.length} tiles in your rack`;
 }
 function dealPracticeHand() {
+  turnTarget = currentPattern().groups.flat();
+  turnStart = turnTarget.slice(0,13);
   state.hand = [...turnStart]; turnDrawn = false; turnComplete = false; turnDraws = 0;
-  $("#handFeedback").textContent = "You are not East. Draw a tile to begin your turn. Your first draw is scripted so you can practice discarding.";
-  $("#practiceTarget").innerHTML = turnTarget.map(code => `<span class="bank-tile">${tileButtonMarkup(code)}</span>`).join("");
+  $("#handFeedback").textContent = "You have 13 tiles. Draw one, then compare your rack with the pattern above. Tap a tile in your rack to discard it. The other players’ turns are skipped in this short exercise.";
+  $("#practiceTarget").innerHTML = patternMarkup(currentPattern());
   renderHand();
 }
 function renderTileBank() {}
 function renderCallScenario() {
   const scenario = callScenarios[state.call % callScenarios.length];
   $("#callScenario").textContent = scenario.text;
+  $("#callExample").innerHTML = tileRow([["RD","RD","RD"],["3C","4C","2C"],["6D","6D","6D","6D"],["F","F"]][state.call % callScenarios.length]);
   $("#callFeedback").textContent = "";
   $("#callOptions").innerHTML = scenario.options
     .map((option) => `<button type="button" data-answer="${option}">${option}</button>`)
@@ -585,6 +427,7 @@ const answeredQuizQuestions = new Set();
 function renderQuiz() {
   const current = quizQuestions[state.quiz % quizQuestions.length];
   $("#quizQuestion").textContent = current.question;
+  $("#quizExample").innerHTML = tileRow(current.tiles);
   $("#quizScore").textContent = String(state.quizScore);
   $("#quizFeedback").textContent = "";
   $("#quizAnswers").innerHTML = current.answers
@@ -599,7 +442,7 @@ function renderNightPlan() {
     `Spend 10 minutes naming tiles, building walls, and identifying the drawing end and fishtail.`,
     "Agree on hands-to-yourself etiquette, beginner hints, and the optional Bird Bam toast.",
     `Play ${friends <= 4 ? "one table" : "rotating-table"} open-hand practice for ${minutes} minutes.`,
-    "Practice right, across, left together, then explain each call against your card.",
+    "Practice right, across, left together, then explain each call against the included practice pattern.",
     "End with one closed-hand round where table talk is limited to rules questions."
   ];
   $("#nightPlan").innerHTML = plan.map((item) => `<li>${item}</li>`).join("");
@@ -658,92 +501,17 @@ function summarizeCoachHand() {
   };
 }
 
-function longestRun(numbers) {
-  const unique = [...new Set(numbers)].sort((a, b) => a - b);
-  let best = 0;
-  let current = 0;
-  let previous = null;
-  unique.forEach((number) => {
-    current = previous !== null && number === previous + 1 ? current + 1 : 1;
-    best = Math.max(best, current);
-    previous = number;
-  });
-  return best;
-}
-
-function getCoachDirections(summary) {
-  const directions = [];
-  const suitEntries = Object.entries(summary.suits).sort((a, b) => b[1].length - a[1].length);
-  const [topSuit, topNumbers] = suitEntries[0];
-  const topSuitName = topSuit === "C" ? "Craks" : topSuit === "B" ? "Bams" : "Dots";
-  const topRun = longestRun(topNumbers);
-
-  if (summary.soaps || summary.suits.C.includes(2) || summary.suits.B.includes(2) || summary.suits.D.includes(2) || summary.suits.C.includes(6) || summary.suits.B.includes(6) || summary.suits.D.includes(6)) {
-    directions.push({
-      title: "Watch the year section",
-      body: "You have at least one 2, 6, or Soap. Compare your hand to the current card's year patterns before passing those tiles."
-    });
-  }
-
-  if (topNumbers.length >= 5 || topRun >= 3) {
-    directions.push({
-      title: `Explore ${topSuitName}`,
-      body: `You have ${topNumbers.length} ${topSuitName} and a longest connected run of ${topRun}. That can point toward consecutive-run or one-suit ideas.`
-    });
-  }
-
-  if (summary.pairs.length >= 2 || summary.jokers > 0) {
-    directions.push({
-      title: "Look for matching groups",
-      body: `${summary.pairs.length ? `Pairs: ${summary.pairs.join(", ")}. ` : ""}${summary.jokers ? "Jokers make pungs, kongs, quints, and sextets easier." : ""}`
-    });
-  }
-
-  if (summary.flowers >= 2 || summary.winds + summary.dragons >= 4) {
-    directions.push({
-      title: "Check honors and flowers",
-      body: "Multiple flowers, winds, or dragons can matter on the card. Keep them until you know whether they support a real line."
-    });
-  }
-
-  if (!directions.length) {
-    directions.push({
-      title: "Stay flexible",
-      body: "No obvious cluster yet. Keep connected number tiles and pairs, then pass the tiles that do the least work."
-    });
-  }
-
-  return directions.slice(0, 3);
-}
-
-function scorePassCandidate(tile, summary) {
-  if (!tile || tile.kind === "joker") return -99;
-  let score = 0;
-  const count = summary.counts[tile.code] || 0;
-  if (count > 1) score -= 5;
-  if (tile.kind === "flower" && summary.flowers > 1) score += 3;
-  if (tile.kind === "wind") score += 2;
-  if (tile.kind === "dragon") score += tile.code === "Soap" ? -1 : 1;
-  if (tile.kind === "suit") {
-    const sameSuit = summary.suits[tile.suit];
-    const hasNeighbor = sameSuit.some((number) => Math.abs(number - tile.number) === 1 || Math.abs(number - tile.number) === 2);
-    const sameNumberAcrossSuits = ["C", "B", "D"].some((suit) => suit !== tile.suit && summary.suits[suit].includes(tile.number));
-    if (!hasNeighbor) score += 3;
-    if (tile.number === 1 || tile.number === 9) score += 1;
-    if (sameNumberAcrossSuits) score -= 2;
-    if (tile.number === 2 || tile.number === 6) score -= 1;
-  }
-  return score;
-}
-
 function getPassCandidates(summary) {
-  return summary.tiles
-    .map((tile, index) => ({ tile, index, score: scorePassCandidate(tile, summary) }))
-    .filter(({ tile }) => tile.kind !== "joker")
-    .sort((a, b) => b.score - a.score)
-    .slice(0, 3);
+  const needed = {};
+  currentPattern().groups.flat().forEach(code=>{needed[code]=(needed[code]||0)+1;});
+  const extras=[];
+  summary.tiles.forEach((tile,index)=>{
+    if(tile.code==='J') return;
+    if(needed[tile.code]>0) needed[tile.code]--;
+    else extras.push({tile,index});
+  });
+  return extras.slice(0,3);
 }
-
 function renderCoachHand() {
   $("#coachHand").innerHTML = state.coachHand.length
     ? state.coachHand
@@ -761,52 +529,14 @@ function renderCoachTileBank() {
 }
 
 function renderCoachAdvice() {
-  const summary = summarizeCoachHand();
-  const directions = getCoachDirections(summary);
-  const passCandidates = getPassCandidates(summary);
-  const warnings = [];
-  if (summary.jokers) warnings.push("Do not pass jokers in the Charleston.");
-  if (summary.soaps) warnings.push("Pause before passing Soap; it may be zero in the year section.");
-  if (state.coachHand.length < 13) warnings.push("Guidance gets better once all 13 starting tiles are entered.");
-
-  $("#coachAdvice").innerHTML = `
-    <div class="advice-card">
-      <h4>Possible Directions</h4>
-      ${directions.map((item) => `<p><strong>${item.title}:</strong> ${item.body}</p>`).join("")}
-    </div>
-    <div class="advice-card">
-      <h4>Consider Passing</h4>
-      ${
-        passCandidates.length
-          ? `<ol>${passCandidates.map(({ tile }) => `<li>${escapeHtml(tileDisplay(tile.code))}: ${tile.name}</li>`).join("")}</ol>`
-          : "<p>Add tiles to get suggestions.</p>"
-      }
-    </div>
-    <div class="advice-card">
-      <h4>Beginner Guardrails</h4>
-      ${warnings.length ? warnings.map((warning) => `<p>${warning}</p>`).join("") : "<p>Keep pairs, connected numbers, and any tile that matches a clear card direction.</p>"}
-    </div>
-  `;
+  const result = comparePattern(state.coachHand);
+  $("#coachAdvice").innerHTML = `<div class="advice-card"><h4>Compared with ${escapeHtml(currentPattern().title)}</h4><p>${result.missing.length ? `Still needed: ${result.missing.map(tileDisplay).map(escapeHtml).join(', ')}.` : 'All required groups are present.'}</p><p>These counts use the practice pattern shown in the Practice card tab. Jokers fill only groups of three or more.</p></div>`;
   renderCharlestonPicks();
 }
-
 function renderCharlestonPicks() {
-  const summary = summarizeCoachHand();
-  const picks = getPassCandidates(summary);
-  $("#charlestonPicks").innerHTML = picks.length
-    ? picks
-        .map(
-          ({ tile }) => `
-            <div class="recommendation-item">
-              <strong>${escapeHtml(tileDisplay(tile.code))}</strong>
-              <span>${tile.kind === "suit" ? "Low connection to the rest of your numbers." : "Often passable unless your card direction needs it."}</span>
-            </div>
-          `
-        )
-        .join("")
-    : '<p class="helper-line">Enter a hand in the coach to see three pass candidates.</p>';
+  const picks = getPassCandidates(summarizeCoachHand());
+  $("#charlestonPicks").innerHTML = picks.length ? `<p>Our selected practice pattern does not need these tiles:</p><div class="example-tiles">${tileRow(picks.map(({tile})=>tile.code))}</div><p>These are suggestions for this pattern only. Keep all jokers.</p>` : '<p>Enter tiles above to compare them with the selected practice pattern.</p>';
 }
-
 function renderTileIdentifier() {
   $("#tileIdentifier").innerHTML = tileIdentifierRows
     .map(
@@ -891,19 +621,43 @@ function renderGroupPrompt() {
   $("#groupPrompt").textContent = groupPrompts[state.groupPrompt % groupPrompts.length];
 }
 
+function focusLesson() {
+  $("#lessonTitle").setAttribute('tabindex','-1');
+  $("#lessonTitle").focus?.({preventScroll:true});
+  $("#lessonTitle").scrollIntoView?.({block:'start'});
+}
 function bindEvents() {
+  $("#lessonJump").addEventListener('change',()=>{state.lesson=Number($("#lessonJump").value);renderLesson();focusLesson();});
+  $("#lessonChoices").addEventListener('click', event=>{
+    const button=event.target.closest('[data-lesson-choice]');
+    if(!button)return;
+    const i=Number(button.dataset.lessonChoice);
+    lessonAnswers.set(state.lesson,lessons[state.lesson].answers[i]);
+    renderLesson();
+    document.querySelector(`[data-lesson-choice="${i}"]`).focus();
+  });
+  $("#practiceCardRows").addEventListener('click', event=>{
+    const button=event.target.closest('[data-pattern-index]');
+    if(!button)return;
+    practiceIndex=Number(button.dataset.patternIndex);
+    renderPracticeCard();dealPracticeHand();renderCoachAdvice();
+    document.querySelector(`[data-pattern-index="${practiceIndex}"]`).focus();
+  });
   $$(".nav-button").forEach((button) => {
     button.addEventListener("click", () => setView(button.dataset.view));
   });
 
   $("#nextLesson").addEventListener("click", () => {
-    state.lesson = (state.lesson + 1) % lessons.length;
+    if (state.lesson === lessons.length - 1) { setView("table"); return; }
+    state.lesson++;
     renderLesson();
+    focusLesson();
   });
 
   $("#prevLesson").addEventListener("click", () => {
     state.lesson = Math.max(0, state.lesson - 1);
     renderLesson();
+    focusLesson();
   });
 
   $("#nextTile").addEventListener("click", () => {
@@ -920,13 +674,13 @@ function bindEvents() {
 
   $("#tileBank").addEventListener("click", event => {
     if (event.target.closest("#drawPracticeTile") && !turnDrawn && !turnComplete) {
-      state.hand.push(turnDraws++ === 0 ? "9B" : "6D"); turnDrawn = true;
-      $("#handFeedback").textContent = "You have 14 tiles. Compare with the teaching target. Discard one tile, or declare mahjong if the whole hand matches.";
+      state.hand.push(turnDraws++ === 0 ? "9B" : turnTarget[13]); turnDrawn = true;
+      $("#handFeedback").textContent = "You have 14 tiles. Tap a tile you do not need to discard it. If every tile matches the pattern, declare mahjong instead.";
       renderHand();
     } else if (event.target.closest("#declarePracticeWin") && turnDrawn && !turnComplete) {
-      const matches = [...state.hand].sort().join() === [...turnTarget].sort().join();
+      const matches = comparePattern(state.hand).complete;
       turnComplete = matches;
-      $("#handFeedback").textContent = matches ? "Mahjong! All 14 tiles match this teaching target. In a real game, verify the entire hand against your official card. Try the call decisions next." : "Not yet: all 14 tiles must match the target. Look for the tile it does not need.";
+      $("#handFeedback").textContent = matches ? "Mahjong! All 14 tiles match our practice pattern. You kept the last tile instead of discarding it. Try another pattern or the call questions next." : "Not yet: all 14 tiles must match the target. Look for the tile it does not need.";
       renderHand();
     }
   });
@@ -969,8 +723,8 @@ function bindEvents() {
     });
     $("#quizScore").textContent = String(state.quizScore);
     $("#quizFeedback").textContent = isCorrect
-      ? "Correct. Make someone at the table explain why."
-      : `Close. The answer is ${current.correct}.`;
+      ? `Yes. ${current.feedback}`
+      : `The answer is ${current.correct}. ${current.feedback}`;
     updateReadiness();
   });
 
@@ -989,7 +743,7 @@ function bindEvents() {
       answer.classList.toggle("correct", answer.dataset.answer === prompt.correct);
       answer.classList.toggle("incorrect", answer === button && !isCorrect);
     });
-    $("#cardPromptFeedback").textContent = isCorrect ? prompt.feedback : `Close. ${prompt.feedback}`;
+    $("#cardPromptFeedback").textContent = isCorrect ? prompt.feedback : `Not quite. ${prompt.feedback}`;
   });
 
   $("#nextCardPrompt").addEventListener("click", () => {
@@ -999,7 +753,10 @@ function bindEvents() {
 
   $("#coachTileBank").addEventListener("click", (event) => {
     const button = event.target.closest("button[data-coach-tile]");
-    if (!button || state.coachHand.length >= 14) return;
+    if (!button || state.coachHand.length >= 13) return;
+    const code=button.dataset.coachTile;
+    const limit=["F","J"].includes(code)?8:4;
+    if(state.coachHand.filter(tile=>tile===code).length>=limit)return;
     state.coachHand.push(button.dataset.coachTile);
     renderCoachHand();
   });
@@ -1073,7 +830,7 @@ function bindEvents() {
       answer.classList.toggle("correct", answer.dataset.answer === drill.correct);
       answer.classList.toggle("incorrect", answer === button && !isCorrect);
     });
-    $("#ruleDrillFeedback").textContent = isCorrect ? drill.feedback : `Close. ${drill.feedback}`;
+    $("#ruleDrillFeedback").textContent = isCorrect ? drill.feedback : `Not quite. ${drill.feedback}`;
   });
 
   $("#nextRuleDrill").addEventListener("click", () => {
@@ -1090,6 +847,7 @@ function bindEvents() {
 
   $("#resetProgress").addEventListener("click", () => {
     state.lesson = 0;
+    lessonAnswers.clear();
     state.tile = 0;
     state.knownTiles = 0;
     state.quiz = 0;
@@ -1107,6 +865,7 @@ function bindEvents() {
 }
 
 function renderAll() {
+  renderPracticeCard();
   renderLesson();
   renderFlashcard();
   renderFamilies();
@@ -1116,6 +875,7 @@ function renderAll() {
   renderQuiz();
   renderNightPlan();
   renderCardSections();
+  $("#yearExample").innerHTML = tileRow(["2C","Soap","2B","6D"]);
   renderCardPrompt();
   renderCoachTileBank();
   renderCoachHand();
@@ -1147,7 +907,7 @@ function renderCharleston() {
   const count = game.phase === 'courtesy' ? game.courtesy : 3;
   $("#passSteps").innerHTML = passNames.map((name,i) => `<li ${game.phase === 'passing' && i === game.step ? 'aria-current="step"' : ''}>${i < game.step ? '✓ ' : ''}${name}</li>`).join('');
   $("#passTitle").textContent = game.phase === 'done' ? 'Ready for the first discard' : game.phase === 'second' ? 'Continue or stop?' : game.phase === 'courtesyChoice' ? 'Optional courtesy exchange' : game.phase === 'courtesy' ? `Pass ${count} across` : `Pass 3 · ${passNames[game.step]}`;
-  $("#passHelp").textContent = game.phase === 'done' ? 'East discards first. Try the Practice Table next, or start again.' : active ? `Choose ${count - blind} tiles from your rack${blind ? ` plus ${blind} unseen incoming tiles` : ''}. Jokers cannot be passed. There is no single best selection without a card hand in mind.` : 'Your rack still has 13 tiles. Reconsider your direction before exchanging more.';
+  $("#passHelp").textContent = game.phase === 'done' ? 'East discards first. Try the Practice Table next, or start again.' : active ? `Choose ${count - blind} tiles from your rack${blind ? ` plus ${blind} unseen incoming tiles` : ''}. Jokers cannot be passed. Compare your rack with the practice pattern above. Look for tiles it does not need.` : 'Your rack still has 13 tiles. Look again at the practice pattern before exchanging more.';
   $("#charlestonRack").innerHTML = game.racks[0].map((code,i) => `<button class="hand-tile ${selectedPass.includes(i) ? 'selected-pass' : ''}" data-pass-index="${i}" aria-pressed="${selectedPass.includes(i)}" aria-label="${escapeHtml(tileDisplay(code))}${code === 'J' ? ', keep: jokers cannot be passed' : ''}" type="button" ${!active || code === 'J' ? 'disabled' : ''}>${tileButtonMarkup(code)}</button>`).join('');
   $("#passStatus").textContent = `${selectedPass.length} rack tiles selected${blind ? ` + ${blind} blind` : ''} · ${game.racks[0].length} tiles in your rack`;
   $("#confirmPass").disabled = !active || selectedPass.length + blind !== count;
@@ -1181,7 +941,9 @@ $("#agreeCourtesy").addEventListener('click', () => {
   passingGame.phase = passingGame.courtesy ? 'courtesy' : 'done'; renderCharleston();
 });
 $("#passHint").addEventListener('click', () => {
-  $("#passReceipt").textContent = 'First choose a possible line on your card. Keep tiles it needs; pick unwanted tiles from the rest. Flowers and pairs are not automatically good or bad. Never pass a joker.';
+  const needed={};currentPattern().groups.flat().forEach(code=>{needed[code]=(needed[code]||0)+1;});
+  const extras=passingGame.racks[0].filter(code=>{if(code==='J')return false;if(needed[code]>0){needed[code]--;return false;}return true;});
+  $("#passReceipt").textContent = extras.length ? `For ${currentPattern().title}, consider passing ${extras.slice(0,3).map(tileDisplay).join(', ')}. They are not needed, or you have more copies than this pattern needs. Keep all jokers.` : 'Every non-joker tile helps this pattern. If a blind pass is available, you may use it; otherwise you still need to choose tiles for this exchange.';
 });
 $("#restartCharleston").addEventListener('click', resetCharleston);
 renderCharleston();

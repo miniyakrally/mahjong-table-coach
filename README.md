@@ -1,61 +1,49 @@
 # Mahjong Table Coach
 
-A static learning app for friends learning American mahjong together.
+A small, browser-only app for friends learning American mahjong together. No account, physical tiles, or separate card is needed for its lessons and practice exercises.
 
-## What It Does
+## Learning path
 
-- Teaches tile families, calls, table flow, and annual card concepts.
-- Explains the current-year card idea without reproducing copyrighted NMJL hands.
-- Includes a starting-hand coach with beginner-friendly direction and Charleston pass suggestions.
-- Includes a tile-set customizer so players can label tiles to match their physical set.
-- Keeps uploaded tile reference photos and custom labels in the browser only.
+Twenty short lessons introduce the vocabulary before using it. Each has a pictured example, one question, and an explanation after answering. Learners may retry or skip ahead using the lesson picker.
 
-## Local Preview
+The sequence covers the three numbered suits; each suit individually; winds, dragons, flowers, groups, and jokers; reading a pattern; 2026 year notation; exposed and concealed hands; walls, dealing, and fishtailing; the Charleston; turns; calls; joker exchanges; and a first social game. Caroline’s optional Bird Bam toast happens when 1 Bam is drawn. Any drink or opting out is welcome.
 
-```bash
-python3 -m http.server 4177
-```
+Tile faces are original SVG drawings with visible names and accessible labels. A bird represents 1 Bam; Dots show circles; Bams show bamboo; Craks show numbers and 萬. Actual sets vary.
 
-Then open:
+## Included practice card and official 2026 boundary
 
-```text
-http://127.0.0.1:4177/
-```
+The app includes three original, fixed practice patterns: Flowers and three suits, Four winds, and Seven pairs. These are not the official 2026 NMJL hands. The selected pattern appears in the Charleston and turn exercises. Hand comparisons and pass suggestions use that pattern rather than generic suit or connection heuristics. Jokers may fill matching groups of at least three; they never fill pairs.
+
+The app explains annual-card notation, including reading 2026 as 2–Soap–2–6. That four-tile example is not a complete official hand and does not specify the official suits. The full official 2026 card is not reproduced, licensed, or validated here. For official NMJL games, players still need the agreed official card. No permission to reproduce it has been established.
+
+## Practice limits
+
+- Charleston: four racks dealt from a 152-tile supply; correct pass directions; joker retention; a choice before the second Charleston; courtesy exchange; optional blind passing only on first left/second right. Computer players make legal, simple passes, not strategic moves.
+- Practice Table: a short, scripted draw/discard/declare exercise, not a full game. The first draw is unwanted; the next draw is the missing target tile. Opponents’ turns are skipped.
+- Calls and quizzes: pictured scenarios with answers and explanations, not live multiplayer calls.
+- Tools: compare 13 entered tiles with the selected practice pattern. Photos and custom labels remain in local browser storage. Reset preserves those preferences.
+
+## Teaching review — 2026-11-06
+
+Review found undefined terms, text-only tile introductions, references to an absent card, generic strategy advice, and feedback that rushed to the next question. Changes introduce one topic at a time, show labeled examples, allow untimed attempts, explain answers, retain manual progression, and use the same visible practice pattern throughout. New lessons and art are original.
+
+Research informed the teaching approach; it does not establish measured learning outcomes:
+
+- [Ladies That Mahj course overview](https://www.ladiesthatmahj.com/ONLINECOURSE): teach foundations in sequence, demonstrate play, and interleave skill-building exercises.
+- [Mahj Life lesson kit](https://mahjlife.com/courses/mahj-life-lesson-kit/): teach transferable card-reading skills progressively.
+- [School of Mahjong lessons](https://schoolofmahjong.com/lessons): visible tiles and short interactive activities, with no equipment needed to start.
+- [NMJL Online terms](https://faqs.nmjlonline.com/legal/NMJL-Online_Terms-of-Service.pdf): official-content and physical-card boundaries; no game content was extracted.
+
+Rules references: [National Mah Jongg League](https://www.nationalmahjonggleague.org/), [AMJA glossary](https://www.americanmahjonggassociation.com/glossary), [Charleston tournament reference](https://mahjongg.org/wp-content/uploads/2023/06/STANDARDIZED-NATIONAL-MAH-JONGG-TOURNAMENT-RULES-1.pdf), [wall-tail guidance](https://mahjongg.org/mah-jongg-rules/), and [MahjCon etiquette](https://mahjcon.com/mahjpedia/id15-etiquette-and-sportsmanship/). Social traditions and learning accommodations are labeled separately from game rules.
+
+## Preview and checks
+
+Run `python3 -m http.server 4177 --bind 127.0.0.1`, then open http://127.0.0.1:4177/.
+
+Run `npm run check` and `npm test`. Checks cover initialization, every lesson and example, three 14-tile patterns, joker eligibility, missing/wrong tiles, scripted turns, and 100 complete Charlestons including direction, tile conservation, rack counts, blind/courtesy passes, and reset.
+
+Desktop Chrome review exercised lesson feedback/focus, the lesson picker, illustrated suit and flower lessons, and practice-card selection. Real-phone review and a human novice learning trial remain outstanding. Tests are not evidence of teaching effectiveness.
 
 ## Deployment
 
-This is a plain static site. It can be hosted on GitHub Pages, Netlify, Vercel, Render static sites, or any static file host.
-
-This repo includes a GitHub Pages workflow in `.github/workflows/pages.yml`.
-
-Recommended temporary URL plan:
-
-1. In the GitHub repo settings, enable GitHub Pages with the source set to GitHub Actions.
-2. Push to `main`; the Pages workflow deploys the static site.
-3. After the new URL is live, keep `https://bookblendapp.com/mahjong.html` as a redirect so previously shared links keep working.
-
-## Copyright Boundary
-
-The app can teach how to read the annual NMJL card and let players practice rules and notation, but it should not reproduce the official card's full hand list.
-
-## Friends learning visit — local review draft (2026-11-06)
-
-The learning path is Lessons → Tile Trainer → Charleston → Practice Table → Group Quiz. Experienced players can skip directly to practice. No account, backend, or multiplayer connection is required.
-
-- Lessons and calls teach American mahjong, replacing the inherited Chinese-game guidance.
-- The Charleston deals four simulated racks from a 152-tile supply. Select tiles to pass, receive replacements, choose whether to start the second Charleston, and negotiate a simulated courtesy exchange. Blind passing is available only on first left and second right. Other players use simple legal selections, not strategic play.
-- Practice Table is a short, scripted draw/discard/declare drill with an invented visible target. It is not a full game or an official annual-card hand validator.
-- Tools' older direction/pass suggestions remain rough heuristics, not advice evaluated against the official card. Use the chosen card line to make actual decisions.
-- Reset restarts the learning session and Charleston while preserving saved tile labels and the local reference photo.
-
-Rules references: [National Mah Jongg League](https://www.nationalmahjonggleague.org/) for the agreed annual card and official rulebook; [American Mah Jongg Association glossary](https://www.americanmahjonggassociation.com/glossary) for terminology; [tournament rules](https://mahjongg.org/wp-content/uploads/2023/06/STANDARDIZED-NATIONAL-MAH-JONGG-TOURNAMENT-RULES-1.pdf) for first/second Charleston structure; [Winning Moves booklet](https://winning-moves.com/images/MAHJONGGRULES.pdf), Charleston section, for passing and blind-pass mechanics. The latter also contains its own simplified game and Chinese rules, which are not used here. The app does not reproduce the official card.
-
-Verification: `npm run check` and `npm test`. Tests cover tile conservation, rack counts, passing direction, joker retention, blind-pass limits, courtesy counts, app initialization, the scripted turn, stopping the second Charleston, and reset. Desktop Chrome was visually reviewed and the first exchange exercised. Phone layout and a complete novice walkthrough still need review.
-
-Publishing: pushing `main` deploys to GitHub Pages. This draft stays on `revive-american-mahjong` until reviewed; the existing public site remains unchanged.
-
-### Table rituals and etiquette (2026-11-06)
-
-The lessons now include wall building, waiting to rack until the deal is complete, fishtailing the tail end, handling only your own tiles/rack, asking for joker exchanges, naming discards, and giving other players time. The quiz and group prompts reinforce these habits. Fishtailing is labeled as a wall marker; etiquette and the optional 1 Bam bird toast are distinguished from game rules. Caroline confirmed that the bird-toast trigger is drawing 1 Bam from the wall. Any drink or opting out is welcome.
-
-References: [wall-tail guidance](https://mahjongg.org/mah-jongg-rules/) and [MahjCon etiquette](https://mahjcon.com/mahjpedia/id15-etiquette-and-sportsmanship/). The bird-toast tradition was requested by Caroline; it is not presented as an NMJL requirement.
+The GitHub Pages workflow deploys on pushes to `main`. Current work stays local on `revive-american-mahjong` for review. Do not publish it merely to make the local preview available. Keep this app standalone from Bookblend.
