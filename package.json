@@ -4,7 +4,7 @@
   "private": true,
   "description": "A static app that helps friends learn American mahjong together.",
   "scripts": {
-    "check": "node --check app.js && node --check charleston.js && node --check curriculum.js && node --check tile-art.js",
+    "check": "node --check app.js && node --check charleston.js && node --check curriculum.js && node --check tile-art.js && node --check teaching-visuals.js",
     "start": "python3 -m http.server 4177",
     "test": "node test-charleston.cjs && node test-app.cjs"
   }

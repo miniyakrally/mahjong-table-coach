@@ -40,7 +40,148 @@ const callScenarios = [
   }
 ];
 
-const quizQuestions = lessons.map(lesson => ({question:lesson.question, answers:lesson.answers, correct:lesson.correct, feedback:lesson.why, tiles:lesson.tiles}));
+const quizQuestions = [
+  {
+    "question": "Your 13-tile rack has only three 6 Dots and two flowers for this row, plus an unwanted 9 Bam. You draw a fourth 6 Dot. What next?",
+    "answers": [
+      "Discard 9 Bam; you still need one flower on a later turn.",
+      "Discard a flower because the numbers are complete.",
+      "Discard the new 6 Dot because you must always discard your draw."
+    ],
+    "correct": "Discard 9 Bam; you still need one flower on a later turn.",
+    "feedback": "With a 13-tile starting rack containing an unwanted 9 Bam, drawing the fourth 6 Dot gives 14 tiles but still leaves the unwanted tile. Discarding it returns you to 13; you cannot both discard and declare a 14-tile win. Count the whole hand, not just the 6 Dots.",
+    "tiles": [
+      "6D",
+      "6D",
+      "6D",
+      "9B",
+      "6D"
+    ],
+    "visual": "quiz-count"
+  },
+  {
+    "question": "You need a pung of 6 Dots for an X hand. You have one 6 Dot and a joker. A 6 Dot is discarded. Can you call it?",
+    "answers": [
+      "Yes: your tile, the discard, and the joker complete the pung.",
+      "Only if this is the final group needed for mahjong.",
+      "No: you must hold two real 6 Dots before calling."
+    ],
+    "correct": "Yes: your tile, the discard, and the joker complete the pung.",
+    "feedback": "The completed group has three places. Your 6 Dot, your joker, and the discarded 6 Dot fill all three. Show the completed pung, then discard; do not also draw.",
+    "tiles": [
+      "6D",
+      "J",
+      "6D"
+    ],
+    "visual": null
+  },
+  {
+    "question": "Your hand is marked C. You have three Norths and need a kong of Norths, but two other groups are unfinished. North is discarded. What do you do?",
+    "answers": [
+      "Do not call: the whole concealed hand is not finished.",
+      "Call North and show only that kong.",
+      "Call North and keep the kong hidden."
+    ],
+    "correct": "Do not call: the whole concealed hand is not finished.",
+    "feedback": "A C hand may call only the final tile for mahjong. It cannot claim this discard for an intermediate group, hidden or shown.",
+    "tiles": [
+      "N",
+      "N",
+      "N",
+      "N"
+    ],
+    "visual": null
+  },
+  {
+    "question": "This row requires seven pairs. You have the first six pairs and one Soap: 13 tiles. You draw a joker. Can these 14 tiles win?",
+    "answers": [
+      "Yes: the joker completes the last pair.",
+      "No: the last pair still needs a real Soap.",
+      "Yes: C hands allow jokers in pairs."
+    ],
+    "correct": "No: the last pair still needs a real Soap.",
+    "feedback": "The row requires pairs only. The joker cannot fill the missing Soap, even as your final tile. Fourteen tiles are not enough unless all seven pairs are valid.",
+    "tiles": [],
+    "visual": "quiz-pairs"
+  },
+  {
+    "question": "You have just finished ROL. Everyone agrees to continue, and you have passed left once more. Where do the next two passes go?",
+    "answers": [
+      "Right, then across.",
+      "Across, then left.",
+      "Across, then right."
+    ],
+    "correct": "Across, then right.",
+    "feedback": "After the first ROL, the second round is LOR. You have completed its L; O and R are next.",
+    "tiles": [],
+    "visual": null
+  },
+  {
+    "question": "For the courtesy exchange, you want three tiles and the player opposite wants one. How many does each player pass?",
+    "answers": [
+      "Each passes three tiles.",
+      "Each passes the number they asked for.",
+      "Each passes one tile."
+    ],
+    "correct": "Each passes one tile.",
+    "feedback": "An exchange must be equal. Use the smaller request: one tile each.",
+    "tiles": [],
+    "visual": null
+  },
+  {
+    "question": "On the first left pass you want to keep all but one of your rack tiles. How can you still pass three?",
+    "answers": [
+      "Pass the one rack tile and two incoming tiles without looking at them.",
+      "Pass the one rack tile and a joker, then wait for a replacement.",
+      "Look at all incoming tiles, then choose two to send on."
+    ],
+    "correct": "Pass the one rack tile and two incoming tiles without looking at them.",
+    "feedback": "First left permits a blind pass. One tile from your rack plus two unseen incoming tiles makes three. Blind means you do not look at the forwarded incoming tiles.",
+    "tiles": [],
+    "visual": null
+  },
+  {
+    "question": "A needed tile is discarded. The next player lifts a wall tile, looks at it, and places it on the sloped part of their rack. May you now call the earlier discard?",
+    "answers": [
+      "Yes, if you say “mahjong” rather than calling a group.",
+      "No: racking the drawn tile closed the previous discard.",
+      "Yes, because the next discard has not happened yet."
+    ],
+    "correct": "No: racking the drawn tile closed the previous discard.",
+    "feedback": "The cutoff has already happened. You needed to call before the next player racked the tile. Mahjong priority does not reopen an expired discard.",
+    "tiles": [],
+    "visual": null
+  },
+  {
+    "question": "On your turn, after drawing, you hold 6 Dot. Another player has 6 Dot, 6 Dot, joker exposed. What is the right way to exchange?",
+    "answers": [
+      "Discard your 6 Dot and ask them to replace their joker with it.",
+      "Offer your 6 Dot and ask the owner to swap their joker; then finish your turn.",
+      "Move your 6 Dot into their rack and take their joker yourself."
+    ],
+    "correct": "Offer your 6 Dot and ask the owner to swap their joker; then finish your turn.",
+    "feedback": "You have the natural replacement tile and it is your turn. Let the owner handle their exposure. The exchange does not replace your normal discard.",
+    "tiles": [
+      "6D",
+      "6D",
+      "J",
+      "6D"
+    ],
+    "visual": null
+  },
+  {
+    "question": "The printed row uses different colors for 222 and 4444. You choose Craks for the 2s. Which choice for the 4s follows the row?",
+    "answers": [
+      "Craks too: they are all number tiles.",
+      "Bams or Dots: the second color needs a different suit.",
+      "Only the suit whose physical tiles match the ink color."
+    ],
+    "correct": "Bams or Dots: the second color needs a different suit.",
+    "feedback": "Different printed colors separate suits. They do not prescribe the physical color of the tiles. Follow any additional suit restrictions in the row’s words.",
+    "tiles": [],
+    "visual": "card"
+  }
+];
 
 const annualCardSections = [
   {
@@ -330,7 +471,7 @@ function tileRow(codes) {
   return codes.map(code => `<span class="shown-tile" role="img" aria-label="${escapeHtml(getTile(code).name)}">${tileButtonMarkup(code)}</span>`).join('');
 }
 function patternMarkup(line) {
-  return `<h4>${escapeHtml(line.title)}</h4><p>${escapeHtml(line.note)}</p><div class="pattern-groups">${line.groups.map(group => `<div class="pattern-group">${tileRow(group)}<span>${group.length === 2 ? 'Pair' : group.length === 3 ? 'Pung' : 'Kong'} of ${escapeHtml(tileDisplay(group[0]))}</span></div>`).join('')}</div>`;
+  return `${printedPattern(line)}<h4>${escapeHtml(line.title)} — shown as tiles</h4><p>${escapeHtml(line.note)}</p><div class="pattern-groups">${line.groups.map(group => `<div class="pattern-group">${tileRow(group)}<span>${group.length === 2 ? 'Pair' : group.length === 3 ? 'Pung' : 'Kong'} of ${escapeHtml(tileDisplay(group[0]))}</span></div>`).join('')}</div>`;
 }
 function wallMarkup() {
   return `<div class="wall-example" role="img" aria-label="Face-down wall viewed from above. Drawing end on the left, tail turned sideways on the right."><span>Draw here →</span><div class="example-stacks">${Array.from({length:5},()=>'<i></i>').join('')}<i class="tail-stack"></i></div><span>↑ Fishtailed tail</span></div><p>A short section of wall, viewed from above. Each block is a stack of two face-down tiles.</p>`;
@@ -344,7 +485,7 @@ function renderLesson() {
   $("#lessonTitle").textContent = lesson.title;
   $("#lessonBody").textContent = lesson.body;
   $("#lessonBullets").innerHTML = lesson.bullets.map(item => `<li>${escapeHtml(item)}</li>`).join('');
-  $("#lessonExample").innerHTML = lesson.visual === 'wall' ? wallMarkup() : lesson.visual === 'card' ? patternMarkup(practiceCard[0]) : `<div class="example-tiles">${tileRow(lesson.tiles)}</div>`;
+  $("#lessonExample").innerHTML = renderTeachingVisual(lesson);
   $("#lessonCaption").textContent = lesson.caption;
   $("#lessonQuestion").textContent = lesson.question;
   const answer = lessonAnswers.get(state.lesson);
@@ -395,6 +536,7 @@ function renderPracticeCard() {
 }
 let turnTarget = [];
 let turnStart = [];
+let turnMissingTile = null;
 let turnDrawn = false;
 let turnComplete = false;
 let turnDraws = 0;
@@ -405,7 +547,9 @@ function renderHand() {
 }
 function dealPracticeHand() {
   turnTarget = currentPattern().groups.flat();
-  turnStart = turnTarget.slice(0,13);
+  turnStart = [...turnTarget];
+  const missingIndex=turnStart.includes("6D")?turnStart.lastIndexOf("6D"):turnStart.length-1;
+  [turnMissingTile] = turnStart.splice(missingIndex,1);
   state.hand = [...turnStart]; turnDrawn = false; turnComplete = false; turnDraws = 0;
   $("#handFeedback").textContent = "You have 13 tiles. Draw one, then compare your rack with the pattern above. Tap a tile in your rack to discard it. The other players’ turns are skipped in this short exercise.";
   $("#practiceTarget").innerHTML = patternMarkup(currentPattern());
@@ -427,7 +571,7 @@ const answeredQuizQuestions = new Set();
 function renderQuiz() {
   const current = quizQuestions[state.quiz % quizQuestions.length];
   $("#quizQuestion").textContent = current.question;
-  $("#quizExample").innerHTML = tileRow(current.tiles);
+  $("#quizExample").innerHTML = current.visual ? renderTeachingVisual(current) : tileRow(current.tiles);
   $("#quizScore").textContent = String(state.quizScore);
   $("#quizFeedback").textContent = "";
   $("#quizAnswers").innerHTML = current.answers
@@ -627,6 +771,16 @@ function focusLesson() {
   $("#lessonTitle").scrollIntoView?.({block:'start'});
 }
 function bindEvents() {
+  $("#lessonExample").addEventListener('click',event=>{
+    const button=event.target.closest('[data-demo-move]');
+    if(!button||button.disabled)return;
+    const count=lessons[state.lesson].visual==='deal'?4:3;
+    demoSteps.set(state.lesson,Math.max(0,Math.min(count-1,(demoSteps.get(state.lesson)||0)+Number(button.dataset.demoMove))));
+    renderLesson();
+    const step=demoSteps.get(state.lesson),direction=step===count-1?-1:step===0?1:Number(button.dataset.demoMove);
+    document.querySelector(`[data-demo-move="${direction}"]`).focus({preventScroll:true});
+    $("#lessonExample").scrollIntoView?.({block:"start"});
+  });
   $("#lessonJump").addEventListener('change',()=>{state.lesson=Number($("#lessonJump").value);renderLesson();focusLesson();});
   $("#lessonChoices").addEventListener('click', event=>{
     const button=event.target.closest('[data-lesson-choice]');
@@ -674,7 +828,7 @@ function bindEvents() {
 
   $("#tileBank").addEventListener("click", event => {
     if (event.target.closest("#drawPracticeTile") && !turnDrawn && !turnComplete) {
-      state.hand.push(turnDraws++ === 0 ? "9B" : turnTarget[13]); turnDrawn = true;
+      state.hand.push(turnDraws++ === 0 ? "9B" : turnMissingTile); turnDrawn = true;
       $("#handFeedback").textContent = "You have 14 tiles. Tap a tile you do not need to discard it. If every tile matches the pattern, declare mahjong instead.";
       renderHand();
     } else if (event.target.closest("#declarePracticeWin") && turnDrawn && !turnComplete) {
@@ -848,6 +1002,7 @@ function bindEvents() {
   $("#resetProgress").addEventListener("click", () => {
     state.lesson = 0;
     lessonAnswers.clear();
+    demoSteps.clear();
     state.tile = 0;
     state.knownTiles = 0;
     state.quiz = 0;

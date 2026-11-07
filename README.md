@@ -4,9 +4,9 @@ A small, browser-only app for friends learning American mahjong together. No acc
 
 ## Learning path
 
-Twenty short lessons introduce the vocabulary before using it. Each has a pictured example, one question, and an explanation after answering. Learners may retry or skip ahead using the lesson picker.
+Twenty-two short lessons introduce the vocabulary before using it. Each has a pictured example, one question, and an explanation after answering. Learners may retry or skip ahead using the lesson picker.
 
-The sequence covers the three numbered suits; each suit individually; winds, dragons, flowers, groups, and jokers; reading a pattern; 2026 year notation; exposed and concealed hands; walls, dealing, and fishtailing; the Charleston; turns; calls; joker exchanges; and a first social game. Caroline’s optional Bird Bam toast happens when 1 Bam is drawn. Any drink or opting out is welcome.
+The sequence covers the three numbered suits; each suit individually; winds, dragons, flowers, and matching groups; joker substitution; printed card notation; joker restrictions; 2026 year notation; X/C visibility; table layout, breaking/dealing, and fishtailing; ROL and LOR; turns with the pattern and rack together; calls; and joker exchanges. The earlier first-social-game wrap-up was removed. Caroline’s optional Bird Bam toast happens when 1 Bam is drawn. Any drink or opting out is welcome.
 
 Tile faces are original SVG drawings with visible names and accessible labels. A bird represents 1 Bam; Dots show circles; Bams show bamboo; Craks show numbers and 萬. Actual sets vary.
 
@@ -50,4 +50,8 @@ The GitHub Pages workflow deploys on pushes to `main`. Current work stays local 
 
 ## Visual palette
 
-Caroline’s preppy mahjong reference informs the palette: pink gingham navigation, fresh green selections and tile edges, turquoise buttons, warm white tile faces, and navy text. Tile artwork keeps recognizable red/green/blue markings for teaching. Main text/button combinations were checked for at least 4.5:1 contrast; the desktop preview was visually reviewed. This color update remains local until publication is requested.
+Caroline’s preppy mahjong reference informs the palette: blue gingham navigation, cobalt controls, pale blue table/reference panels and tile edges, warm white tile faces, navy text, and restrained pink/green accents. Tile artwork keeps recognizable red/green/blue markings for teaching. Main text/button combinations were checked for at least 4.5:1 contrast; the desktop preview was visually reviewed. This color update remains local until publication is requested.
+
+## Instructor review pending
+
+Caroline’s detailed feedback led to a further sequence and example revision. See [the expert-review brief](review/EXPERT_REVIEW.md) for the concern-by-concern response, proposed review scope, sources, and readiness limits. The current code is a candidate for human review, not proof that a beginner can learn the game from it.
