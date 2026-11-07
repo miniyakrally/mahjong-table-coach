@@ -71,3 +71,7 @@ Practice racks include a Rearrange tiles mode: select a tile, move it left or ri
 Reference is a lookup area with a complete visual tile directory, card notation, Charleston order, calls/jokers, and turns/etiquette. Lessons live under Learn; flashcards stay in Practice. Lookup pages have no quizzes or completion requirements.
 
 The Practice hub now includes a separate four-player hand (East begins with 14 tiles), computer draws/discards and legal row-based calls, exposures and joker exchanges. Computer players use a simple discard policy, not an expert strategy. Every draw uses the next physical tile in the shuffled wall; the wall may end without a winner. This table starts after the Charleston and uses original teaching rows. The guided turn exercise remains available for learning the controls. Eight tile-based decision cases and six unseen card-reading checks teach transfer without showing explanations before answers.
+
+### Table-first design mock (not production)
+
+`design/table-first-preview.html` proposes a single blue play surface, compact row strip, one next action, and optional explanations. Learn and Reference previews share the simpler visual system. It is an interactive design study with sample states, not a scored game. The user requested full desktop/mobile QC after the approved design is implemented; `design/redesign-qc.json` preserves that app-wide gate. Mock layout checks do not satisfy the full QC requirement.

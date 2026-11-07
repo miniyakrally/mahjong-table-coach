@@ -1,0 +1,23 @@
+{
+  "status": "Pending approved design implementation; mockup review is not full app QC",
+  "scope": "Full app on desktop and mobile before calling the redesign complete",
+  "viewports": ["1440x900 desktop", "1024x768 small desktop/tablet", "390x844 phone", "360x800 narrow phone", "phone landscape"],
+  "checks": [
+    "Learn: each tile activity, retries, progression, back, skip, lesson library and saved resume",
+    "Card reading: visible tile context, no explanation before answer, all six rows, first-attempt results",
+    "Charleston: ROL, stop/continue, LOR, legal blind passes, courtesy zero through three, no passed jokers",
+    "Practice table: East first discard, each computer turn, explicit selection/confirmation, all three rows",
+    "Calls: open window, pass closes window, group versus mahjong priority, concealed restrictions",
+    "Exposures and joker exchanges: correct tiles and counts, owner makes exchange, no discarded joker call",
+    "Four-seat physical supply conservation, legal wins, wall exhaustion without winner, no helpful draw targeting",
+    "Rearranging preserves pass/discard choices, hints, incoming tile markers and tile counts",
+    "Reference: every family, all 27 numbered faces, winds, dragons, flowers, joker, all topic links",
+    "Clear single next action in every turn state; help is optional and dismissible",
+    "Desktop and phone: rack, current row and action remain usable; no clipping, overlap or sideways scrolling",
+    "Keyboard, visible focus, labels, dialog focus trap/return, Escape, contrast, 200 percent zoom and touch targets",
+    "Settings: saved progress, restart/cancel, preserved photo/custom labels, storage-denied behavior",
+    "Anonymous analytics: visits, stages, retries/correct outcomes, opt-out, DNT/GPC, no names/answers/hands/photos sent",
+    "Deployment: expected commit, all public assets load, no design scratch published, no browser errors",
+    "Observed complete beginner session: cannot be replaced by automated or simulated checks"
+  ]
+}
