@@ -1018,3 +1018,18 @@ h3 {
     grid-template-columns: 1fr;
   }
 }
+
+.learning-path { color: var(--muted); max-width: 70ch; line-height: 1.6; }
+.pass-steps { display: flex; flex-wrap: wrap; gap: 8px; list-style-position: inside; padding: 0; }
+.pass-steps li { border: 1px solid var(--line); border-radius: 8px; padding: 10px; }
+.pass-steps [aria-current] { background: var(--jade-dark); color: white; }
+.selected-pass { outline: 3px solid var(--jade); background: #dcf1e8; }
+button:focus-visible, select:focus-visible, summary:focus-visible { outline: 3px solid var(--blue); outline-offset: 4px; }
+button:disabled { cursor: default; opacity: .55; }
+select { font: inherit; padding: 10px; min-height: 44px; margin: 8px; }
+#charlestonRack, #practiceTarget { flex-wrap: wrap; }
+#charleston .lesson-panel { max-width: 1100px; }
+#secondChoice, #courtesyChoice, details { margin: 22px 0; line-height: 1.6; }
+#secondChoice button { margin: 4px; }
+[hidden] { display: none !important; }
+#passReceipt, #handFeedback { line-height: 1.6; min-height: 3em; }

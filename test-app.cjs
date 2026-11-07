@@ -1,0 +1,21 @@
+// Exercise app initialization and interaction handlers with a minimal document stub.
+const fs=require('node:fs'),vm=require('node:vm'),assert=require('node:assert/strict');
+const html=fs.readFileSync('index.html','utf8');
+const elements=new Map([...html.matchAll(/id="([^"]+)"/g)].map(([,id])=>[id,{value:id==='blindCount'||id==='courtesyCount'?'0':id==='friendCount'?'4':'',style:{},classList:{toggle(){}},listeners:{},addEventListener(e,f){this.listeners[e]=f;},removeAttribute(){},setAttribute(){}}]));
+const context=vm.createContext({document:{querySelector(s){assert.ok(elements.has(s.slice(1)),`Missing element ${s}`);return elements.get(s.slice(1));},querySelectorAll(){return[];}},localStorage:{getItem(){return null},setItem(){},removeItem(){}},window:{},console});
+vm.runInContext(fs.readFileSync('charleston.js','utf8')+'\n'+fs.readFileSync('app.js','utf8'),context);
+const run=s=>vm.runInContext(s,context);
+const click=id=>elements.get(id).listeners.click({target:{closest:s=>s==='#drawPracticeTile'?{}:null}});
+assert.match(elements.get('lessonTitle').textContent,/card/);
+assert.equal(run('state.hand.length'),13);
+click('tileBank');assert.equal(run('state.hand.length'),14);
+run(`document.querySelector('#practiceHand').listeners.click({target:{closest:()=>({dataset:{index:'13'}})}})`);
+assert.equal(run('state.hand.length'),13);
+click('tileBank');
+run(`document.querySelector('#tileBank').listeners.click({target:{closest:s=>s==='#declarePracticeWin'?{}:null}})`);
+assert.equal(run('turnComplete'),true);
+for(let n=0;n<3;n++)run(`selectedPass=passingGame.racks[0].map((c,i)=>c==='J'?-1:i).filter(i=>i>=0).slice(0,3);document.querySelector('#confirmPass').listeners.click()`);
+assert.equal(run('passingGame.phase'),'second');
+click('stopSecond');click('agreeCourtesy');assert.equal(run('passingGame.phase'),'done');
+click('resetProgress');assert.equal(run('passingGame.phase'),'passing');assert.equal(run('state.hand.length'),13);
+console.log('Passed: app initialization, draw/discard/win drill, first Charleston, stop second, skip courtesy, reset.');

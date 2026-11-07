@@ -37,3 +37,19 @@ Recommended temporary URL plan:
 ## Copyright Boundary
 
 The app can teach how to read the annual NMJL card and let players practice rules and notation, but it should not reproduce the official card's full hand list.
+
+## Friends learning visit — local review draft (2026-11-06)
+
+The learning path is Lessons → Tile Trainer → Charleston → Practice Table → Group Quiz. Experienced players can skip directly to practice. No account, backend, or multiplayer connection is required.
+
+- Lessons and calls teach American mahjong, replacing the inherited Chinese-game guidance.
+- The Charleston deals four simulated racks from a 152-tile supply. Select tiles to pass, receive replacements, choose whether to start the second Charleston, and negotiate a simulated courtesy exchange. Blind passing is available only on first left and second right. Other players use simple legal selections, not strategic play.
+- Practice Table is a short, scripted draw/discard/declare drill with an invented visible target. It is not a full game or an official annual-card hand validator.
+- Tools' older direction/pass suggestions remain rough heuristics, not advice evaluated against the official card. Use the chosen card line to make actual decisions.
+- Reset restarts the learning session and Charleston while preserving saved tile labels and the local reference photo.
+
+Rules references: [National Mah Jongg League](https://www.nationalmahjonggleague.org/) for the agreed annual card and official rulebook; [American Mah Jongg Association glossary](https://www.americanmahjonggassociation.com/glossary) for terminology; [tournament rules](https://mahjongg.org/wp-content/uploads/2023/06/STANDARDIZED-NATIONAL-MAH-JONGG-TOURNAMENT-RULES-1.pdf) for first/second Charleston structure; [Winning Moves booklet](https://winning-moves.com/images/MAHJONGGRULES.pdf), Charleston section, for passing and blind-pass mechanics. The latter also contains its own simplified game and Chinese rules, which are not used here. The app does not reproduce the official card.
+
+Verification: `npm run check` and `npm test`. Tests cover tile conservation, rack counts, passing direction, joker retention, blind-pass limits, courtesy counts, app initialization, the scripted turn, stopping the second Charleston, and reset. Desktop Chrome was visually reviewed and the first exchange exercised. Phone layout and a complete novice walkthrough still need review.
+
+Publishing: pushing `main` deploys to GitHub Pages. This draft stays on `revive-american-mahjong` until reviewed; the existing public site remains unchanged.

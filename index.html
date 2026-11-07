@@ -18,7 +18,7 @@
         </div>
 
         <nav class="mode-nav" aria-label="App modes">
-          <button class="nav-button active" data-view="lesson" type="button">
+          <button class="nav-button active" data-view="lesson" aria-current="page" type="button">
             <span aria-hidden="true">01</span>
             Lessons
           </button>
@@ -26,38 +26,39 @@
             <span aria-hidden="true">02</span>
             Tile Trainer
           </button>
+          <button class="nav-button" data-view="charleston" type="button"><span aria-hidden="true">03</span>Charleston</button>
           <button class="nav-button" data-view="table" type="button">
-            <span aria-hidden="true">03</span>
+            <span aria-hidden="true">04</span>
             Practice Table
           </button>
           <button class="nav-button" data-view="quiz" type="button">
-            <span aria-hidden="true">04</span>
+            <span aria-hidden="true">05</span>
             Group Quiz
           </button>
           <button class="nav-button" data-view="card" type="button">
-            <span aria-hidden="true">05</span>
+            <span aria-hidden="true">06</span>
             2026 Card
           </button>
           <button class="nav-button" data-view="tools" type="button">
-            <span aria-hidden="true">06</span>
+            <span aria-hidden="true">07</span>
             Tools
           </button>
         </nav>
 
-        <section class="progress-card" aria-label="Progress">
+        <section class="progress-card" aria-label="Lesson position">
           <div class="progress-head">
-            <span>Tonight's readiness</span>
-            <strong id="readinessScore">28%</strong>
+            <span>Lesson position</span>
+            <strong id="readinessScore">1 / 6</strong>
           </div>
           <div class="meter" aria-hidden="true"><span id="readinessMeter"></span></div>
-          <p id="readinessNote">Start with turns, calls, and the four-set hand shape.</p>
+          <p id="readinessNote">Start with turns, calls, and the card and the Charleston.</p>
         </section>
       </aside>
 
       <section class="content">
         <header class="topbar">
           <div>
-            <p class="eyebrow">Chinese classical basics</p>
+            <p class="eyebrow">American mahjong · Learn at your own pace</p>
             <h2 id="viewTitle">Lessons</h2>
           </div>
           <div class="group-controls" aria-label="Group setup">
@@ -67,7 +68,7 @@
             </label>
             <button id="resetProgress" class="icon-text-button" type="button">Reset</button>
           </div>
-        </header>
+        </header><p class="learning-path">New to mahjong? Start with Lessons, then try the Charleston and Practice Table. Played before? Jump straight to a drill. No sign-in needed.</p>
 
         <section id="lesson" class="view active" aria-labelledby="viewTitle">
           <div class="lesson-grid">
@@ -104,7 +105,7 @@
               <div class="tile-card" id="flashTile">一</div>
               <p class="tile-family" id="flashFamily">Characters</p>
               <h3 id="flashName">One Character</h3>
-              <p id="flashHint">Suited tiles are numbered 1 through 9 and form sequences.</p>
+              <p id="flashHint">Numbered suits run from 1 to 9. Follow your card.</p>
               <div class="lesson-actions">
                 <button id="knownTile" class="secondary-button" type="button">I knew it</button>
                 <button id="nextTile" class="primary-button" type="button">Next Tile</button>
@@ -117,25 +118,41 @@
           </div>
         </section>
 
+        <section id="charleston" class="view" aria-labelledby="viewTitle">
+  <article class="lesson-panel">
+    <p class="eyebrow">A seat at a four-player table</p><h3>Pass, receive, rethink</h3>
+    <p>You have 13 tiles; East has 14. The other three racks are simulated from a real 152-tile supply. This drill teaches passing, not which official hand to choose.</p>
+    <ol id="passSteps" class="pass-steps" aria-label="Passing order"></ol>
+    <h3 id="passTitle"></h3><p id="passHelp"></p>
+    <div id="charlestonRack" class="hand-row" aria-label="Select tiles to pass"></div>
+    <p id="passStatus" role="status"></p>
+    <div class="lesson-actions"><button id="confirmPass" class="primary-button" type="button">Pass selected tiles</button><button id="passHint" class="secondary-button" type="button">Show a hint</button></div>
+    <div id="secondChoice" hidden><p>The first Charleston is complete. Any player can stop the second before it begins. For this drill, the other players agree to continue if you do.</p><button id="continueSecond" class="primary-button" type="button">Practice the second Charleston</button><button id="stopSecond" class="secondary-button" type="button">Stop here</button></div>
+    <div id="courtesyChoice" hidden><label>Courtesy tiles requested by you <select id="courtesyCount"><option value="0">0 — no exchange</option><option>1</option><option>2</option><option>3</option></select></label><p>Your opposite player offers up to 2 tiles. The smaller requested number sets the exchange.</p><button id="agreeCourtesy" class="secondary-button" type="button">Agree courtesy exchange</button></div>
+    <details><summary>Already played? Try a blind pass</summary><p>On the first left or second right only, you can send on up to three incoming tiles without looking. Pick any rack tiles you want to pass, then add blind tiles to reach three. Incoming blind tiles stay hidden until the exchange.</p><label>Blind tiles <select id="blindCount"><option value="0">0</option><option>1</option><option>2</option><option>3</option></select></label></details>
+    <p id="passReceipt" role="status"></p><button id="restartCharleston" class="secondary-button" type="button">Start a new Charleston</button>
+  </article>
+</section>
+
         <section id="table" class="view" aria-labelledby="viewTitle">
           <div class="practice-layout">
             <article class="hand-builder">
               <div class="section-head">
                 <div>
-                  <p class="eyebrow">Build a legal shape</p>
-                  <h3>Your Hand</h3>
+                  <p class="eyebrow">Draw and discard · guided drill</p>
+                  <h3>Your Hand</h3><p id="turnCount"></p>
                 </div>
                 <button id="dealHand" class="secondary-button" type="button">Deal Practice Hand</button>
               </div>
-              <div id="practiceHand" class="hand-row" aria-label="Practice hand"></div>
-              <div class="hand-feedback" id="handFeedback">Try grouping tiles into four sets plus one pair.</div>
+              <p>This is an invented teaching target, not an official NMJL hand. Match the pictured tiles exactly; no jokers in this first drill.</p><div id="practiceTarget" class="hand-row" aria-label="Teaching target"></div><div id="practiceHand" class="hand-row" aria-label="Practice hand"></div>
+              <div class="hand-feedback" id="handFeedback" role="status">Draw, compare with the target, then discard.</div>
               <div class="tile-bank" id="tileBank" aria-label="Tile bank"></div>
             </article>
             <article class="call-card">
               <h3>Call Decisions</h3>
               <p id="callScenario"></p>
               <div id="callOptions" class="call-options"></div>
-              <p id="callFeedback" class="call-feedback"></p>
+              <p id="callFeedback" class="call-feedback" role="status"></p><button id="nextCall" class="secondary-button" type="button">Next call decision</button>
             </article>
           </div>
         </section>
@@ -143,7 +160,7 @@
         <section id="quiz" class="view" aria-labelledby="viewTitle">
           <div class="quiz-layout">
             <article class="quiz-card">
-              <div class="quiz-score"><span id="quizScore">0</span> correct</div>
+              <div class="quiz-score"><span id="quizScore">0</span> questions answered correctly</div>
               <h3 id="quizQuestion"></h3>
               <div id="quizAnswers" class="answer-grid"></div>
               <p id="quizFeedback" class="quiz-feedback"></p>
@@ -225,7 +242,7 @@
             <article class="tool-panel">
               <p class="eyebrow">Charleston helper</p>
               <h3>Pick 3 to Pass</h3>
-              <p>Use this as a beginner check before passing. It favors isolated tiles, duplicate flowers, and low-flexibility singles.</p>
+              <p>Use this as a beginner check before passing. These are rough suggestions, not card-aware strategy. Check your chosen card line before passing.</p>
               <div id="charlestonPicks" class="recommendation-list"></div>
             </article>
 
@@ -292,6 +309,7 @@
       </section>
     </main>
 
+    <script src="charleston.js"></script>
     <script src="app.js"></script>
   </body>
 </html>
