@@ -146,3 +146,15 @@ select,input:not([type=checkbox]):not([type=file]) { font:inherit; color:var(--i
 .rack-arrange { display:flex; flex-wrap:wrap; align-items:center; gap:10px; margin:14px 0; }
 .rack-arrange span { flex:1 1 220px; color:var(--muted); font-size:.9rem; }
 .hand-tile.arrange-selected { outline:3px solid var(--blue); outline-offset:3px; transform:translateY(-5px); }
+
+.discard-tray { margin:16px 0; padding:16px; background:var(--powder,#eaf1f8); border:1px solid var(--line); border-radius:18px; }
+.discard-heading { display:flex; align-items:baseline; justify-content:space-between; flex-wrap:wrap; gap:8px; margin-bottom:12px; }
+.discard-heading h3 { margin:0; font-size:1.05rem; }
+.discard-heading span { font-size:.85rem; color:var(--muted); }
+.discard-tray p { margin:0; color:var(--muted); }
+.discard-tiles { display:flex; flex-wrap:wrap; gap:10px; padding:3px 0 16px; }
+.discard-tile { position:relative; width:54px; min-height:76px; padding:5px 3px; border:1px solid var(--line); border-radius:9px; background:white; text-align:center; box-shadow:0 2px 0 #c5d3df; }
+.discard-tile .tile-art { width:44px; height:48px; }
+.discard-tile .tile-label { display:block; font-size:10px; line-height:1.2; }
+.discard-tile.latest-discard { outline:2px solid var(--blue); outline-offset:2px; }
+.discard-latest { position:absolute; bottom:-16px; left:50%; transform:translateX(-50%); border-radius:7px; padding:1px 5px; background:var(--blue); color:white; font-size:10px; font-weight:700; }

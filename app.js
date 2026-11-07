@@ -544,7 +544,11 @@ let turnComplete = false;
 let turnOtherRacks = [];
 let turnWall = [];
 let turnDiscards = [];
+function discardTray(codes) {
+  return `<section class="discard-tray" aria-label="Discarded tiles"><div class="discard-heading"><h3>Discards <span>(${codes.length})</span></h3><span>Oldest → newest</span></div>${codes.length?`<div class="discard-tiles">${codes.map((code,i)=>`<div class="discard-tile ${i===codes.length-1?'latest-discard':''}" role="img" aria-label="${escapeHtml(tileDisplay(code))}${i===codes.length-1?', latest discard':''}">${tileButtonMarkup(code)}${i===codes.length-1?'<span class="discard-latest">Latest</span>':''}</div>`).join('')}</div>`:'<p>No discards yet. Your discarded tiles will stay here for you to see.</p>'}</section>`;
+}
 function renderHand() {
+  $("#practiceDiscards").innerHTML=discardTray(turnDiscards);
   $("#practiceHand").innerHTML = state.hand.map((code, index) => `<button class="hand-tile ${turnSelected===index?'selected-pass':''}" aria-pressed="${turnSelected===index}" data-index="${index}" type="button" ${!turnDrawn || turnComplete ? "disabled" : ""} aria-label="Select discard ${escapeHtml(tileDisplay(code))}">${tileButtonMarkup(code)}${turnSelected===index?'<span class="selection-check" aria-hidden="true">✓</span>':''}</button>`).join("");
   $("#tileBank").innerHTML = `<button id="drawPracticeTile" class="primary-button" type="button" ${turnDrawn || turnComplete || !turnWall.length ? "disabled" : ""}>Draw one tile</button><button id="declarePracticeWin" class="secondary-button" type="button" ${!turnDrawn || turnComplete ? "disabled" : ""}>Declare mahjong</button><button id="confirmPracticeDiscard" class="primary-button" type="button" ${!turnDrawn || turnComplete || turnSelected===null ? "disabled" : ""}>${turnSelected===null?'Select a tile to discard':`Discard ${escapeHtml(tileDisplay(state.hand[turnSelected]))}`}</button>`;
   window.RackArrange?.mount($("#practiceHand"),'practice',(from,to)=>{RackArrange.move(state.hand,from,to);turnSelected=RackArrange.remap(turnSelected,from,to);},renderHand);
