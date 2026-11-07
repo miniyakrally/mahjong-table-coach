@@ -172,3 +172,18 @@ select,input:not([type=checkbox]):not([type=file]) { font:inherit; color:var(--i
 #tile-guide .shown-tile { width:74px; flex:0 0 74px; padding:9px; }
 #tile-guide .tile-art { width:100%; height:74px; }
 #tile-guide .tile-label { display:block; text-align:center; margin-top:8px; }
+
+.live-layout { display:grid; gap:22px; grid-template-columns:minmax(0,1fr); }
+.live-row { position:sticky; top:0; z-index:5; background:var(--paper,#fcfcf7); padding:12px; border:1px solid var(--line); border-radius:16px; align-self:start; }
+.live-row .printed-pattern { margin:0; }
+.opponent-seats { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px; }
+.opponent-seats article { padding:10px; background:var(--powder); border-radius:14px; overflow-wrap:anywhere; }
+.opponent-seats h3 { font-size:.9rem; }
+.live-feedback,.pending-discard { padding:16px; background:var(--powder); border-radius:14px; }
+.pending-discard .shown-tile { display:inline-flex; margin:12px; }
+@media(min-width:1100px){.live-layout { grid-template-columns:300px minmax(0,1fr); }.live-row { top:20px; }}
+@media(max-width:1099px){.live-row { max-height:38vh; overflow:auto; }.opponent-seats .shown-tile { width:40px; }.live-row h3 { margin:0 0 6px; }}
+
+.live-row .row-key,.live-row .printed-heading,#decision-practice .row-key { display:none; }
+.live-row .printed-row { margin:8px 0; }.live-row .row-instructions { margin:6px 0; }.live-row details { margin:8px 0; }
+#live-table .journey-rack { background:var(--mat); }

@@ -53,12 +53,12 @@
 
         <section id="practice" class="view" aria-labelledby="viewTitle">
           <p class="hub-intro">Choose a skill to practice. Each exercise includes its own instructions.</p>
-          <div class="hub-grid">
+          <div class="hub-grid"><button class="hub-card" data-open-view="live-table"><strong>Play a practice hand</strong><span>Four players, shuffled draws, visible discards, calls, and joker exchanges.</span></button>
             <button class="hub-card" data-open-view="charleston"><strong>Pass in the Charleston</strong><span>Both rounds, blind passes, and the courtesy exchange.</span></button>
-            <button class="hub-card" data-open-view="table"><strong>Draw and discard</strong><span>Compare your rack with a row and finish a hand.</span></button>
-            <button class="hub-card" data-open-view="quiz"><strong>Make a rules decision</strong><span>Calls, concealed hands, and jokers in context.</span></button>
+            <button class="hub-card" data-open-view="table"><strong>Practice one turn</strong><span>Learn the draw, select, and confirm controls with other players paused.</span></button>
+            <button class="hub-card" data-open-view="decision-practice"><strong>Can I do this?</strong><span>Read the row and tiles, then decide whether to call, pass, exchange, or declare mahjong.</span></button>
             <button class="hub-card" data-open-view="tiles"><strong>Recognize the tiles</strong><span>Review tile faces and say their names.</span></button>
-            <button class="hub-card" data-open-view="tools"><strong>Compare your own hand</strong><span>Enter tiles and compare with a teaching row.</span></button>
+            <button class="hub-card" data-open-view="journey" data-reading-check="true"><strong>Read an unfamiliar row</strong><span>Six card-reading checks without explanations before your answer.</span></button><button class="hub-card" data-open-view="tools"><strong>Compare your own hand</strong><span>Enter tiles and compare with a teaching row.</span></button>
           </div>
         </section>
         <section id="reference" class="view" aria-labelledby="viewTitle">
@@ -76,7 +76,9 @@
 <section id="passing-guide" class="view lookup-view" aria-labelledby="viewTitle"></section>
 <section id="calls-guide" class="view lookup-view" aria-labelledby="viewTitle"></section>
 <section id="table-guide" class="view lookup-view" aria-labelledby="viewTitle"></section>
-<section id="settings" class="view" aria-labelledby="viewTitle">
+<section id="live-table" class="view" aria-labelledby="viewTitle"><button class="primary-button" data-open-view="live-table">Deal a practice hand</button></section>
+        <section id="decision-practice" class="view" aria-labelledby="viewTitle"></section>
+        <section id="settings" class="view" aria-labelledby="viewTitle">
           <p>Your learning progress saves in this browser. Photos and custom tile labels also stay here.</p>
           <div id="analyticsNotice" hidden><p>Anonymous counts help us see which lessons people reach. We do not send names, answers, hands, or photos.</p><label><input id="analyticsOptOut" type="checkbox"> Turn off anonymous usage counts</label></div>
           <button id="restartLearning" class="secondary-button" type="button">Restart learning…</button>
@@ -314,6 +316,9 @@
     <script src="learning-analytics.js"></script>
     <script src="rack-arrange.js"></script>
     <script src="app.js"></script>
+    <script src="table-engine.js"></script>
+    <script src="decision-practice.js"></script>
+    <script src="table-play.js"></script>
     <script src="reference-guide.js"></script>
     <script src="guided-hand.js"></script>
   </body>

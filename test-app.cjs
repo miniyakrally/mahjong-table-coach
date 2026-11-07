@@ -3,7 +3,7 @@ const fs=require('node:fs'),vm=require('node:vm'),assert=require('node:assert/st
 const html=fs.readFileSync('index.html','utf8');
 const elements=new Map([...html.matchAll(/id="([^"]+)"/g)].map(([,id])=>[id,{value:id==='blindCount'||id==='courtesyCount'?'0':id==='friendCount'?'4':'',style:{},classList:{toggle(){}},listeners:{},addEventListener(e,f){this.listeners[e]=f;},removeAttribute(){},setAttribute(){}}]));
 const savedProgress=new Map();
-const context=vm.createContext({document:{querySelector(s){if(s.startsWith('[data-'))return {focus(){}};assert.ok(elements.has(s.slice(1)),`Missing element ${s}`);return elements.get(s.slice(1));},querySelectorAll(){return[];}},localStorage:{getItem(k){return savedProgress.get(k)||null},setItem(k,v){savedProgress.set(k,v)},removeItem(k){savedProgress.delete(k)}},window:{},console});
+const context=vm.createContext({document:{addEventListener(){},querySelector(s){if(s.startsWith('[data-'))return {focus(){}};assert.ok(elements.has(s.slice(1)),`Missing element ${s}`);return elements.get(s.slice(1));},querySelectorAll(){return[];}},localStorage:{getItem(k){return savedProgress.get(k)||null},setItem(k,v){savedProgress.set(k,v)},removeItem(k){savedProgress.delete(k)}},window:{},console});
 vm.runInContext(fs.readFileSync('tile-art.js','utf8')+'\n'+fs.readFileSync('curriculum.js','utf8')+'\n'+fs.readFileSync('charleston.js','utf8')+'\n'+fs.readFileSync('teaching-visuals.js','utf8')+'\n'+fs.readFileSync('practice-engine.js','utf8')+'\n'+fs.readFileSync('app.js','utf8'),context);
 const run=s=>vm.runInContext(s,context);
 const click=id=>elements.get(id).listeners.click({target:{closest:s=>s==='#drawPracticeTile'?{}:null}});

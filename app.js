@@ -439,7 +439,7 @@ function escapeHtml(value) {
 }
 
 function setView(viewId) {
-  const practiceViews = ['practice','charleston','table','quiz','tiles','tools'];
+  const practiceViews = ['practice','decision-practice','live-table','charleston','table','quiz','tiles','tools'];
   const referenceViews = ['reference','card','tile-guide','card-guide','passing-guide','calls-guide','table-guide'];
   const section = ['journey','lesson'].includes(viewId) ? 'journey' : practiceViews.includes(viewId) ? 'practice' : referenceViews.includes(viewId) ? 'reference' : 'settings';
   setView.section = section;
@@ -451,7 +451,7 @@ function setView(viewId) {
   });
   $$('.view').forEach(view => view.classList.toggle('active', view.id === viewId));
   $('#viewTitle').textContent = {
-    journey:'Learn by playing', practice:'Practice a skill', reference:'Reference', settings:'Settings',
+    'decision-practice':'Can I do this?', 'live-table':'Play a practice hand', journey:'Learn by playing', practice:'Practice a skill', reference:'Reference', settings:'Settings',
     lesson:'All lessons', 'tile-guide':'Tile guide', 'card-guide':'Reading the card', 'passing-guide':'Charleston order', 'calls-guide':'Calls and jokers', 'table-guide':'Turns and table etiquette', tiles:'Practice tile names', table:'Draw and discard',
     quiz:'Rules decisions', card:'Card rows and notation', charleston:'Practice the Charleston', tools:'Compare your hand'
   }[viewId];
