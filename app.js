@@ -75,7 +75,7 @@ const lessons = [
     "title": "Bird Bam: a little table celebration",
     "body": "Optional social tradition · The bird tile is 1 Bam. At this gathering, it is also an excuse for a friendly toast or sip, if you want to join in.",
     "bullets": [
-      "Agree before playing on the Bird Bam moment: for example, when it is discarded. Your group chooses the trigger; it is not an official game rule.",
+      "When someone draws 1 Bam from the wall, that is our Bird Bam toast moment. It is a house tradition, not an official game rule.",
       "Any drink counts, and passing on the toast is always fine. Keep glasses beside the playing area so tiles and cards stay dry.",
       "Say “One Bam” clearly when discarding. A bird toast does not pause the rules, change the tile’s value, or take away anyone’s chance to call."
     ]
@@ -402,13 +402,13 @@ const checklistItems = [
   "Are concealed hands being explained before the first round?",
   "Can everyone point to the drawing end and fishtailed tail?",
   "Have we agreed to ask before touching anyone else’s rack, tiles, or wall?",
-  "When is our optional Bird Bam toast? Any drink counts; joining in is optional."
+  "Our optional Bird Bam toast happens when 1 Bam is drawn. Any drink counts; joining in is optional."
 ];
 
 const groupPrompts = [
   "Point to the drawing end and the fishtail without moving anyone else’s wall.",
   "Practice asking for a joker exchange without reaching into another player’s exposure.",
-  "Find 1 Bam and explain our optional bird-toast tradition to a new friend.",
+  "Find 1 Bam and explain our optional toast when it is drawn to a new friend.",
   "Everyone name one tile in your hand that supports more than one possible direction.",
   "Before discarding, say which card section you are currently watching.",
   "Find one joker rule on the table: where could a joker legally help, and where could it not?",
